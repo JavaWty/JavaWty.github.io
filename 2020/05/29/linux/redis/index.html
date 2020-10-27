@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="安装安装步骤 安装视频,在redis英文官网可以下载最新版的linux安装包  1234567891011121314151617181920212223242526272829mv redis-6.0.5.tar.gz &#x2F;opt  #将安装包放到linux环境下后,移动到opt目录下cd &#x2F;opt tar -zxvf redis-6.0.5.tar.gz # 解压在&#x2F;opt下面,redis.co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis">
+<meta property="og:url" content="http://example.com/2020/05/29/linux/redis/index.html">
+<meta property="og:site_name" content="哈,我是弟弟啊の博客">
+<meta property="og:description" content="安装安装步骤 安装视频,在redis英文官网可以下载最新版的linux安装包  1234567891011121314151617181920212223242526272829mv redis-6.0.5.tar.gz &#x2F;opt  #将安装包放到linux环境下后,移动到opt目录下cd &#x2F;opt tar -zxvf redis-6.0.5.tar.gz # 解压在&#x2F;opt下面,redis.co">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/tool/redis.png">
+<meta property="og:image" content="http://example.com/images/tool/redis-2.png">
+<meta property="article:published_time" content="2020-05-29T06:57:08.000Z">
+<meta property="article:modified_time" content="2020-10-06T00:58:34.278Z">
+<meta property="article:author" content="团子">
+<meta property="article:tag" content="redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/tool/redis.png">
+
+<link rel="canonical" href="http://example.com/2020/05/29/linux/redis/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>redis | 哈,我是弟弟啊の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">哈,我是弟弟啊の博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/05/29/linux/redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="团子">
+      <meta itemprop="description" content="<script type="text/javascript" src="https://api.qinor.cn/soup/index.php?encode=js"> </script> <script> qinor() </script>">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="哈,我是弟弟啊の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          redis
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-29 14:57:08" itemprop="dateCreated datePublished" datetime="2020-05-29T14:57:08+08:00">2020-05-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-06 08:58:34" itemprop="dateModified" datetime="2020-10-06T08:58:34+08:00">2020-10-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S54y1R7SB/?p=9&t=797">安装视频</a>,在<a target="_blank" rel="noopener" href="https://redis.io/">redis英文官网</a>可以下载最新版的linux安装包</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">mv redis-6.0.5.tar.gz /opt  #将安装包放到linux环境下后,移动到opt目录下</span><br><span class="line">cd /opt </span><br><span class="line">tar -zxvf redis-6.0.5.tar.gz # 解压在/opt下面,redis.conf在此目录下</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">以下是环境安装</span></span><br><span class="line">yum install gcc gcc-c++ #安装gcc</span><br><span class="line">gcc -v #查看版本</span><br><span class="line">yum -y install gcc automake autoconf libtool make   #安装make</span><br><span class="line">make MALLOC=libc #必须跳转到redis解压目录,执行此命令,编译安装,会自动安装其他环境</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">配置相关</span></span><br><span class="line">cd /usr/local/bin  #redis默认安装在此位置</span><br><span class="line">mkdir redisConfig #在/usr/local/bin文件夹下面创建一个redis的配置文件夹</span><br><span class="line">cp /opt/redis-6.0.5/redis.conf redis.conf #把解压路径下的配置文件复制一份到默认安装位置,在redisConfig下执行此命令</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">修改成后台运行</span></span><br><span class="line">vim redis.conf #编辑redis.conf文件</span><br><span class="line"><span class="meta">#</span><span class="bash">详细操作</span></span><br><span class="line"><span class="meta">#</span><span class="bash">按下 i 进行编辑,再按 esc退出到底线命令模式,输入<span class="string">&quot;/daemonize&quot;</span>,找到<span class="string">&quot;daemonize no&quot;</span>,将其改为yes,然后按下esc,输入<span class="string">&quot;:wq&quot;</span>,保存退出</span></span><br><span class="line"></span><br><span class="line">redis-server redisConfig/redis.conf  #后台运行redis</span><br><span class="line">redis-cli --raw  #运行客户端,后面跟--raw参数,可以解决中文乱码问题</span><br><span class="line"></span><br><span class="line">ps -ef|grep redis #查看redis进程是否运行,主要是查看redis-server的6379是否开启</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">退出</span></span><br><span class="line">1. shutdown</span><br><span class="line">2. exit</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h1 id="基本数据命令"><a href="#基本数据命令" class="headerlink" title="基本数据命令"></a>基本数据命令</h1><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bJ411C7ye?p=1">学习视频</a></p>
+<ul>
+<li><code>keys *</code> –查看所有的键,<em>是模糊查询,可以具体为s</em>查看s开头的key,*1查看有1的key</li>
+<li><code>exists key</code> –是否存在key,返回个数</li>
+<li><code>expire key time</code> –为key设置一个过期时间,单位是秒</li>
+<li><code>ttl key</code> –查看key的过期时间</li>
+<li><code>persist key</code>–对key进行持久化</li>
+</ul>
+<!--more-->
+
+<ul>
+<li><code>dbsize</code> –查看数据库的key数量</li>
+<li><code>rename key newKey</code>–重命名</li>
+<li><code>select 数字</code> –redis默认16个数据库,数字为数据库的索引</li>
+<li><code>move key 数字</code>–把当前数据库的key移动到数字的数据库</li>
+<li><code>flushdb</code>–清除当前数据库</li>
+<li><code>flushall</code> –清除所有数据库</li>
+</ul>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">set  ---set key value</span><br><span class="line">setex key ---setex k1 10 200,设置k1的值为200,只存在十秒</span><br><span class="line">setnx ---不存在才设值,否则返回0</span><br><span class="line">get  ---get key</span><br><span class="line">del  ---可以删除多个key</span><br><span class="line">mset ---设置多个key和value</span><br><span class="line">mget  ---获取多个key</span><br><span class="line">getset key value   ---给key赋值一个新值,返回一个旧值</span><br><span class="line">incr key &#x2F; decr key   ---自增 &#x2F; 自减</span><br><span class="line">incrby key  num &#x2F; decrby key  num    ---自增或自减多少num,num为数值</span><br><span class="line">append key val   ---在key的val后面追加内容</span><br><span class="line">strlen ----获取字符串的长度</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">哈希类型 hash: map格式</span><br><span class="line">以user:&#123;&quot;username&quot;:&quot;zhangsan&quot;,&quot;email&quot;,&quot;123@qq.com&quot;&#125;为例</span><br><span class="line"></span><br><span class="line">hset  --eg: hset user username zhangsan</span><br><span class="line">hget --eg: hget user username</span><br><span class="line">hgetall user  --获取user的所有属性</span><br><span class="line">hdel user age email --删除一个或者多个key</span><br><span class="line">hmset --eg: hmset user username zhang email 123@qq.com</span><br><span class="line">hmget --wg: hmget user username email 一次获取多个值</span><br><span class="line">hgetall   --eg: hgetall user </span><br><span class="line">hsetnx --不存在才设值,否则返回0</span><br><span class="line">hincrby key  num &#x2F; hdecrby key  num    ---自增或自减多少num,num为数值</span><br><span class="line">hexists --判断某个值是否存在,eg:hexists user age,返回1或0</span><br><span class="line">hlen user --判断user有多少属性</span><br><span class="line">hkeys user --获取所有的key</span><br><span class="line">hvals user -- 获取所有的value</span><br></pre></td></tr></table></figure>
+
+<h2 id="List列表"><a href="#List列表" class="headerlink" title="List列表"></a>List列表</h2><p>双向链表,有序可重复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">lpush --从头部添加数据,先进后出</span><br><span class="line">rpush --从尾部添加数据,先进先出</span><br><span class="line">lrang key 0 -1 --查看所有 0表示从头开始,-1表示所有</span><br><span class="line">lrang key 0 2 --查看所有,从0开始到2结束 [0,2]</span><br><span class="line">lpop --从左删除并返回删除的值</span><br><span class="line">rpop --从右删除并返回删除的值</span><br><span class="line">linsert k1 before 100 50 --k1这个链表的值100前面添加了一个值50</span><br><span class="line">lset 链表 下标 新值 --把链表中下标的旧值更换为新值</span><br><span class="line"></span><br><span class="line">如果链表中有10个一模一样的值,比如400</span><br><span class="line">语法: lrem 链表 数目 重复值</span><br><span class="line">--删除链表中几个重复的值,从头往尾删除,eg:lrem k1 3 400</span><br><span class="line"></span><br><span class="line">ltrim k1 下标 上标 --保留下标和上标之间的数 [下标 上标]</span><br><span class="line">rpoplpush k1 k2 --把一个数从k1删除并添加到k2</span><br><span class="line">lindex 链表 下标 --获取指定链表下标的值</span><br><span class="line">llen 链表 --获取这个链表的值的个数</span><br></pre></td></tr></table></figure>
+
+<h2 id="Set-集合"><a href="#Set-集合" class="headerlink" title="Set 集合"></a>Set 集合</h2><p>集合类型 set：无序不可重复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sadd k1 值 --往k1中添加一个或者多个</span><br><span class="line">del k1 k2--删除k1 k2</span><br><span class="line">srem k1 值 --移除k1中的指定值</span><br><span class="line">spop k1 --移除一个随机的值</span><br><span class="line">smembers k1 --查看所有的值</span><br><span class="line">sdiff k1 k2--取两个Set的差集,因为先写k1,所以以k1为准</span><br><span class="line">sinter k1 k2 --取交集</span><br><span class="line">sunion k1 k2 --并集</span><br><span class="line">smove k1 k2 值 --把k1中的值转移到k2</span><br><span class="line">scard k1 --查看个数</span><br><span class="line">sismember k1 值--查看值是否在k1中</span><br><span class="line">srandmember k1 [2]--随机返回一个值或者指定个数的值</span><br></pre></td></tr></table></figure>
+
+<h2 id="ZSet-有序不重复"><a href="#ZSet-有序不重复" class="headerlink" title="ZSet 有序不重复"></a>ZSet 有序不重复</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/knowledgesea/p/4999288.html">参考文档</a></p>
+<p>Zset集合中每个元素都有一个分数,分数和list集合的索引很相似</p>
+<p>分数可以重复,值不能重复</p>
+<p>eg: <code>zadd sa 1 v1 --添加一个分数为1,值为v1的sa集合</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">zadd Name k1 v1 --添加一个或者多个</span><br><span class="line">zrange Name 0 -1 [withscores] --查看Name链表所有的数据,withscores可选</span><br><span class="line">zrem Name v1 --删除Name链表中的v1值</span><br><span class="line">zincrby Name 步长 值 --通过值给分数增加步长,步长为正是增,为负是减</span><br><span class="line">zrangebyscore Name -inf +inf --根据指定分数的范围获取值,-inf负无穷,+inf正无穷</span><br><span class="line">zrangebyscore Name -inf +inf limit 1 2--根据获取到的值,进行详细查看,1是下标,2是数量</span><br><span class="line">zrangebyscore Name (1 5 --输出 分数&gt;1 and &lt;&#x3D;5的成员值</span><br><span class="line">zrank Name v1 --分数从小到大排列</span><br><span class="line">zrevrank Name v1 --分数从大到小排列</span><br><span class="line">zcard Name --返回Name集合元素的个数</span><br><span class="line">zcount Name min max -- 返回一个范围在 min&lt;&#x3D; score &lt;&#x3D; max的整数</span><br><span class="line">zremrangebyrank Name 下标1 下标2 --删除 下标1 到下标2 的值,包含下标1和下标2</span><br><span class="line">zremrangebyscore Name 分1 分2 --根据分数删除</span><br></pre></td></tr></table></figure>
+
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S54y1R7SB?p=21">观看地址</a></p>
+<blockquote>
+<p>redis单条命令式保存原子性,但是事务不保证原子性</p>
+<p>redis事务没有隔离级别的概念,即不会有幻读,脏读这类名词</p>
+</blockquote>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ul>
+<li><p>开启事务 <code>multi</code></p>
+</li>
+<li><p>执行代码 ….</p>
+</li>
+<li><p>执行事务 <code>exec</code>,事务执行完成后,下次写入数据,需要重新开启事务</p>
+</li>
+<li><p>放弃事务 <code>discard</code></p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; MULTI  #开启事务</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; set k1 v1  #代码操作,入队操作</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; set k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; EXEC #入队完成后,一次性把数据放到redis中,然后执行事务</span><br><span class="line">1) OK</span><br><span class="line">2) OK</span><br><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line">&quot;v1&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; MULTI   #开启事务</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; set k4 v4  #入队</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; DISCARD  #放弃事务</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get k4  #放弃事务后,数据不会被写入到redis</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="编译时的异常"><a href="#编译时的异常" class="headerlink" title="编译时的异常"></a>编译时的异常</h3><blockquote>
+<p>类似于java的编译异常,开启事务后,进行代码操作,代码出错后,继续提交事务,就导致整组的&gt;代码提交不了</p>
+</blockquote>
+<p>命令输入错误时,会发生编译错误</p>
+<h3 id="运行时异常"><a href="#运行时异常" class="headerlink" title="运行时异常"></a>运行时异常</h3><blockquote>
+<p>类似于java的运行时异常,开启事务后,编写3组代码,代码一有错误,但是编译通过, 在提交的时候,代码一报错,其他两组代码顺利执行完毕</p>
+</blockquote>
+<h1 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h1><h2 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h2><p><strong>认为什么时候都会出为题,<strong>每一步操作都加锁</strong></strong></p>
+<h2 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h2><p>认为操作不会出现问题,对每一步操作都不加锁,更新数据的时候查看一下,是否有人更改数据.</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>需要使用监控,添加关键字<code>watch</code>,用它来监控一个对象 eg: <code>watch name</code>,这个name就是数据,需要监视name</p>
+<p>使用<code>unwatch</code>放弃监视</p>
+<p>使用步骤: 监控对象,开启事务,操作,提交事务</p>
+<p>如果中间出问题,导致失败,放弃监控,直接监控最新版的数据即可</p>
+<h1 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h1><h2 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-pool2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--json转换--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.70<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Jedis-1"><a href="#Jedis-1" class="headerlink" title="Jedis"></a>Jedis</h2><h3 id="测试连接"><a href="#测试连接" class="headerlink" title="测试连接"></a>测试连接</h3><p>在连接前,需要修改一下redis.conf配置文件</p>
+<ol>
+<li><p>注释掉<code>bind 127.0.0.1</code></p>
+</li>
+<li><p>关闭保护模式 ,即修改<code>protected-mode</code>,改为no</p>
+</li>
+<li><p>关闭防火墙</p>
+<ul>
+<li>关闭防火墙   <code>systemctl stop firewalld</code></li>
+<li>开启防火墙  <code>systemctl start firewalld</code></li>
+<li>查看防火墙状态:<code>systemctl status firewalld</code></li>
+</ul>
+</li>
+<li><p>开启redis服务</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server redisConfig/redis.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;192.168.254.133&quot;</span>,<span class="number">6379</span>);</span><br><span class="line">System.out.println(jedis.ping());</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>中文乱码</li>
+</ol>
+<p>在redis-cli启动的时候,添加参数  –raw</p>
+<h3 id="jedis的事务"><a href="#jedis的事务" class="headerlink" title="jedis的事务"></a>jedis的事务</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;192.168.254.133&quot;</span>, <span class="number">6379</span>);</span><br><span class="line">		<span class="comment">//生成数据</span></span><br><span class="line">        JSONObject json = <span class="keyword">new</span> JSONObject();</span><br><span class="line">        json.put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;tom&quot;</span>);</span><br><span class="line">        json.put(<span class="string">&quot;city&quot;</span>, <span class="string">&quot;beiJing&quot;</span>);</span><br><span class="line">        <span class="comment">//开启事务</span></span><br><span class="line">        Transaction multi = jedis.multi();</span><br><span class="line">        String result = json.toJSONString();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//事务操作</span></span><br><span class="line">            multi.set(<span class="string">&quot;user1&quot;</span>, result);</span><br><span class="line">            multi.set(<span class="string">&quot;user2&quot;</span>, result);</span><br><span class="line">            <span class="comment">//事务执行</span></span><br><span class="line">            multi.exec();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="comment">//出现异常,取消事务</span></span><br><span class="line">            multi.discard();</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(jedis.get(<span class="string">&quot;user1&quot;</span>));</span><br><span class="line">            System.out.println(jedis.get(<span class="string">&quot;user2&quot;</span>));</span><br><span class="line">            multi.close();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="整合springboot"><a href="#整合springboot" class="headerlink" title="整合springboot"></a>整合springboot</h1><h2 id="springboot2-0说明"><a href="#springboot2-0说明" class="headerlink" title="springboot2.0说明"></a>springboot2.0说明</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S54y1R7SB?p=25">观看地址</a></p>
+<p>sprinigboot2.0开始,连接redis的工具换成了lettuce,不使用jedis</p>
+<p>jedis:底层采用直接连接数据库的方式,多个线程同时操作,会不安全,可以使用jedis pool来规避</p>
+<p>lettuce: 采用netty,实例可以在多线程中共享</p>
+<p>简单配置:<code>spring.redis</code></p>
+<p>集群配置:<code>spring.redis.lettuce</code></p>
+<h2 id="properties配置"><a href="#properties配置" class="headerlink" title="properties配置"></a>properties配置</h2><blockquote>
+<ol>
+<li>ctrl+shift+n 搜索–&gt; RedisAutoConfiguration</li>
+<li>ctrl+shift+n 搜索–&gt; RedisProperties</li>
+<li>配置集群的话,使用lettuce</li>
+</ol>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#redis服务器的IP </span></span><br><span class="line"><span class="string">redis.ip=</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#redis服务器的Port </span></span><br><span class="line"><span class="string">redisl.port=6379</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#最大活动对象数</span></span><br><span class="line"><span class="string">redis.pool.maxTotal=1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#最大能够保持ide1状态的对数</span></span><br><span class="line"><span class="string">redis.pool.maxIdle=100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#最小能够保持ide1状态的对象数</span></span><br><span class="line"><span class="string">redis.pool.minIdle=50</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#当池内没有返回对象时，最大等待时间</span></span><br><span class="line"><span class="string">redis.pool.maxwaitMillis=10000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#当调用borrow object方法时，是否进行有效性检查</span></span><br><span class="line"><span class="string">redis.pool.testOnBorrow=true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#当调用return object方法时，是否进行有效性检查</span></span><br><span class="line"><span class="string">redis.pool.testOnReturn=true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#“空闲链接&quot;检测线程，检测的周期，毫秒数。如果为负值，表示不运行“检测线程&quot;。默认为-1.</span></span><br><span class="line"><span class="string">redis.pool.timeBetweenEvictionRunsMillis=30000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#向调用者输出“链接”对象时，是否检测它的空闲超时；</span></span><br><span class="line"><span class="string">redis.pool.testWhileIdle=true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#对于丶空闲链接”检测线程而言，每次检测的链接资源的个数。默认为3.</span></span><br><span class="line"><span class="string">redis.pool.numTestsPerEvictionRun=50</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h3 id="导入依赖"><a href="#导入依赖" class="headerlink" title="导入依赖"></a>导入依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 操作redis --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">6379</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">192.168</span><span class="number">.254</span><span class="number">.133</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpringbootRedisApplicationTests</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisTemplate redisTemplate;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        redisTemplate.opsForValue().set(<span class="string">&quot;mykey&quot;</span>, <span class="string">&quot;kuangshen&quot;</span>);</span><br><span class="line">        System.out.println(redisTemplate.opsForValue().get(<span class="string">&quot;mykey&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="RedisTemplate模板的api说明"><a href="#RedisTemplate模板的api说明" class="headerlink" title="RedisTemplate模板的api说明"></a>RedisTemplate模板的api说明</h3><blockquote>
+<p>opsForValue 操作字符,类似string</p>
+<p>opsForList 操作list,类似List</p>
+<p>opsForSet</p>
+<p>opsForHash</p>
+<p>opsForZSet</p>
+</blockquote>
+<h2 id="RedisTemplate"><a href="#RedisTemplate" class="headerlink" title="RedisTemplate"></a>RedisTemplate</h2><h3 id="自定义RedisTemplate"><a href="#自定义RedisTemplate" class="headerlink" title="自定义RedisTemplate"></a>自定义RedisTemplate</h3><h4 id="自定义编写"><a href="#自定义编写" class="headerlink" title="自定义编写"></a>自定义编写</h4><p>所有的对象,都需要序列化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;all&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RedisTemplate&lt;String, Object&gt; <span class="title">MyRedisTemplate</span><span class="params">(RedisConnectionFactory factory)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 我们为了自己开发方便，一般直接使用 &lt;String, Object&gt;</span></span><br><span class="line">        RedisTemplate&lt;String, Object&gt; template = <span class="keyword">new</span> RedisTemplate&lt;String, Object&gt;();</span><br><span class="line">        template.setConnectionFactory(factory);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Json序列化配置</span></span><br><span class="line">        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = <span class="keyword">new</span> Jackson2JsonRedisSerializer(Object.class);</span><br><span class="line">        ObjectMapper om = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);</span><br><span class="line">        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);</span><br><span class="line">        jackson2JsonRedisSerializer.setObjectMapper(om);</span><br><span class="line">        <span class="comment">// String 的序列化</span></span><br><span class="line">        StringRedisSerializer stringRedisSerializer = <span class="keyword">new</span> StringRedisSerializer();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// key采用String的序列化方式</span></span><br><span class="line">        template.setKeySerializer(stringRedisSerializer);</span><br><span class="line">        <span class="comment">// hash的key也采用String的序列化方式</span></span><br><span class="line">        template.setHashKeySerializer(stringRedisSerializer);</span><br><span class="line">        <span class="comment">// value序列化方式采用jackson</span></span><br><span class="line">        template.setValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">        <span class="comment">// hash的value序列化方式采用jackson</span></span><br><span class="line">        template.setHashValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">        template.afterPropertiesSet();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> template;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Qualifier;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.redis.core.RedisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpringbootRedis02ApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="meta">@Qualifier(&quot;MyRedisTemplate&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> RedisTemplate redisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        redisTemplate.opsForValue().set(<span class="string">&quot;mykey&quot;</span>,<span class="string">&quot;中午好&quot;</span>);</span><br><span class="line">        System.out.println(redisTemplate.opsForValue().get(<span class="string">&quot;mykey&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="工具类-redisUtil"><a href="#工具类-redisUtil" class="headerlink" title="工具类 redisUtil"></a>工具类 redisUtil</h3><h4 id="编写"><a href="#编写" class="headerlink" title="编写"></a>编写</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisTemplate&lt;String, Object&gt; redisTemplate;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// =============================common============================</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 指定缓存失效时间</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key  键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> time 时间(秒)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">expire</span><span class="params">(String key, <span class="keyword">long</span> time)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (time &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                redisTemplate.expire(key, time, TimeUnit.SECONDS);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据key 获取过期时间</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key 键 不能为null</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 时间(秒) 返回0代表为永久有效</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getExpire</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> redisTemplate.getExpire(key, TimeUnit.SECONDS);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断key是否存在</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key 键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> true 存在 false不存在</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasKey</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> redisTemplate.hasKey(key);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除缓存</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key 可以传一个值 或多个</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">del</span><span class="params">(String... key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (key != <span class="keyword">null</span> &amp;&amp; key.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (key.length == <span class="number">1</span>) &#123;</span><br><span class="line">                redisTemplate.delete(key[<span class="number">0</span>]);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                redisTemplate.delete(CollectionUtils.arrayToList(key));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ============================String=============================</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 普通缓存获取</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key 键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> key == <span class="keyword">null</span> ? <span class="keyword">null</span> : redisTemplate.opsForValue().get(key);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 普通缓存放入</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> true成功 false失败</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">set</span><span class="params">(String key, Object value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            redisTemplate.opsForValue().set(key, value);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 普通缓存放入并设置时间</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> time  时间(秒) time要大于0 如果time小于等于0 将设置无限期</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> true成功 false 失败</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">set</span><span class="params">(String key, Object value, <span class="keyword">long</span> time)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (time &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                redisTemplate.opsForValue().set(key, value, time, TimeUnit.SECONDS);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                set(key, value);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 递增</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> delta 要增加几(大于0)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">incr</span><span class="params">(String key, <span class="keyword">long</span> delta)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (delta &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">&quot;递增因子必须大于0&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> redisTemplate.opsForValue().increment(key, delta);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 递减</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> delta 要减少几(小于0)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">decr</span><span class="params">(String key, <span class="keyword">long</span> delta)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (delta &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">&quot;递减因子必须大于0&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> redisTemplate.opsForValue().increment(key, -delta);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ================================Map=================================</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * HashGet</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key  键 不能为null</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> item 项 不能为null</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">hget</span><span class="params">(String key, String item)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> redisTemplate.opsForHash().get(key, item);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取hashKey对应的所有键值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key 键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 对应的多个键值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map&lt;Object, Object&gt; <span class="title">hmget</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> redisTemplate.opsForHash().entries(key);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * HashSet</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key 键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> map 对应多个键值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hmset</span><span class="params">(String key, Map&lt;String, Object&gt; map)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            redisTemplate.opsForHash().putAll(key, map);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * HashSet 并设置时间</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key  键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> map  对应多个键值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> time 时间(秒)</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> true成功 false失败</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hmset</span><span class="params">(String key, Map&lt;String, Object&gt; map, <span class="keyword">long</span> time)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            redisTemplate.opsForHash().putAll(key, map);</span><br><span class="line">            <span class="keyword">if</span> (time &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                expire(key, time);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 向一张hash表中放入数据,如果不存在将创建</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> item  项</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> true 成功 false失败</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hset</span><span class="params">(String key, String item, Object value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            redisTemplate.opsForHash().put(key, item, value);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 向一张hash表中放入数据,如果不存在将创建</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> item  项</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> time  时间(秒) 注意:如果已存在的hash表有时间,这里将会替换原有的时间</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> true 成功 false失败</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hset</span><span class="params">(String key, String item, Object value, <span class="keyword">long</span> time)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            redisTemplate.opsForHash().put(key, item, value);</span><br><span class="line">            <span class="keyword">if</span> (time &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                expire(key, time);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除hash表中的值</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key  键 不能为null</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> item 项 可以使多个 不能为null</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hdel</span><span class="params">(String key, Object... item)</span> </span>&#123;</span><br><span class="line">        redisTemplate.opsForHash().delete(key, item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断hash表中是否有该项的值</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key  键 不能为null</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> item 项 不能为null</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> true 存在 false不存在</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hHasKey</span><span class="params">(String key, String item)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> redisTemplate.opsForHash().hasKey(key, item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * hash递增 如果不存在,就会创建一个 并把新增后的值返回</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key  键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> item 项</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> by   要增加几(大于0)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">hincr</span><span class="params">(String key, String item, <span class="keyword">double</span> by)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> redisTemplate.opsForHash().increment(key, item, by);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * hash递减</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key  键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> item 项</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> by   要减少记(小于0)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">hdecr</span><span class="params">(String key, String item, <span class="keyword">double</span> by)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> redisTemplate.opsForHash().increment(key, item, -by);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ============================set=============================</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据key获取Set中的所有值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key 键</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Set&lt;Object&gt; <span class="title">sGet</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> redisTemplate.opsForSet().members(key);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据value从一个set中查询,是否存在</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> true 存在 false不存在</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">sHasKey</span><span class="params">(String key, Object value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> redisTemplate.opsForSet().isMember(key, value);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将数据放入set缓存</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key    键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> values 值 可以是多个</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 成功个数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">sSet</span><span class="params">(String key, Object... values)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> redisTemplate.opsForSet().add(key, values);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将set数据放入缓存</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key    键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> time   时间(秒)</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> values 值 可以是多个</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 成功个数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">sSetAndTime</span><span class="params">(String key, <span class="keyword">long</span> time, Object... values)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Long count = redisTemplate.opsForSet().add(key, values);</span><br><span class="line">            <span class="keyword">if</span> (time &gt; <span class="number">0</span>)</span><br><span class="line">                expire(key, time);</span><br><span class="line">            <span class="keyword">return</span> count;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取set缓存的长度</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key 键</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">sGetSetSize</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> redisTemplate.opsForSet().size(key);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 移除值为value的</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key    键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> values 值 可以是多个</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 移除的个数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">setRemove</span><span class="params">(String key, Object... values)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Long count = redisTemplate.opsForSet().remove(key, values);</span><br><span class="line">            <span class="keyword">return</span> count;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ===============================list=================================</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取list缓存的内容</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> start 开始</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> end   结束 0 到 -1代表所有值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Object&gt; <span class="title">lGet</span><span class="params">(String key, <span class="keyword">long</span> start, <span class="keyword">long</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> redisTemplate.opsForList().range(key, start, end);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取list缓存的长度</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key 键</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">lGetListSize</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> redisTemplate.opsForList().size(key);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过索引 获取list中的值</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index 索引 index&gt;=0时， 0 表头，1 第二个元素，依次类推；index&lt;0时，-1，表尾，-2倒数第二个元素，依次类推</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">lGetIndex</span><span class="params">(String key, <span class="keyword">long</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> redisTemplate.opsForList().index(key, index);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将list放入缓存</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">lSet</span><span class="params">(String key, Object value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            redisTemplate.opsForList().rightPush(key, value);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将list放入缓存</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> time  时间(秒)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">lSet</span><span class="params">(String key, Object value, <span class="keyword">long</span> time)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            redisTemplate.opsForList().rightPush(key, value);</span><br><span class="line">            <span class="keyword">if</span> (time &gt; <span class="number">0</span>)</span><br><span class="line">                expire(key, time);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将list放入缓存</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">lSet</span><span class="params">(String key, List&lt;Object&gt; value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            redisTemplate.opsForList().rightPushAll(key, value);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将list放入缓存</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> time  时间(秒)</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">lSet</span><span class="params">(String key, List&lt;Object&gt; value, <span class="keyword">long</span> time)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            redisTemplate.opsForList().rightPushAll(key, value);</span><br><span class="line">            <span class="keyword">if</span> (time &gt; <span class="number">0</span>)</span><br><span class="line">                expire(key, time);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据索引修改list中的某条数据</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index 索引</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">lUpdateIndex</span><span class="params">(String key, <span class="keyword">long</span> index, Object value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            redisTemplate.opsForList().set(key, index, value);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 移除N个值为value</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key   键</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> count 移除多少个</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 移除的个数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">lRemove</span><span class="params">(String key, <span class="keyword">long</span> count, Object value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Long remove = redisTemplate.opsForList().remove(key, count, value);</span><br><span class="line">            <span class="keyword">return</span> remove;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpringbootRedis02ApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisUtil redisUtil;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        redisUtil.set(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;张三&quot;</span>);</span><br><span class="line">        System.out.println(redisUtil.get(<span class="string">&quot;name&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="redis-conf解释"><a href="#redis-conf解释" class="headerlink" title="redis.conf解释"></a>redis.conf解释</h1><h2 id="存储数据大小-单位"><a href="#存储数据大小-单位" class="headerlink" title="存储数据大小(单位)"></a>存储数据大小(单位)</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 1k =&gt; 1000 bytes</span><br><span class="line"># 1kb =&gt; 1024 bytes</span><br><span class="line"># 1m =&gt; 1000000 bytes</span><br><span class="line"># 1mb =&gt; 1024*1024 bytes</span><br><span class="line"># 1g =&gt; 1000000000 bytes</span><br><span class="line"># 1gb =&gt; 1024*1024*1024 bytes</span><br><span class="line">#</span><br><span class="line"># units are case insensitive so 1GB 1Gb 1gB are all the same.</span><br><span class="line">#对大小写不敏感</span><br></pre></td></tr></table></figure>
+
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bind 127.0.0.1   # 绑定的ip</span><br><span class="line">protected-mode yes # 保护模式</span><br><span class="line">port 6379  # 端口设置</span><br></pre></td></tr></table></figure>
+
+<h2 id="引入外部配置文件"><a href="#引入外部配置文件" class="headerlink" title="引入外部配置文件"></a>引入外部配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># include /path/to/local.conf</span><br><span class="line"># include /path/to/other.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="通用配置"><a href="#通用配置" class="headerlink" title="通用配置"></a>通用配置</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">daemonize yes  # 以守护进程的方式运行，默认是 no，我们需要自己开启为yes！</span><br><span class="line">pidfile /var/run/redis_6379.pid  # 如果以后台的方式运行，我们就需要指定一个 pid 文件</span><br><span class="line"></span><br><span class="line">#日志级别</span><br><span class="line"># Specify the server verbosity level.</span><br><span class="line"># This can be one of:</span><br><span class="line"># debug (a lot of information, useful for development/testing) 测试阶段</span><br><span class="line"># verbose (many rarely useful info, but not a mess like the debug level)</span><br><span class="line"># notice (moderately verbose, what you want in production probably) 生产环境</span><br><span class="line"># warning (only very important / critical messages are logged) 警告</span><br><span class="line">loglevel notice</span><br><span class="line">logfile &quot;&quot;  #日志的文件位置名</span><br><span class="line">databases 16  # 数据库的数量，默认是 16 个数据库</span><br><span class="line">always-show-logo yes  # 是否总是显示LOGO</span><br></pre></td></tr></table></figure>
+
+<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">save 900 1   #900秒内,修改1次数据,就进行保存</span><br><span class="line">save 300 10   #300秒内,修改10次数据,就进行保存</span><br><span class="line">save 60 10000   #60秒内,修改10000次数据,就进行保存</span><br><span class="line">stop-writes-on-bgsave-error yes  # 持久化如果出错，是否还需要继续工作！</span><br><span class="line">rdbcompression yes # 是否压缩 rdb 文件，需要消耗一些cpu资源</span><br><span class="line">rdbchecksum yes # 保存rdb文件的时候，进行错误的检查校验</span><br><span class="line">dir ./  # rdb 文件保存的目录</span><br></pre></td></tr></table></figure>
+
+<h3 id="SECURITY-安全"><a href="#SECURITY-安全" class="headerlink" title="SECURITY 安全"></a>SECURITY 安全</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; ping</span><br><span class="line">PONG</span><br><span class="line">127.0.0.1:6379&gt; config get requirepass  # 获取redis的密码</span><br><span class="line">1) &quot;requirepass&quot;</span><br><span class="line">2) &quot;&quot;</span><br><span class="line">127.0.0.1:6379&gt; config set requirepass &quot;123456&quot;  # 设置redis的密码</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; config get requirepass  # 发现所有的命令都没有权限了</span><br><span class="line">(error) NOAUTH Authentication required.</span><br><span class="line">127.0.0.1:6379&gt; ping</span><br><span class="line">(error) NOAUTH Authentication required.</span><br><span class="line">127.0.0.1:6379&gt; auth 123456  # 使用密码进行登录！</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; config get requirepass</span><br><span class="line">1) &quot;requirepass&quot;</span><br><span class="line">2) &quot;123456&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="限制-CLIENTS"><a href="#限制-CLIENTS" class="headerlink" title="限制 CLIENTS"></a>限制 CLIENTS</h3><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">maxclients 10000  # 设置能连接上redis的最大客户端的数量</span><br><span class="line">maxmemory &lt;bytes&gt;  # redis 配置最大的内存容量</span><br><span class="line">maxmemory-policy noeviction  # 内存到达上限之后的处理策略</span><br><span class="line">  1、volatile-lru：只对设置了过期时间的key进行LRU（默认值）</span><br><span class="line">  2、allkeys-lru ： 删除lru算法的key </span><br><span class="line">  3、volatile-random：随机删除即将过期key </span><br><span class="line">  4、allkeys-random：随机删除 </span><br><span class="line">  5、volatile-ttl ： 删除即将过期的 </span><br><span class="line">  6、noeviction ： 永不过期，返回错误</span><br></pre></td></tr></table></figure>
+
+<h3 id="APPEND-ONLY-模式-aof配置"><a href="#APPEND-ONLY-模式-aof配置" class="headerlink" title="APPEND ONLY 模式 aof配置"></a>APPEND ONLY 模式 aof配置</h3><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">appendonly no   # 默认是不开启aof模式的，默认是使用rdb方式持久化的，在大部分所有的情况下，rdb完全够用！</span><br><span class="line">appendfilename &quot;appendonly.aof&quot;  # 持久化的文件的名字</span><br><span class="line"></span><br><span class="line"># appendfsync always  # 每次修改都会 sync。消耗性能</span><br><span class="line">appendfsync everysec  # 每秒执行一次 sync，可能会丢失这1s的数据！</span><br><span class="line"># appendfsync no    # 不执行 sync，这个时候操作系统自己同步数据，速度最快！</span><br></pre></td></tr></table></figure>
+
+<h1 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h1><h2 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>rdb是一种临时文件<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S54y1R7SB/?p=28">视频</a></p>
+<p><img data-src="/images/tool/redis.png"></p>
+<blockquote>
+<p>Redis会单独创建（fork）一个子进程来进行持久化，会先将数据写入到一个临时文件中，待持久化过程<br>都结束了，再用这个临时文件替换上次持久化好的文件。整个过程中，主进程是不进行任何IO操作的。<br>这就确保了极高的性能。如果需要进行大规模数据的恢复，且对于数据恢复的完整性不是非常敏感，那<br>RDB方式要比AOF方式更加的高效。RDB的缺点是最后一次持久化后的数据可能丢失。我们默认的就是<br>RDB，一般情况下不需要修改这个配置！</p>
+</blockquote>
+<p>有时候在生产环境我们会将这个文件进行备份！</p>
+<blockquote>
+<p>rdb保存的文件是dump.rdb 都是在我们的配置文件中快照中进行配置的！</p>
+</blockquote>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbfilename dump.rdb</span><br></pre></td></tr></table></figure>
+
+<h3 id="触发机制"><a href="#触发机制" class="headerlink" title="触发机制"></a>触发机制</h3><ol>
+<li><p>save的规则满足的情况下，会自动触发rdb规则</p>
+</li>
+<li><p>执行 flushall 命令，也会触发我们的rdb规则！</p>
+</li>
+<li><p>退出redis，也会产生 rdb 文件！<br>备份就自动生成一个 dump.rdb</p>
+</li>
+</ol>
+<h3 id="恢复RDB"><a href="#恢复RDB" class="headerlink" title="恢复RDB"></a>恢复RDB</h3><p>1、只需要将rdb文件放在我们redis启动目录就可以，redis启动的时候会自动检查dump.rdb 恢复其中<br>的数据！<br>2、查看需要存在的位置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config get dir</span><br><span class="line">1) &quot;dir&quot;</span><br><span class="line">2) &quot;/usr/local/bin&quot;  # 如果在这个目录下存在 dump.rdb 文件，启动就会自动恢复其中的数据</span><br></pre></td></tr></table></figure>
+
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><p>1、适合大规模的数据恢复<br>2、对数据的完整性要不高</p>
+<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><p>1、需要一定的时间间隔进程操作！如果redis意外宕机了，这个最后一次修改数据就没有的了<br>2、fork进程的时候，会占用一定的内容空间</p>
+<h2 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>将我们的所有命令都记录下来，history，恢复的时候就把这个文件全部在执行一遍！</p>
+<p>以日志的形式来记录每个写操作，将Redis执行过的所有指令记录下来（读操作不记录），只许追加文件<br>但不可以改写文件，redis启动之初会读取该文件重新构建数据，换言之，redis重启的话就根据日志文件<br>的内容将写指令从前到后执行一次以完成数据的恢复工作</p>
+<p><img data-src="/images/tool/redis-2.png"></p>
+<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><blockquote>
+<p>Aof保存的是 appendonly.aof 文件</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">appendonly no  #默认不开启aof</span><br><span class="line">appendfilename &quot;appendonly.aof&quot; #默认使用此文件</span><br><span class="line"></span><br><span class="line"># appendfsync always  #一直保存</span><br><span class="line">appendfsync everysec  #每一秒保存</span><br><span class="line"># appendfsync no      #不保存</span><br></pre></td></tr></table></figure>
+
+<h3 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h3><p>如果这个 aof 文件有错位，这时候 redis 是启动不起来的吗，我们需要修复这个aof文件<br>redis 给我们提供了一个工具<code> redis-check-aof --fix</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-check-aof --fix appendonly.aof</span><br></pre></td></tr></table></figure>
+
+<h3 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h3><p>aof默认文件无限追加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-percentage 100</span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br></pre></td></tr></table></figure>
+
+<p>如果 aof 文件大于 64m，太大了！ fork一个新的进程来将我们的文件进行重写！</p>
+<h3 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h3><p>优点：</p>
+<ol>
+<li>每一次修改都同步，文件的完整会更加好</li>
+<li>每秒同步一次，可能会丢失一秒的数据</li>
+<li>从不同步，效率最高的！</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li><p>相对于数据文件来说，aof远远大于 rdb，修复的速度也比 rdb慢！</p>
+</li>
+<li><p>Aof 运行效率也要比 rdb 慢，所以我们redis默认的配置就是rdb持久化！</p>
+</li>
+</ol>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><ol>
+<li><p>RDB 持久化方式能够在指定的时间间隔内对你的数据进行快照存储</p>
+</li>
+<li><p>AOF 持久化方式记录每次对服务器写的操作，当服务器重启的时候会重新执行这些命令来恢复原始<br>的数据，AOF命令以Redis 协议追加保存每次写的操作到文件末尾，Redis还能对AOF文件进行后台重<br>写，使得AOF文件的体积不至于过大。</p>
+</li>
+<li><p>只做缓存，如果你只希望你的数据在服务器运行的时候存在，你也可以不使用任何持久化</p>
+</li>
+<li><p>同时开启两种持久化方式<br>在这种情况下，当redis重启的时候会优先载入AOF文件来恢复原始的数据，因为在通常情况下AOF<br>文件保存的数据集要比RDB文件保存的数据集要完整。<br>RDB 的数据不实时，同时使用两者时服务器重启也只会找AOF文件，那要不要只使用AOF呢？作者<br>建议不要，因为RDB更适合用于备份数据库（AOF在不断变化不好备份），快速重启，而且不会有<br>AOF可能潜在的Bug，留着作为一个万一的手段。</p>
+</li>
+<li><p>性能建议</p>
+</li>
+</ol>
+<ul>
+<li><p>因为RDB文件只用作后备用途，建议只在Slave上持久化RDB文件，而且只要15分钟备份一次就够<br>了，只保留 save 900 1 这条规则。</p>
+</li>
+<li><p>如果Enable AOF ，好处是在最恶劣情况下也只会丢失不超过两秒数据，启动脚本较简单只load自<br>己的AOF文件就可以了，代价一是带来了持续的IO，二是AOF rewrite 的最后将 rewrite 过程中产<br>生的新数据写到新文件造成的阻塞几乎是不可避免的。只要硬盘许可，应该尽量减少AOF rewrite<br>的频率，AOF重写的基础大小默认值64M太小了，可以设到5G以上，默认超过原大小100%大小重<br>写可以改到适当的数值。</p>
+</li>
+<li><p>如果不Enable AOF ，仅靠 Master-Slave Repllcation 实现高可用性也可以，能省掉一大笔IO，也<br>减少了rewrite时带来的系统波动。代价是如果Master/Slave 同时倒掉，会丢失十几分钟的数据，<br>启动脚本也要比较两个 Master/Slave 中的 RDB文件，载入较新的那个，微博就是这种架构。</p>
+</li>
+</ul>
+<h1 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>主从复制，是指将一台Redis服务器的数据，复制到其他的Redis服务器。前者称为主节点(master/leader)，后者称为从节点(slave/follower)；</p>
+<p>数据的复制是单向的，只能由主节点到从节点.  </p>
+<p>Master以写为主，Slave 以读为主。</p>
+<p>默认情况下，每台Redis服务器都是主节点；<br>且一个主节点可以有多个从节点(或没有从节点)，但一个从节点只能有一个主节点</p>
+<p>主从复制的作用主要包括：</p>
+<ol>
+<li>数据冗余：主从复制实现了数据的热备份，是持久化之外的一种数据冗余方式。</li>
+<li>故障恢复：当主节点出现问题时，可以由从节点提供服务，实现快速的故障恢复；实际上是一种服务的冗余。</li>
+<li>负载均衡：在主从复制的基础上，配合读写分离，可以由主节点提供写服务，由从节点提供读服务（即写Redis数据时应用连接主节点，读Redis数据时应用连接从节点），分担服务器负载；尤其是在写少读多的场景下，通过多个从节点分担读负载，可以大大提高Redis服务器的并发量。</li>
+<li>高可用（集群）基石：除了上述作用以外，主从复制还是哨兵和集群能够实施的基础，因此说主从复制是Redis高可用的基础。一般来说，要将Redis运用于工程项目中，只使用一台Redis是万万不能的（宕机），原因如下：</li>
+</ol>
+<ul>
+<li><p>从结构上，单个Redis服务器会发生单点故障，并且一台服务器需要处理所有的请求负载，压力较大；</p>
+</li>
+<li><p>从容量上，单个Redis服务器内存容量有限，就算一台Redis服务器内存容量为256G，也不能将所有内存用作Redis存储内存，一般来说，单台Redis最大使用内存不应该超过20G。</p>
+</li>
+</ul>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>只配置从库，不用配置主库！</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; info replication   #查看当前库的信息</span><br><span class="line"><span class="meta">#</span><span class="bash"> Replication</span></span><br><span class="line">role:master  #角色</span><br><span class="line">connected_slaves:0  #当前连接的从机数量</span><br><span class="line">master_replid:213d8f5050ec38323d5b51d187f24d3ee4275eca</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:0</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:0</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:0</span><br><span class="line">repl_backlog_histlen:0</span><br><span class="line">127.0.0.1:6379&gt; </span><br></pre></td></tr></table></figure>
+
+<p>复制3个配置文件，然后修改对应的信息</p>
+<ol>
+<li>端口</li>
+<li>pid 名字</li>
+<li>log文件名字</li>
+<li>dump.rdb 名字</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>团子
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2020/05/29/linux/redis/" title="redis">http://example.com/2020/05/29/linux/redis/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/redis/" rel="tag"><i class="fa fa-tag"></i> redis</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/29/tools/idea/" rel="prev" title="idea快捷键">
+      <i class="fa fa-chevron-left"></i> idea快捷键
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/29/framework/swagger/" rel="next" title="swagger">
+      swagger <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="nav-text">安装步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E5%91%BD%E4%BB%A4"><span class="nav-text">基本数据命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-text">String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash"><span class="nav-text">Hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List%E5%88%97%E8%A1%A8"><span class="nav-text">List列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-%E9%9B%86%E5%90%88"><span class="nav-text">Set 集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZSet-%E6%9C%89%E5%BA%8F%E4%B8%8D%E9%87%8D%E5%A4%8D"><span class="nav-text">ZSet 有序不重复</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C"><span class="nav-text">操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8"><span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E6%97%B6%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="nav-text">编译时的异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-text">运行时异常</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%91%E6%8E%A7"><span class="nav-text">监控</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%82%B2%E8%A7%82%E9%94%81"><span class="nav-text">悲观锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="nav-text">乐观锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Jedis"><span class="nav-text">Jedis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#maven"><span class="nav-text">maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jedis-1"><span class="nav-text">Jedis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5"><span class="nav-text">测试连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jedis%E7%9A%84%E4%BA%8B%E5%8A%A1"><span class="nav-text">jedis的事务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B4%E5%90%88springboot"><span class="nav-text">整合springboot</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot2-0%E8%AF%B4%E6%98%8E"><span class="nav-text">springboot2.0说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#properties%E9%85%8D%E7%BD%AE"><span class="nav-text">properties配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-text">测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-text">导入依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-1"><span class="nav-text">测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RedisTemplate%E6%A8%A1%E6%9D%BF%E7%9A%84api%E8%AF%B4%E6%98%8E"><span class="nav-text">RedisTemplate模板的api说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RedisTemplate"><span class="nav-text">RedisTemplate</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89RedisTemplate"><span class="nav-text">自定义RedisTemplate</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BC%96%E5%86%99"><span class="nav-text">自定义编写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-1"><span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E7%B1%BB-redisUtil"><span class="nav-text">工具类 redisUtil</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E5%86%99"><span class="nav-text">编写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-2"><span class="nav-text">使用</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-conf%E8%A7%A3%E9%87%8A"><span class="nav-text">redis.conf解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F-%E5%8D%95%E4%BD%8D"><span class="nav-text">存储数据大小(单位)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C"><span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">引入外部配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="nav-text">通用配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-text">持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SECURITY-%E5%AE%89%E5%85%A8"><span class="nav-text">SECURITY 安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%90%E5%88%B6-CLIENTS"><span class="nav-text">限制 CLIENTS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#APPEND-ONLY-%E6%A8%A1%E5%BC%8F-aof%E9%85%8D%E7%BD%AE"><span class="nav-text">APPEND ONLY 模式 aof配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-text">Redis持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB"><span class="nav-text">RDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E6%9C%BA%E5%88%B6"><span class="nav-text">触发机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%81%A2%E5%A4%8DRDB"><span class="nav-text">恢复RDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9%EF%BC%9A"><span class="nav-text">缺点：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF"><span class="nav-text">AOF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-1"><span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8D"><span class="nav-text">修复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%86%99"><span class="nav-text">重写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-1"><span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95"><span class="nav-text">扩展</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6"><span class="nav-text">主从复制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">环境配置</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="团子"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">团子</p>
+  <div class="site-description" itemprop="description"><script type="text/javascript" src="https://api.qinor.cn/soup/index.php?encode=js"> </script> <script> qinor() </script></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/JavaWty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;JavaWty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">团子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<span id="busuanzi_container_site_uv">
+  本站访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+</span>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

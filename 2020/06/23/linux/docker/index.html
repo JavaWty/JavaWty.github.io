@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Docker视频地址 环境查看1uname -r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker入门">
+<meta property="og:url" content="http://example.com/2020/06/23/linux/docker/index.html">
+<meta property="og:site_name" content="哈,我是弟弟啊の博客">
+<meta property="og:description" content="Docker视频地址 环境查看1uname -r">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-23T02:10:25.000Z">
+<meta property="article:modified_time" content="2020-10-25T09:27:13.638Z">
+<meta property="article:author" content="团子">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2020/06/23/linux/docker/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>docker入门 | 哈,我是弟弟啊の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">哈,我是弟弟啊の博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/23/linux/docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="团子">
+      <meta itemprop="description" content="<script type="text/javascript" src="https://api.qinor.cn/soup/index.php?encode=js"> </script> <script> qinor() </script>">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="哈,我是弟弟啊の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          docker入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-23 10:10:25" itemprop="dateCreated datePublished" datetime="2020-06-23T10:10:25+08:00">2020-06-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-25 17:27:13" itemprop="dateModified" datetime="2020-10-25T17:27:13+08:00">2020-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1og4y1q7M4?p=1">视频地址</a></p>
+<h2 id="环境查看"><a href="#环境查看" class="headerlink" title="环境查看"></a>环境查看</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h2><p>使用<code>yum -y update</code>可以更新yum安装包，更新时间大概是三十分钟左右，请谨慎</p>
+<ol>
+<li>卸载</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>需要的安装包</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils \</span><br><span class="line">  device-mapper-persistent-data \</span><br><span class="line">  lvm2</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>添加阿里云仓库</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>更新yum软件包索引</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">老式</span></span><br><span class="line">yum makecache fast</span><br><span class="line"><span class="meta">#</span><span class="bash">新式</span></span><br><span class="line">yum makecache timer  </span><br></pre></td></tr></table></figure>
+
+<h2 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h2><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>centos8安装docker,需要先升级一下containerd.io软件包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">升级</span></span><br><span class="line">yum -y install containerd.io-1.2.6-3.3.el7.x86_64.rpm</span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line">wget https://download.docker.com/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-ce docker-ce-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看安装是否成功"><a href="#查看安装是否成功" class="headerlink" title="查看安装是否成功"></a>查看安装是否成功</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看详细信息</span></span><br><span class="line">docker version</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 只显示版本信息</span></span><br><span class="line">docker -v</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 卸载依赖</span></span><br><span class="line">yum remove install docker-ce docker-ce-cli containerd.io</span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除目录</span></span><br><span class="line">rm -rf /var/lib/docker</span><br></pre></td></tr></table></figure>
+
+<h1 id="阿里云镜像加速器"><a href="#阿里云镜像加速器" class="headerlink" title="阿里云镜像加速器"></a>阿里云镜像加速器</h1><p>阿里云镜像地址:<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line"></span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://7ehfv5c5.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line"></span><br><span class="line">sudo systemctl restart docker</span><br><span class="line"></span><br><span class="line">重启docker服务</span><br><span class="line">service docker restart</span><br></pre></td></tr></table></figure>
+
+<h1 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h1><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1:查看防火状态</span><br><span class="line">systemctl status firewalld</span><br><span class="line"></span><br><span class="line">2:暂时关闭防火墙</span><br><span class="line">systemctl stop firewalld</span><br><span class="line"></span><br><span class="line">3.开启防火墙</span><br><span class="line">systemctl start firewalld</span><br><span class="line"></span><br><span class="line">4:开机不启动</span><br><span class="line">systemctl disable firewalld</span><br><span class="line"></span><br><span class="line">5:开机启动</span><br><span class="line">systemctl enable firewalld</span><br><span class="line"></span><br><span class="line">重启linux</span><br><span class="line">shutdown -r now</span><br></pre></td></tr></table></figure>
+
+<h1 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h1><h2 id="查看-docker-images"><a href="#查看-docker-images" class="headerlink" title="查看 docker images"></a>查看 docker images</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看本机存在了多少镜像</span></span><br><span class="line">docker images  参数</span><br><span class="line">参数</span><br><span class="line">-a  # 查看镜像信息</span><br><span class="line">-q  # 只查看镜像ID</span><br></pre></td></tr></table></figure>
+
+<h2 id="搜索-docker-search"><a href="#搜索-docker-search" class="headerlink" title="搜索 docker search"></a>搜索 docker search</h2><p>搜索时以官网为准<a target="_blank" rel="noopener" href="https://hub.docker.com/">docker hub</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">搜索mysql,过滤出STARS大于3000的</span></span><br><span class="line">docker search mysql --filter=STARS=3000  </span><br></pre></td></tr></table></figure>
+
+<h2 id="下载-docker-pull"><a href="#下载-docker-pull" class="headerlink" title="下载  docker pull"></a>下载  docker pull</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下载指定版本的mysql</span></span><br><span class="line">docker pull mysql:版本号  </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 默认下载最新版</span></span><br><span class="line">docker pull mysql   </span><br></pre></td></tr></table></figure>
+
+<h2 id="删除-docker-rmi"><a href="#删除-docker-rmi" class="headerlink" title="删除  docker rmi"></a>删除  docker rmi</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker rmi -f ID   #单一删除</span><br><span class="line">docker rmi -f ID1 ID2 ID3 #批量删除,以空格作为界限</span><br><span class="line">docker rmi -f $(docker images -aq)   # 通过docker images -aq查出所有id,然后全部删除</span><br></pre></td></tr></table></figure>
+
+<h1 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h1><h2 id="停止-1"><a href="#停止-1" class="headerlink" title="停止"></a>停止</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker restart 容器id</span><br><span class="line">docker stop 容器id   </span><br><span class="line">docker kill 容器id   #强制停止</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入容器</span></span><br><span class="line">docker run -it 启动的容器的id /bin/bash   </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> --name后面跟自定义名称,-d表示后台运行,版本号必须要写,-p端口映射</span></span><br><span class="line">docker run --name myTomcat -d -p 主机端口:镜像端口 镜像名字:版本号</span><br></pre></td></tr></table></figure>
+
+<h2 id="列出所有运行的容器"><a href="#列出所有运行的容器" class="headerlink" title="列出所有运行的容器"></a>列出所有运行的容器</h2><blockquote>
+<p>docker  ps  [参数] 查看运行的容器</p>
+<p>参数</p>
+<p>-a   正在运行的容器 + 历史运行过的容器</p>
+<p>-n=?    显示最近创建的容器,<code>?</code>是一个数字</p>
+<p>-q    只显示容器的ID</p>
+</blockquote>
+<h2 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 容器停止且退出</span><br><span class="line">exit  </span><br><span class="line"></span><br><span class="line">#容器不停止退出,可以使用docker ps查看是否在运行</span><br><span class="line">Ctrl + P + Q </span><br></pre></td></tr></table></figure>
+
+<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">删除一个容器,不能删除正在运行的容器,需要加 -f参数</span></span><br><span class="line">docker rm id     </span><br><span class="line"><span class="meta">#</span><span class="bash">删除所有容器</span></span><br><span class="line">docker rm -f $(docker ps -aq)    </span><br><span class="line"><span class="meta">#</span><span class="bash">删除所有容器</span></span><br><span class="line">docker ps -a -q|xargs docker rm  </span><br></pre></td></tr></table></figure>
+
+<h1 id="常用其他命令"><a href="#常用其他命令" class="headerlink" title="常用其他命令"></a>常用其他命令</h1><ol>
+<li>后台启动  <code>docker run -d 镜像名字</code></li>
+<li>查看日志  <code>docker logs 参数</code></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看指定id容器的日志,显示10条</span></span><br><span class="line">docker logs -tf --tail 数字  id    </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Options:</span><br><span class="line">      --details        Show extra details provided to logs</span><br><span class="line">  -f, --follow         Follow log output</span><br><span class="line">      --since string   Show logs since timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m for 42 minutes)</span><br><span class="line">      --tail string    Number of lines to show from the end of the logs (default &quot;all&quot;)</span><br><span class="line">  -t, --timestamps     Show timestamps</span><br><span class="line">      --until string   Show logs before a timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m for 42 minutes)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>查看docker内部容器的进程 <code>docker top ID</code></p>
+</li>
+<li><p>查看镜像的元数据 <code>docker inspect 镜像ID</code></p>
+</li>
+<li><p>进入正在运行中的容器</p>
+<ul>
+<li><p>exec   (常用)    <code>docker exec -it ID /bin/bash</code>  </p>
+</li>
+<li><p>attach    <code>docker attach  ID</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h1><p>下载镜像–&gt; 启动镜像–&gt;获得容器—&gt;启动容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker pull 镜像名字  #下载镜像</span><br><span class="line">docker images #查看所有镜像</span><br><span class="line">docker run --name 别名 -d 镜像名字:版本号 #根据镜像,在后台启动一个容器</span><br><span class="line">docker ps # 查看运行中的容器</span><br><span class="line">docker stop 容器ID  # 停止容器</span><br><span class="line">docker rm -f 容器ID  # 删除容器</span><br><span class="line">docker logs 容器ID  #查看容器的日志</span><br></pre></td></tr></table></figure>
+
+<h1 id="端口映射错误解决"><a href="#端口映射错误解决" class="headerlink" title="端口映射错误解决"></a>端口映射错误解决</h1><p>端口映射出现问题,报错:<code>No chain/target/match by that name</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pkill docker</span><br><span class="line"></span><br><span class="line">iptables -t nat -F</span><br><span class="line"></span><br><span class="line">ifconfig docker0 down</span><br><span class="line"></span><br><span class="line">brctl delbr docker0</span><br><span class="line"></span><br><span class="line">service docker restart</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装tomcat"><a href="#安装tomcat" class="headerlink" title="安装tomcat"></a>安装tomcat</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看防火墙是否开启</span></span><br><span class="line">systemctl status firewalld</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭防火墙</span></span><br><span class="line">systemctl stop firewalld</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载tomcat</span></span><br><span class="line">docker pull tomcat</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动tomcat</span></span><br><span class="line">docker run -d -p 8080:8080 --restart=always --name mytomcat tomcat</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> tomcat访问404决解思路: 因为webapps目录为空,只需要把webapps删除,把webapps.dist改名为webapps即可</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看正在运行的tomcat的ID号</span></span><br><span class="line">docker ps -a</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入到已经启动的tomcat内部</span></span><br><span class="line">docker exec -it 2d1a91228304 /bin/bash</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">删除webapps文件夹</span></span><br><span class="line">rm -rf webapps</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 更改webapps.dist名字</span></span><br><span class="line">mv webapps.dist webapps</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 退出tomcat文件</span></span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h1><h2 id="设置挂载"><a href="#设置挂载" class="headerlink" title="设置挂载"></a>设置挂载</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 老贺给的参考  配置文件启动mysql</span></span><br><span class="line">docker run -p 3308:3306 --name mysql \</span><br><span class="line">-v /mydata/mysql/log:/var/log/mysql \</span><br><span class="line">-v /mydata/mysql/data:/var/lib/mysql \</span><br><span class="line">-v /mydata/mysql/conf:/etc/mysql \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=root \</span><br><span class="line">-d mysql</span><br></pre></td></tr></table></figure>
+<p>参考<a target="_blank" rel="noopener" href="http://blog.haoservice.cn/archives/1528">码农code的博客</a></p>
+<p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/heanfeiliu/article/details/107929562">河岸飞流的博客</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 参数说明：</span></span><br><span class="line">-e MYSQL_USER=”woniu”  ：添加woniu用户</span><br><span class="line">-e MYSQL_PASSWORD=”123456″：设置添加的用户密码</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=”123456″：设置root用户密码</span><br><span class="line">–character-set-server=utf8：设置字符集为utf8</span><br><span class="line">–collation-server=utf8_general_cli：设置字符比较规则为utf8_general_cli</span><br><span class="line">--privileged=true：容器内的root拥有真正root权限，否则容器内root只是外部普通用户权限</span><br><span class="line">-v /docker/mysql/conf/my.cnf:/etc/my.cnf：映射配置文件</span><br><span class="line">-v /docker/mysql/data:/var/lib/mysql：映射数据目录</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> my.cnf添加如下内容：</span></span><br><span class="line">[mysqld]</span><br><span class="line">user=mysql</span><br><span class="line">character-set-server=utf8</span><br><span class="line">default_authentication_plugin=mysql_native_password</span><br><span class="line">[client]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看防火墙是否开启</span></span><br><span class="line">systemctl status firewalld</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭防火墙</span></span><br><span class="line">systemctl stop firewalld</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载mysql</span></span><br><span class="line">docker pull mysql</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">常规启动mysql,发现报错 `You need to specify one of MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD and MYSQL_RANDOM_ROOT_PASSWORD`,这是因为没有在启动的时候,没有创建一个管理员的账号密码</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">官网给出的正确启动方式是</span></span><br><span class="line">docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入到已经启动的mysql内部 </span></span><br><span class="line">docker exec -it 674cdb5df0ce /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>最终启动方式举例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker run --restart=always \</span><br><span class="line">--privileged=true \</span><br><span class="line">-it \</span><br><span class="line">-d \</span><br><span class="line">-p 3306:3306 \</span><br><span class="line">-v /mdata/docker/mysql/conf:/etc/mysql/conf.d \</span><br><span class="line">-v /mdata/docker/mysql/data:/var/lib/mysql \</span><br><span class="line">-v /mdata/docker/mysql/log:/var/log/mysql \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=root \</span><br><span class="line">--name mysql01 \</span><br><span class="line">mysql</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>团子
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2020/06/23/linux/docker/" title="docker入门">http://example.com/2020/06/23/linux/docker/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/16/framework/vue/" rel="prev" title="vue">
+      <i class="fa fa-chevron-left"></i> vue
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/28/java/jdk1.8%20%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B/" rel="next" title="jdk1.8 日期类型">
+      jdk1.8 日期类型 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker"><span class="nav-text">Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%9F%A5%E7%9C%8B"><span class="nav-text">环境查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-text">环境安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker%E5%AE%89%E8%A3%85"><span class="nav-text">docker安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-text">说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%89%E8%A3%85%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F"><span class="nav-text">查看安装是否成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-text">启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="nav-text">开机自启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2"><span class="nav-text">停止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%90%AF"><span class="nav-text">重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD"><span class="nav-text">卸载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8"><span class="nav-text">阿里云镜像加速器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-text">防火墙</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E5%91%BD%E4%BB%A4"><span class="nav-text">镜像命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-docker-images"><span class="nav-text">查看 docker images</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2-docker-search"><span class="nav-text">搜索 docker search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-docker-pull"><span class="nav-text">下载  docker pull</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4-docker-rmi"><span class="nav-text">删除  docker rmi</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">容器命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2-1"><span class="nav-text">停止</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-1"><span class="nav-text">启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E5%87%BA%E6%89%80%E6%9C%89%E8%BF%90%E8%A1%8C%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="nav-text">列出所有运行的容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%80%E5%87%BA%E5%AE%B9%E5%99%A8"><span class="nav-text">退出容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%AE%B9%E5%99%A8"><span class="nav-text">删除容器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="nav-text">常用其他命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="nav-text">基本流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3"><span class="nav-text">端口映射错误解决</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85tomcat"><span class="nav-text">安装tomcat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85mysql"><span class="nav-text">安装mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%8C%82%E8%BD%BD"><span class="nav-text">设置挂载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"><span class="nav-text">基本设置</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="团子"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">团子</p>
+  <div class="site-description" itemprop="description"><script type="text/javascript" src="https://api.qinor.cn/soup/index.php?encode=js"> </script> <script> qinor() </script></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/JavaWty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;JavaWty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">团子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<span id="busuanzi_container_site_uv">
+  本站访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+</span>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

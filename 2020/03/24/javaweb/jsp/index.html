@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="jsp说明 表达式         &lt;%&#x3D;    %&gt; 脚本片段        &lt;%      %&gt;      jsp标签动态包含,页面数据需要经常更新,使用动态包含 1&lt;jsp:include page&#x3D;&quot;jsp.jsp&quot;&#x2F;&gt;  转发 1&lt;jsp:forward&#x2F;&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jsp">
+<meta property="og:url" content="http://example.com/2020/03/24/javaweb/jsp/index.html">
+<meta property="og:site_name" content="哈,我是弟弟啊の博客">
+<meta property="og:description" content="jsp说明 表达式         &lt;%&#x3D;    %&gt; 脚本片段        &lt;%      %&gt;      jsp标签动态包含,页面数据需要经常更新,使用动态包含 1&lt;jsp:include page&#x3D;&quot;jsp.jsp&quot;&#x2F;&gt;  转发 1&lt;jsp:forward&#x2F;&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-24T06:33:53.000Z">
+<meta property="article:modified_time" content="2020-05-29T06:36:24.866Z">
+<meta property="article:author" content="团子">
+<meta property="article:tag" content="javaWeb">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2020/03/24/javaweb/jsp/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Jsp | 哈,我是弟弟啊の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">哈,我是弟弟啊の博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/03/24/javaweb/jsp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="团子">
+      <meta itemprop="description" content="<script type="text/javascript" src="https://api.qinor.cn/soup/index.php?encode=js"> </script> <script> qinor() </script>">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="哈,我是弟弟啊の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Jsp
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-24 14:33:53" itemprop="dateCreated datePublished" datetime="2020-03-24T14:33:53+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-29 14:36:24" itemprop="dateModified" datetime="2020-05-29T14:36:24+08:00">2020-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaWeb/" itemprop="url" rel="index"><span itemprop="name">javaWeb</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="jsp"><a href="#jsp" class="headerlink" title="jsp"></a>jsp</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><blockquote>
+<p>表达式         &lt;%=    %&gt;</p>
+<p>脚本片段        &lt;%      %&gt;    </p>
+</blockquote>
+<h2 id="jsp标签"><a href="#jsp标签" class="headerlink" title="jsp标签"></a><strong>jsp标签</strong></h2><p>动态包含,页面数据需要经常更新,使用动态包含</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:include page=<span class="string">&quot;jsp.jsp&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>转发</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:forward/&gt;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h1 id="隐含对象"><a href="#隐含对象" class="headerlink" title="隐含对象"></a>隐含对象</h1><h2 id="观看地址"><a href="#观看地址" class="headerlink" title="观看地址"></a><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av63564073?p=122">观看地址</a></h2><h2 id="九大隐含对象"><a href="#九大隐含对象" class="headerlink" title="九大隐含对象"></a>九大隐含对象</h2><blockquote>
+<p>隐含对象：是我们在页面直接可以使用的对象</p>
+</blockquote>
+<ol>
+<li><code>PageContext pageContext=null；      当前对象</code></li>
+<li><code>HttpSession session=null；            会话对象</code></li>
+<li><code>Throwable exception=null；            当前捕获的异常对象</code></li>
+<li><code>ServletContext application=null；        整个web应用</code></li>
+<li><code>ServletConfig config=nul1；            servlet配置信息</code></li>
+<li><code>JspWriter out=null；                输出数据的out对象</code></li>
+<li><code>object page=this；                    当前jsp</code>                </li>
+<li><code>HttpServletRequest request，        本次请求的详细信息</code></li>
+<li><code>HttpServletResponse response             本次响应的详细信息</code></li>
+</ol>
+<h2 id="五大常规对象"><a href="#五大常规对象" class="headerlink" title="五大常规对象"></a><strong>五大常规对象</strong></h2><ol>
+<li><code>Throwable exception=null；            当前捕获的异常对象</code></li>
+<li><code>ServletConfig config=nul1；            servlet配置信息</code></li>
+<li><code>JspWriter out=null；                输出数据的out对象</code></li>
+<li><code>object page=this；                    当前jsp</code>                </li>
+<li><code>HttpServletResponse response             本次响应的详细信息</code></li>
+</ol>
+<h2 id="四大域对象"><a href="#四大域对象" class="headerlink" title="四大域对象"></a><strong>四大域对象</strong></h2><p><strong>排列顺序是从小到大</strong></p>
+<blockquote>
+<p><code>PageContext pageContext=null；      当前对象</code></p>
+</blockquote>
+<p>1)可以调用其他的八个隐藏对象,通过pageContext.getXXX();</p>
+<p>2)只可以在当前页面共享数据,pageContext.setAttribute();</p>
+<blockquote>
+<p><code>HttpServletRequest request，        本次请求的详细信息</code></p>
+</blockquote>
+<p>1)同一次请求中共享数据</p>
+<blockquote>
+<p><code>HttpSession session=null；            会话对象</code></p>
+</blockquote>
+<p>1)同一次会话共享数据,开启关闭浏览器称为一次会话</p>
+<blockquote>
+<p><code>ServletContext application=null；        整个web应用</code></p>
+</blockquote>
+<p>1)只要web应用不卸载,都可以在整个web中共享数据</p>
+<h2 id="域对象常用方法"><a href="#域对象常用方法" class="headerlink" title="域对象常用方法"></a><strong>域对象常用方法</strong></h2><ol>
+<li><code>setAttribute()</code></li>
+<li><code>getAttribute()</code></li>
+<li><code>removeAttribute()</code></li>
+</ol>
+<h1 id="JSTL标签"><a href="#JSTL标签" class="headerlink" title="JSTL标签"></a>JSTL标签</h1><h2 id="el表达式"><a href="#el表达式" class="headerlink" title="el表达式"></a>el表达式</h2><h3 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;taglibs&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;standard&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.1.2&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;javax.servlet&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jstl&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.1.2&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.taglibs&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;taglibs-standard-impl&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.2.5&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.taglibs&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;taglibs-standard-spec&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.2.5&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="在-idea-种开启el表达式"><a href="#在-idea-种开启el表达式" class="headerlink" title="在 idea 种开启el表达式"></a>在 idea 种开启el表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page isELIgnored &#x3D;&quot;false&quot; %&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib prefix=<span class="string">&quot;c&quot;</span> uri=<span class="string">&quot;http://java.sun.com/jsp/jstl/core&quot;</span> %&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四个作用域"><a href="#四个作用域" class="headerlink" title="四个作用域"></a><strong>四个作用域</strong></h3><blockquote>
+<p>pageScope </p>
+<p>requestScope </p>
+<p>sessionScope </p>
+<p>applicationScope</p>
+</blockquote>
+<h3 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h3><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$&#123;pagecontextKey.name&#125;</span><br><span class="line"></span><br><span class="line">$&#123;requestKey.[<span class="string">&#x27;name&#x27;</span>]&#125;</span><br><span class="line"></span><br><span class="line">$&#123;name&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="el循环"><a href="#el循环" class="headerlink" title="el循环"></a>el循环</h3><p><strong>循环</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var&#x3D;&quot;&quot; items&#x3D;&quot;&quot; begin&#x3D;&quot;&quot; end&#x3D;&quot;&quot; step&#x3D;&quot;&quot; varStatus&#x3D;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>begin：指定遍历的开始位置</p>
+<p>end：指定遍历的结束位置</p>
+<p>items：要遍历的数据</p>
+<p>step：步长，一次跳过多少</p>
+<p>var：别名</p>
+<p>varStatus：遍历状态，里面封装了当前遍历的所有状态信息</p>
+</blockquote>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        list.add(i);</span><br><span class="line">    &#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;c:forEach items=<span class="string">&quot;&lt;%=list%&gt;&quot;</span> <span class="keyword">var</span>=<span class="string">&quot;num&quot;</span>&gt;</span><br><span class="line">    $&#123;num&#125;</span><br><span class="line">&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>团子
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2020/03/24/javaweb/jsp/" title="Jsp">http://example.com/2020/03/24/javaweb/jsp/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/javaWeb/" rel="tag"><i class="fa fa-tag"></i> javaWeb</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/24/javaweb/servlet/" rel="prev" title="Servlet">
+      <i class="fa fa-chevron-left"></i> Servlet
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/24/java/%E9%9B%86%E5%90%88/" rel="next" title="集合基础">
+      集合基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jsp"><span class="nav-text">jsp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp%E6%A0%87%E7%AD%BE"><span class="nav-text">jsp标签</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%90%E5%90%AB%E5%AF%B9%E8%B1%A1"><span class="nav-text">隐含对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E7%9C%8B%E5%9C%B0%E5%9D%80"><span class="nav-text">观看地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E5%A4%A7%E9%9A%90%E5%90%AB%E5%AF%B9%E8%B1%A1"><span class="nav-text">九大隐含对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E5%A4%A7%E5%B8%B8%E8%A7%84%E5%AF%B9%E8%B1%A1"><span class="nav-text">五大常规对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E5%A4%A7%E5%9F%9F%E5%AF%B9%E8%B1%A1"><span class="nav-text">四大域对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%9F%E5%AF%B9%E8%B1%A1%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">域对象常用方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSTL%E6%A0%87%E7%AD%BE"><span class="nav-text">JSTL标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#el%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">el表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#maven"><span class="nav-text">maven</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8-idea-%E7%A7%8D%E5%BC%80%E5%90%AFel%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">在 idea 种开启el表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%85%A5"><span class="nav-text">引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E4%B8%AA%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-text">四个作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E5%80%BC"><span class="nav-text">取值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#el%E5%BE%AA%E7%8E%AF"><span class="nav-text">el循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B"><span class="nav-text">举例</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="团子"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">团子</p>
+  <div class="site-description" itemprop="description"><script type="text/javascript" src="https://api.qinor.cn/soup/index.php?encode=js"> </script> <script> qinor() </script></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/JavaWty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;JavaWty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">团子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<span id="busuanzi_container_site_uv">
+  本站访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+</span>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

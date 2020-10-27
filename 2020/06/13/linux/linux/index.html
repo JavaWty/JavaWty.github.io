@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="处理目录的常用命令视频观看地址 文档地址 ls: 列出目录 -a：全部的文件，连同隐藏文件( 开头为 . 的文件) 一起列出来(常用) -l ：长数据串列出，包含文件的属性与权限等等数据；(常用) -al    将目录下的所有文件列出来(含属性与隐藏档)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux入门">
+<meta property="og:url" content="http://example.com/2020/06/13/linux/linux/index.html">
+<meta property="og:site_name" content="哈,我是弟弟啊の博客">
+<meta property="og:description" content="处理目录的常用命令视频观看地址 文档地址 ls: 列出目录 -a：全部的文件，连同隐藏文件( 开头为 . 的文件) 一起列出来(常用) -l ：长数据串列出，包含文件的属性与权限等等数据；(常用) -al    将目录下的所有文件列出来(含属性与隐藏档)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/linux/linux-1.png">
+<meta property="og:image" content="http://example.com/images/linux/linux-2.png">
+<meta property="og:image" content="http://example.com/images/linux/linux-3.png">
+<meta property="og:image" content="http://example.com/images/linux/linux-4.png">
+<meta property="og:image" content="http://example.com/images/linux/linux-5.png">
+<meta property="og:image" content="http://example.com/images/linux/linux-6.png">
+<meta property="article:published_time" content="2020-06-13T02:40:40.000Z">
+<meta property="article:modified_time" content="2020-10-08T11:56:08.852Z">
+<meta property="article:author" content="团子">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/linux/linux-1.png">
+
+<link rel="canonical" href="http://example.com/2020/06/13/linux/linux/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>linux入门 | 哈,我是弟弟啊の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">哈,我是弟弟啊の博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/13/linux/linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="团子">
+      <meta itemprop="description" content="<script type="text/javascript" src="https://api.qinor.cn/soup/index.php?encode=js"> </script> <script> qinor() </script>">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="哈,我是弟弟啊の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-13 10:40:40" itemprop="dateCreated datePublished" datetime="2020-06-13T10:40:40+08:00">2020-06-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-08 19:56:08" itemprop="dateModified" datetime="2020-10-08T19:56:08+08:00">2020-10-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="处理目录的常用命令"><a href="#处理目录的常用命令" class="headerlink" title="处理目录的常用命令"></a>处理目录的常用命令</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV187411y7hF?p=1">视频观看地址</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/mp/homepage?__biz=Mzg2NTAzMTExNg==&hid=2&sn=1650b6338f6469ca519b080fdbbbd333&scene=18#wechat_redirect">文档地址</a></p>
+<h2 id="ls-列出目录"><a href="#ls-列出目录" class="headerlink" title="ls: 列出目录"></a>ls: 列出目录</h2><ul>
+<li>-a：全部的文件，连同隐藏文件( 开头为 . 的文件) 一起列出来(常用)</li>
+<li>-l ：长数据串列出，包含文件的属性与权限等等数据；(常用)</li>
+<li>-al    将目录下的所有文件列出来(含属性与隐藏档)</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="cd：切换目录"><a href="#cd：切换目录" class="headerlink" title="cd：切换目录"></a>cd：切换目录</h2><blockquote>
+<p>绝对路径和相对路径</p>
+</blockquote>
+<p><strong>绝对路径：</strong></p>
+<p>路径的写法，由根目录 / 写起，例如：/usr/share/doc 这个目录。</p>
+<p><strong>相对路径：</strong></p>
+<p>路径的写法，不是由 / 写起，例如由 /usr/share/doc 要到 /usr/share/man 底下时，可以写成：cd ../man 这就是相对路径的写法啦！</p>
+<p><code>cd ..</code> 退回到上一级</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd [绝对路径或相对路径]</span><br></pre></td></tr></table></figure>
+
+<h2 id="pwd：显示目前的目录"><a href="#pwd：显示目前的目录" class="headerlink" title="pwd：显示目前的目录"></a>pwd：显示目前的目录</h2><ul>
+<li><p>pwd   显示路径</p>
+</li>
+<li><p><strong>-P</strong> ：显示出确实的路径，而非使用连接(link) 路径。</p>
+</li>
+</ul>
+<h2 id="mkdir：创建一个新的目录"><a href="#mkdir：创建一个新的目录" class="headerlink" title="mkdir：创建一个新的目录"></a>mkdir：创建一个新的目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir [-mp] 目录名称</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-m ：配置文件的权限喔！直接配置，不需要看默认权限 (umask) 的脸色～</li>
+<li>-p ：帮助你直接将所需要的目录(包含上一级目录)递归创建起来！</li>
+</ul>
+<h2 id="rmdir：删除一个空的目录"><a href="#rmdir：删除一个空的目录" class="headerlink" title="rmdir：删除一个空的目录"></a>rmdir：删除一个空的目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [-p] 目录名称</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-p :   连同上一级『空的』目录也一起删除</li>
+</ul>
+<h2 id="cp-复制文件或目录"><a href="#cp-复制文件或目录" class="headerlink" title="cp: 复制文件或目录"></a>cp: 复制文件或目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp [-adfilprsu] 来源档(source) 目标档(destination)</span><br><span class="line">cp [options] source1 source2 source3 .... directory</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>-a：</strong>相当於 -pdr 的意思，至於 pdr 请参考下列说明；(常用)</li>
+<li><strong>-p：</strong>连同文件的属性一起复制过去，而非使用默认属性(备份常用)；</li>
+<li><strong>-d：</strong>若来源档为连结档的属性(link file)，则复制连结档属性而非文件本身；</li>
+<li><strong>-r：</strong>递归持续复制，用於目录的复制行为；(常用)</li>
+<li><strong>-f：</strong>为强制(force)的意思，若目标文件已经存在且无法开启，则移除后再尝试一次；</li>
+<li><strong>-i：</strong>若目标档(destination)已经存在时，在覆盖时会先询问动作的进行(常用)</li>
+<li><strong>-l：</strong>进行硬式连结(hard link)的连结档创建，而非复制文件本身。</li>
+<li><strong>-s：</strong>复制成为符号连结档 (symbolic link)，亦即『捷径』文件；</li>
+<li><strong>-u：</strong>若 destination 比 source 旧才升级 destination ！</li>
+</ul>
+<h2 id="rm-移除文件或目录"><a href="#rm-移除文件或目录" class="headerlink" title="rm: 移除文件或目录"></a>rm: 移除文件或目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm [-fir] 文件或目录</span><br><span class="line"></span><br><span class="line">rm -rf fileName  #删除文件</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-f ：就是 force 的意思，忽略不存在的文件，不会出现警告信息；</li>
+<li>-i ：互动模式，在删除前会询问使用者是否动作</li>
+<li>-r ：递归删除啊！最常用在目录的删除了！这是非常危险的选项！！！</li>
+</ul>
+<h2 id="mv-移动文件与目录，或修改文件与目录的名称"><a href="#mv-移动文件与目录，或修改文件与目录的名称" class="headerlink" title="mv: 移动文件与目录，或修改文件与目录的名称"></a>mv: 移动文件与目录，或修改文件与目录的名称</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]<span class="comment"># mv [-fiu] source destination</span></span><br><span class="line">[root@www ~]<span class="comment"># mv [options] source1 source2 source3 .... directory</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-f ：force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖；</li>
+<li>-i ：若目标文件 (destination) 已经存在时，就会询问是否覆盖！</li>
+<li>-u ：若目标文件已经存在，且 source 比较新，才会升级 (update)</li>
+</ul>
+<h1 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>我们可以使用<code>ll</code>或者<code>ls –l</code>命令来显示一个文件的属性以及文件所属的用户和组，</p>
+<p><img data-src="/images/linux/linux-1.png"></p>
+<p>实例中，boot文件的第一个属性用”d”表示。”d”在Linux中代表该文件是一个目录文件。</p>
+<p>在Linux中第一个字符代表这个文件是目录、文件或链接文件等等：</p>
+<ul>
+<li>当为[ <strong>d</strong> ]则是目录</li>
+<li>当为[ <strong>-</strong> ]则是文件；</li>
+<li>若是[ <strong>l</strong> ]则表示为链接文档 ( link file )；</li>
+<li>若是[ <strong>b</strong> ]则表示为装置文件里面的可供储存的接口设备 ( 可随机存取装置 )；</li>
+<li>若是[ <strong>c</strong> ]则表示为装置文件里面的串行端口设备，例如键盘、鼠标 ( 一次性读取装置 )。</li>
+</ul>
+<p>接下来的字符中，以三个为一组，且均为『rwx』 的三个参数的组合。</p>
+<p>其中，[ r ]代表可读(read)、[ w ]代表可写(write)、[ x ]代表可执行(execute)。</p>
+<p>要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[ - ]而已。</p>
+<p>每个文件的属性由左边第一部分的10个字符来确定（如下图）：</p>
+<p><img data-src="/images/linux/linux-2.png"></p>
+<p>从左至右用0-9这些数字来表示。</p>
+<p>第0位确定文件类型，第1-3位确定属主（该文件的所有者）拥有该文件的权限。第4-6位确定属组（所有者的同组用户）拥有该文件的权限，第7-9位确定其他用户拥有该文件的权限。</p>
+<p>其中：</p>
+<p>第1、4、7位表示读权限，如果用”r”字符表示，则有读权限，如果用”-“字符表示，则没有读权限；</p>
+<p>第2、5、8位表示写权限，如果用”w”字符表示，则有写权限，如果用”-“字符表示没有写权限；</p>
+<p>第3、6、9位表示可执行权限，如果用”x”字符表示，则有执行权限，如果用”-“字符表示，则没有执行权限。</p>
+<p>对于文件来说，它都有一个特定的所有者，也就是对该文件具有所有权的用户。</p>
+<p>同时，在Linux系统中，用户是按组分类的，一个用户属于一个或多个组。</p>
+<p>文件所有者以外的用户又可以分为文件所有者的同组用户和其他用户。</p>
+<p>因此，Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。</p>
+<p>在以上实例中，boot 文件是一个目录文件，属主和属组都为 root。</p>
+<h2 id="修改文件属性"><a href="#修改文件属性" class="headerlink" title="修改文件属性"></a>修改文件属性</h2><h3 id="chgrp：更改文件属组"><a href="#chgrp：更改文件属组" class="headerlink" title="chgrp：更改文件属组"></a><strong>chgrp：更改文件属组</strong></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp [-R] 属组名 文件名</span><br></pre></td></tr></table></figure>
+
+<p>-R：递归更改文件属组，就是在更改某个目录文件的属组时，如果加上-R的参数，那么该目录下的所有文件的属组都会更改。</p>
+<h3 id="chown：更改文件属主，也可以同时更改文件属组"><a href="#chown：更改文件属主，也可以同时更改文件属组" class="headerlink" title="chown：更改文件属主，也可以同时更改文件属组"></a><strong>chown：更改文件属主，也可以同时更改文件属组</strong></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [–R] 属主名 文件名</span><br><span class="line">chown [-R] 属主名：属组名 文件名</span><br></pre></td></tr></table></figure>
+
+<h3 id="chmod：更改文件9个属性"><a href="#chmod：更改文件9个属性" class="headerlink" title="chmod：更改文件9个属性"></a><strong>chmod：更改文件9个属性</strong></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [-R] xyz 文件或目录</span><br></pre></td></tr></table></figure>
+
+<p>Linux文件属性有两种设置方法，一种是数字，一种是符号。</p>
+<p>Linux文件的基本权限就有九个，分别是owner/group/others三种身份各有自己的read/write/execute权限。</p>
+<p>先复习一下刚刚上面提到的数据：文件的权限字符为：『-rwxrwxrwx』， 这九个权限是三个三个一组的！其中，我们可以使用数字来代表各个权限，各权限的分数对照表如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r:4     w:2         x:1</span><br></pre></td></tr></table></figure>
+
+<p>每种身份(owner/group/others)各自的三个权限(r/w/x)分数是需要累加的，例如当权限为：[-rwxrwx—] 分数则是：</p>
+<ul>
+<li>owner = rwx = 4+2+1 = 7</li>
+<li>group = rwx = 4+2+1 = 7</li>
+<li>others= — = 0+0+0 = 0</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 770 filename</span><br></pre></td></tr></table></figure>
+
+<h1 id="文件内容查看"><a href="#文件内容查看" class="headerlink" title="文件内容查看"></a>文件内容查看</h1><h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>Linux系统中使用以下命令来查看文件的内容：</p>
+<ul>
+<li>cat 由第一行开始显示文件内容</li>
+<li>tac 从最后一行开始显示，可以看出 tac 是 cat 的倒着写！</li>
+<li>nl  显示的时候，顺道输出行号！</li>
+<li>more 一页一页的显示文件内容</li>
+<li>less 与 more 类似，但是比 more 更好的是，他可以往前翻页！</li>
+<li>head 只看头几行</li>
+<li>tail 只看尾巴几行</li>
+</ul>
+<p>你可以使用 *man [命令]*来查看各个命令的使用文档，如 ：man cp。</p>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="cat-由第一行开始显示文件内容"><a href="#cat-由第一行开始显示文件内容" class="headerlink" title="cat 由第一行开始显示文件内容"></a>cat 由第一行开始显示文件内容</h3><ul>
+<li>-A ：相当於 -vET 的整合选项，可列出一些特殊字符而不是空白而已；</li>
+<li>-b ：列出行号，仅针对非空白行做行号显示，空白行不标行号！</li>
+<li>-E ：将结尾的断行字节 $ 显示出来；</li>
+<li>-n ：列印出行号，连同空白行也会有行号，与 -b 的选项不同；</li>
+<li>-T ：将 [tab] 按键以 ^I 显示出来；</li>
+<li>-v ：列出一些看不出来的特殊字符</li>
+</ul>
+<h3 id="tac-从最后一行开始显示"><a href="#tac-从最后一行开始显示" class="headerlink" title="tac 从最后一行开始显示"></a>tac 从最后一行开始显示</h3><h3 id="nl-显示的时候，顺道输出行号"><a href="#nl-显示的时候，顺道输出行号" class="headerlink" title="nl  显示的时候，顺道输出行号"></a>nl  显示的时候，顺道输出行号</h3><ul>
+<li><p>-b ：指定行号指定的方式，主要有两种:   -b  a ：表示不论是否为空行，也同样列出行号(类似 cat -n)；</p>
+<p>​                                                                  -b   t ：如果有空行，空的那一行不要列出行号(默认值)；</p>
+</li>
+<li><p>-n ：列出行号表示的方法，主要有三种：</p>
+<ul>
+<li><p>-n ln ：行号在荧幕的最左方显示；</p>
+</li>
+<li><p>-n rn ：行号在自己栏位的最右方显示，且不加 0 ；</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>​            +   -n rz ：行号在自己栏位的最右方显示，且加 0 ；</p>
+<ul>
+<li>-w ：行号栏位的占用的位数。</li>
+</ul>
+<h3 id="more-一页一页的显示文件内容"><a href="#more-一页一页的显示文件内容" class="headerlink" title="more 一页一页的显示文件内容"></a>more 一页一页的显示文件内容</h3><ul>
+<li>空白键 (space)：代表向下翻一页；</li>
+<li>Enter   ：代表向下翻『一行』；</li>
+<li>/字串   ：代表在这个显示的内容当中，向下搜寻『字串』这个关键字；</li>
+<li>:f    ：立刻显示出档名以及目前显示的行数；</li>
+<li>q    ：代表立刻离开 more ，不再显示该文件内容。</li>
+<li>b 或 [ctrl]-b ：代表往回翻页，不过这动作只对文件有用，对管线无用。</li>
+</ul>
+<h3 id="less-与-more-类似，但是可以往前翻页"><a href="#less-与-more-类似，但是可以往前翻页" class="headerlink" title="less 与 more 类似，但是可以往前翻页"></a>less 与 more 类似，但是可以往前翻页</h3><ul>
+<li>空白键  ：向下翻动一页；</li>
+<li>[pagedown]：向下翻动一页；</li>
+<li>[pageup] ：向上翻动一页；</li>
+<li>/字串  ：向下搜寻『字串』的功能；</li>
+<li>?字串  ：向上搜寻『字串』的功能；</li>
+<li>n   ：重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>N   ：反向的重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>q   ：离开 less 这个程序；</li>
+</ul>
+<h3 id="head-只看头几行"><a href="#head-只看头几行" class="headerlink" title="head 只看头几行"></a>head 只看头几行</h3><ul>
+<li>-n   后面接数字，代表显示几行的意思！</li>
+</ul>
+<p>默认的情况中，显示前面 10 行！若要显示前 20 行，就得要这样：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -n 20 /etc/csh.login</span><br></pre></td></tr></table></figure>
+
+<h3 id="tail-只看尾巴几行"><a href="#tail-只看尾巴几行" class="headerlink" title="tail 只看尾巴几行"></a>tail 只看尾巴几行</h3><ul>
+<li>-n ：后面接数字，代表显示几行的意思</li>
+</ul>
+<p>默认的情况中，显示最后 10 行！若要显示最后 20 行，就得要这样：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -n 20 /etc/csh.login</span><br></pre></td></tr></table></figure>
+
+<h1 id="软链接和硬链接"><a href="#软链接和硬链接" class="headerlink" title="软链接和硬链接"></a>软链接和硬链接</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><h3 id="硬连接-推荐"><a href="#硬连接-推荐" class="headerlink" title="硬连接(推荐)"></a><strong>硬连接(推荐)</strong></h3><p>硬连接指通过索引节点来进行连接。在 Linux 的文件系统中，保存在磁盘分区中的文件不管是什么类型都给它分配一个编号，称为索引节点号(Inode Index)。在 Linux 中，多个文件名指向同一索引节点是存在的。比如：A 是 B 的硬链接（A 和 B 都是文件名），则 A 的目录项中的 inode 节点号与 B 的目录项中的 inode 节点号相同，即一个 inode 节点对应两个不同的文件名，两个文件名指向同一个文件，A 和 B 对文件系统来说是完全平等的。删除其中任何一个都不会影响另外一个的访问。</p>
+<p>硬连接的作用是允许一个文件拥有多个有效路径名，这样用户就可以建立硬连接到重要文件，以防止“误删”的功能。其原因如上所述，因为对应该目录的索引节点有一个以上的连接。只删除一个连接并不影响索引节点本身和其它的连接，只有当最后一个连接被删除后，文件的数据块及目录的连接才会被释放。也就是说，文件真正删除的条件是与之相关的所有硬连接文件均被删除。</p>
+<h3 id="软连接"><a href="#软连接" class="headerlink" title="软连接"></a><strong>软连接</strong></h3><p>另外一种连接称之为符号连接（Symbolic Link），也叫软连接。软链接文件类似于 Windows 的快捷方式。它实际上是一个特殊的文件。在符号连接中，文件实际上是一个文本文件，其中包含的有另一文件的位置信息。比如：A 是 B 的软链接（A 和 B 都是文件名），A 的目录项中的 inode 节点号与 B 的目录项中的 inode 节点号不相同，A 和 B 指向的是两个不同的 inode，继而指向两块不同的数据块。但是 A 的数据块中存放的只是 B 的路径名（可以根据这个找到 B 的目录项）。A 和 B 之间是“主从”关系，如果 B 被删除了，A 仍然存在（因为两个是不同的文件），但指向的是一个无效的链接。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">touch l1    #创建l1文件</span><br><span class="line">ln l1 l2    # 为l1创建硬链接l2</span><br><span class="line">ln -s l1 l3    # 为l1创建软链接l3</span><br><span class="line">echo &quot;love&quot; &gt;&gt; l1  #向l1中添加内容</span><br><span class="line"></span><br><span class="line">rm l1 #删除l1</span><br><span class="line">cat l2 #文件内容存在</span><br><span class="line">cat l3 #没有那个文件或目录</span><br><span class="line">同时删除l1 l2,文件会真正地被删除</span><br></pre></td></tr></table></figure>
+
+<h1 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h1><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg2NTAzMTExNg==&mid=2247483895&idx=1&sn=b685934ee0d08b9d01cc0c35ed7fed71&scene=19#wechat_redirect">文档地址</a></p>
+<h2 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>基本上 vi/vim 共分为三种模式，分别是<strong>命令模式（Command mode）</strong>，<strong>输入模式（Insert mode）</strong>和<strong>底线命令模式（Last line mode）</strong></p>
+</blockquote>
+<h3 id="命令模式（Command-mode）"><a href="#命令模式（Command-mode）" class="headerlink" title="命令模式（Command mode）"></a>命令模式（Command mode）</h3><p>用户刚刚启动 vi/vim，便进入了命令模式。</p>
+<p>此状态下敲击键盘动作会被Vim识别为命令，而非输入字符。比如我们此时按下i，并不会输入一个字符，i被当作了一个命令。</p>
+<p>以下是常用的几个命令：</p>
+<ul>
+<li><strong>i</strong> 切换到输入模式，以输入字符。</li>
+<li><strong>x</strong> 删除当前光标所在处的字符。</li>
+<li><strong>:</strong> 切换到底线命令模式，以在最底一行输入命令。</li>
+</ul>
+<p>若想要编辑文本：启动Vim，进入了命令模式，按下i，切换到输入模式。</p>
+<p>命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令。</p>
+<h3 id="输入模式（Insert-mode）"><a href="#输入模式（Insert-mode）" class="headerlink" title="输入模式（Insert mode）"></a>输入模式（Insert mode）</h3><p>在命令模式下按下i就进入了输入模式。</p>
+<p>在输入模式中，可以使用以下按键：</p>
+<ul>
+<li><strong>字符按键以及Shift组合</strong>，输入字符</li>
+<li><strong>ENTER</strong>，回车键，换行</li>
+<li><strong>BACK SPACE</strong>，退格键，删除光标前一个字符</li>
+<li><strong>DEL</strong>，删除键，删除光标后一个字符</li>
+<li><strong>方向键</strong>，在文本中移动光标</li>
+<li><strong>HOME</strong>/<strong>END</strong>，移动光标到行首/行尾</li>
+<li><strong>Page Up</strong>/<strong>Page Down</strong>，上/下翻页</li>
+<li><strong>Insert</strong>，切换光标为输入/替换模式，光标将变成竖线/下划线</li>
+<li><strong>ESC</strong>，退出输入模式，切换到命令模式</li>
+</ul>
+<h3 id="底线命令模式（Last-line-mode）"><a href="#底线命令模式（Last-line-mode）" class="headerlink" title="底线命令模式（Last line mode）"></a>底线命令模式（Last line mode）</h3><p>在命令模式下按下:（英文冒号）就进入了底线命令模式。</p>
+<p>底线命令模式可以输入单个或多个字符的命令，可用的命令非常多。</p>
+<p>在底线命令模式中，基本的命令有（已经省略了冒号）：</p>
+<ul>
+<li>q 退出程序</li>
+<li>w 保存文件</li>
+</ul>
+<p>按ESC键可随时退出底线命令模式。</p>
+<h2 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h2><ol>
+<li>进入命令模式,新建文件</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim wty.txt</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>按下<code>i</code>进入编辑模式,然后在文件内输入内容</p>
+</li>
+<li><p>按下<code>esc</code>退出编辑模式</p>
+</li>
+<li><p>输入<code>:</code>,切换到底线命令模式，以在最底一行输入命令。wq的顺序不能写反,先保存,后退出</p>
+</li>
+</ol>
+<ul>
+<li>q 退出程序</li>
+<li>w 保存文件</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:wq</span><br></pre></td></tr></table></figure>
+
+<h2 id="vim按键"><a href="#vim按键" class="headerlink" title="vim按键"></a>vim按键</h2><h3 id="一：一般模式可用的光标移动、复制粘贴、搜索替换等"><a href="#一：一般模式可用的光标移动、复制粘贴、搜索替换等" class="headerlink" title="一：一般模式可用的光标移动、复制粘贴、搜索替换等**"></a><strong>一：</strong>一般模式可用的光标移动、复制粘贴、搜索替换等**</h3><table>
+<thead>
+<tr>
+<th align="left">移动光标的方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">h 或 向左箭头键(←)</td>
+<td>光标向左移动一个字符</td>
+</tr>
+<tr>
+<td align="left">j 或 向下箭头键(↓)</td>
+<td>光标向下移动一个字符</td>
+</tr>
+<tr>
+<td align="left">k 或 向上箭头键(↑)</td>
+<td>光标向上移动一个字符</td>
+</tr>
+<tr>
+<td align="left">l 或 向右箭头键(→)</td>
+<td>光标向右移动一个字符</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [f]</td>
+<td>屏幕『向下』移动一页，相当于 [Page Down]按键 (常用)</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [b]</td>
+<td>屏幕『向上』移动一页，相当于 [Page Up] 按键 (常用)</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [d]</td>
+<td>屏幕『向下』移动半页</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [u]</td>
+<td>屏幕『向上』移动半页</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td>光标移动到非空格符的下一行</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td>光标移动到非空格符的上一行</td>
+</tr>
+<tr>
+<td align="left">n&lt; space&gt;</td>
+<td>那个 n 表示『数字』，例如 20 。按下数字后再按空格键，光标会向右移动这一行的 n 个字符。</td>
+</tr>
+<tr>
+<td align="left">0 或功能键[Home]</td>
+<td>这是数字『 0 』：移动到这一行的最前面字符处 (常用)</td>
+</tr>
+<tr>
+<td align="left">$ 或功能键[End]</td>
+<td>移动到这一行的最后面字符处(常用)</td>
+</tr>
+<tr>
+<td align="left">H</td>
+<td>光标移动到这个屏幕的最上方那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left">M</td>
+<td>光标移动到这个屏幕的中央那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left">L</td>
+<td>光标移动到这个屏幕的最下方那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left">G</td>
+<td>移动到这个档案的最后一行(常用)</td>
+</tr>
+<tr>
+<td align="left">nG</td>
+<td>n 为数字。移动到这个档案的第 n 行。例如 20G 则会移动到这个档案的第 20 行(可配合 :set nu)</td>
+</tr>
+<tr>
+<td align="left">gg</td>
+<td>移动到这个档案的第一行，相当于 1G 啊！(常用)</td>
+</tr>
+<tr>
+<td align="left">n&lt; Enter&gt;</td>
+<td>n 为数字。光标向下移动 n 行(常用)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">搜索替换</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">/word</td>
+<td>向光标之下寻找一个名称为 word 的字符串。例如要在档案内搜寻 vbird 这个字符串，就输入 /vbird 即可！(常用)</td>
+</tr>
+<tr>
+<td align="left">?word</td>
+<td>向光标之上寻找一个字符串名称为 word 的字符串。</td>
+</tr>
+<tr>
+<td align="left">n</td>
+<td>这个 n 是英文按键。代表重复前一个搜寻的动作。举例来说， 如果刚刚我们执行 /vbird 去向下搜寻 vbird 这个字符串，则按下 n 后，会向下继续搜寻下一个名称为 vbird 的字符串。如果是执行 ?vbird 的话，那么按下 n 则会向上继续搜寻名称为 vbird 的字符串！</td>
+</tr>
+<tr>
+<td align="left">N</td>
+<td>这个 N 是英文按键。与 n 刚好相反，为『反向』进行前一个搜寻动作。例如 /vbird 后，按下 N 则表示『向上』搜寻 vbird 。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">删除、复制与粘贴</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">x, X</td>
+<td>在一行字当中，x 为向后删除一个字符 (相当于 [del] 按键)， X 为向前删除一个字符(相当于 [backspace] 亦即是退格键) (常用)</td>
+</tr>
+<tr>
+<td align="left">nx</td>
+<td>n 为数字，连续向后删除 n 个字符。举例来说，我要连续删除 10 个字符， 『10x』。</td>
+</tr>
+<tr>
+<td align="left">dd</td>
+<td>删除游标所在的那一整行(常用)</td>
+</tr>
+<tr>
+<td align="left">ndd</td>
+<td>n 为数字。删除光标所在的向下 n 行，例如 20dd 则是删除 20 行 (常用)</td>
+</tr>
+<tr>
+<td align="left">d1G</td>
+<td>删除光标所在到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">dG</td>
+<td>删除光标所在到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">d$</td>
+<td>删除游标所在处，到该行的最后一个字符</td>
+</tr>
+<tr>
+<td align="left">d0</td>
+<td>那个是数字的 0 ，删除游标所在处，到该行的最前面一个字符</td>
+</tr>
+<tr>
+<td align="left">yy</td>
+<td>复制游标所在的那一行(常用)</td>
+</tr>
+<tr>
+<td align="left">nyy</td>
+<td>n 为数字。复制光标所在的向下 n 行，例如 20yy 则是复制 20 行(常用)</td>
+</tr>
+<tr>
+<td align="left">y1G</td>
+<td>复制游标所在行到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">yG</td>
+<td>复制游标所在行到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">y0</td>
+<td>复制光标所在的那个字符到该行行首的所有数据</td>
+</tr>
+<tr>
+<td align="left">y$</td>
+<td>复制光标所在的那个字符到该行行尾的所有数据</td>
+</tr>
+<tr>
+<td align="left">p, P</td>
+<td>p 为将已复制的数据在光标下一行贴上，P 则为贴在游标上一行！举例来说，我目前光标在第 20 行，且已经复制了 10 行数据。则按下 p 后， 那 10 行数据会贴在原本的 20 行之后，亦即由 21 行开始贴。但如果是按下 P 呢？那么原本的第 20 行会被推到变成 30 行。(常用)</td>
+</tr>
+<tr>
+<td align="left">J</td>
+<td>将光标所在行与下一行的数据结合成同一行</td>
+</tr>
+<tr>
+<td align="left">c</td>
+<td>重复删除多个数据，例如向下删除 10 行，[ 10cj ]</td>
+</tr>
+<tr>
+<td align="left">u</td>
+<td>复原前一个动作。(常用)</td>
+</tr>
+<tr>
+<td align="left">[Ctrl]+r</td>
+<td>重做上一个动作。(常用)</td>
+</tr>
+</tbody></table>
+<h3 id="二：一般模式切换到编辑模式的可用的按钮说明"><a href="#二：一般模式切换到编辑模式的可用的按钮说明" class="headerlink" title="二：一般模式切换到编辑模式的可用的按钮说明"></a><strong>二：一般模式切换到编辑模式的可用的按钮说明</strong></h3><table>
+<thead>
+<tr>
+<th align="left">进入输入或取代的编辑模式</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">i, I</td>
+<td>进入输入模式(Insert mode)：i 为『从目前光标所在处输入』， I 为『在目前所在行的第一个非空格符处开始输入』。(常用)</td>
+</tr>
+<tr>
+<td align="left">a, A</td>
+<td>进入输入模式(Insert mode)：a 为『从目前光标所在的下一个字符处开始输入』， A 为『从光标所在行的最后一个字符处开始输入』。(常用)</td>
+</tr>
+<tr>
+<td align="left">o, O</td>
+<td>进入输入模式(Insert mode)：这是英文字母 o 的大小写。o 为『在目前光标所在的下一行处输入新的一行』；O 为在目前光标所在处的上一行输入新的一行！(常用)</td>
+</tr>
+<tr>
+<td align="left">r, R</td>
+<td>进入取代模式(Replace mode)：r 只会取代光标所在的那一个字符一次；R会一直取代光标所在的文字，直到按下 ESC 为止；(常用)</td>
+</tr>
+<tr>
+<td align="left">[Esc]</td>
+<td>退出编辑模式，回到一般模式中(常用)</td>
+</tr>
+</tbody></table>
+<h3 id="第三部分：一般模式切换到指令行模式的可用的按钮说明"><a href="#第三部分：一般模式切换到指令行模式的可用的按钮说明" class="headerlink" title="第三部分：一般模式切换到指令行模式的可用的按钮说明"></a><strong>第三部分：一般模式切换到指令行模式的可用的按钮说明</strong></h3><table>
+<thead>
+<tr>
+<th align="left">指令行的储存、离开等指令</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:w</td>
+<td>将编辑的数据写入硬盘档案中(常用)</td>
+</tr>
+<tr>
+<td align="left">:w!</td>
+<td>若文件属性为『只读』时，强制写入该档案。不过，到底能不能写入， 还是跟你对该档案的档案权限有关啊！</td>
+</tr>
+<tr>
+<td align="left">:q</td>
+<td>离开 vi (常用)</td>
+</tr>
+<tr>
+<td align="left">:q!</td>
+<td>若曾修改过档案，又不想储存，使用 ! 为强制离开不储存档案。</td>
+</tr>
+<tr>
+<td align="left">注意一下啊，那个惊叹号 (!) 在 vi 当中，常常具有『强制』的意思～</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">:wq</td>
+<td>储存后离开，若为 :wq! 则为强制储存后离开 (常用)</td>
+</tr>
+<tr>
+<td align="left">ZZ</td>
+<td>这是大写的 Z 喔！若档案没有更动，则不储存离开，若档案已经被更动过，则储存后离开！</td>
+</tr>
+<tr>
+<td align="left">:w [filename]</td>
+<td>将编辑的数据储存成另一个档案（类似另存新档）</td>
+</tr>
+<tr>
+<td align="left">:r [filename]</td>
+<td>在编辑的数据中，读入另一个档案的数据。亦即将 『filename』 这个档案内容加到游标所在行后面</td>
+</tr>
+<tr>
+<td align="left">:n1,n2 w [filename]</td>
+<td>将 n1 到 n2 的内容储存成 filename 这个档案。</td>
+</tr>
+<tr>
+<td align="left">:! command</td>
+<td>暂时离开 vi 到指令行模式下执行 command 的显示结果！例如 『:! ls /home』即可在 vi 当中看 /home 底下以 ls 输出的档案信息！</td>
+</tr>
+<tr>
+<td align="left">:set nu</td>
+<td>显示行号，设定之后，会在每一行的前缀显示该行的行号</td>
+</tr>
+<tr>
+<td align="left">:set nonu</td>
+<td>与 set nu 相反，为取消行号！</td>
+</tr>
+</tbody></table>
+<h1 id="账号管理"><a href="#账号管理" class="headerlink" title="账号管理"></a>账号管理</h1><h2 id="概述-4"><a href="#概述-4" class="headerlink" title="概述"></a>概述</h2><p>实现用户账号的管理，要完成的工作主要有如下几个方面：</p>
+<ul>
+<li>用户账号的添加、删除与修改。</li>
+<li>用户口令的管理。</li>
+<li>用户组的管理。</li>
+</ul>
+<h2 id="用户操作"><a href="#用户操作" class="headerlink" title="用户操作"></a>用户操作</h2><h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><blockquote>
+<p>添加账号 useradd</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd 选项 用户名</span><br></pre></td></tr></table></figure>
+
+<p>选项 :</p>
+<ul>
+<li>-c comment 指定一段注释性描述。</li>
+<li>-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。</li>
+<li>-g 用户组 指定用户所属的用户组。</li>
+<li>-G 用户组，用户组 指定用户所属的附加组。</li>
+<li>-m　使用者目录如不存在则自动建立。</li>
+<li>-s Shell文件 指定用户的登录Shell。</li>
+<li>-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。</li>
+</ul>
+<p>用户名 :</p>
+<ul>
+<li>指定新账号的登录名。</li>
+<li>可以在<code>cat  /etc/passwd</code>文件中查看到用户信息,注意<code>passwd</code>的写法</li>
+</ul>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><blockquote>
+<p>删除用户 userdel</p>
+</blockquote>
+<p>删除一个已有的用户账号使用userdel命令，其格式如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel 选项 用户名</span><br></pre></td></tr></table></figure>
+
+<p>常用的选项是 <strong>-r</strong>，它的作用是把用户的主目录一起删除。</p>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><blockquote>
+<p>修改用户 usermod</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod 选项 用户名</span><br></pre></td></tr></table></figure>
+
+<p>选项 :</p>
+<ul>
+<li>-c comment 指定一段注释性描述。</li>
+</ul>
+<ul>
+<li>-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。</li>
+<li>-g 用户组 指定用户所属的用户组。</li>
+<li>-G 用户组，用户组 指定用户所属的附加组。</li>
+<li>-m　使用者目录如不存在则自动建立。</li>
+<li>-s Shell文件 指定用户的登录Shell。</li>
+<li>-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。</li>
+</ul>
+<p>用户名 :</p>
+<ul>
+<li>指定新账号的登录名。</li>
+</ul>
+<h3 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h3><blockquote>
+<p>用户结构</p>
+</blockquote>
+<p><img data-src="/images/linux/linux-3.png"></p>
+<p><img data-src="/images/linux/linux-4.png"></p>
+<p>在管理员权限下,切换用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su 用户名 #切换用户</span><br><span class="line">exit  #退回到root账户</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>主机名称</p>
+</blockquote>
+<p>使用<code>hostname</code>查看主机名称</p>
+<p>使用<code>hostname  新主机名</code>可以临时更改主机名字,重新连接,即可生效</p>
+<h3 id="用户密码设置"><a href="#用户密码设置" class="headerlink" title="用户密码设置"></a>用户密码设置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd 用户名  # 输入后,按下回车,就可以输入密码了,密码不显示</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>超级管理员对用户管理</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd 选项 用户名</span><br></pre></td></tr></table></figure>
+
+<p>可使用的选项：</p>
+<ul>
+<li>-l 锁定口令，即禁用账号。</li>
+<li>-u 口令解锁。</li>
+<li>-d 使账号无口令。</li>
+<li>-f 强迫用户下次登录时修改口令。</li>
+</ul>
+<h1 id="用户组"><a href="#用户组" class="headerlink" title="用户组"></a>用户组</h1><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><blockquote>
+<p>创建 groupadd</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">groupadd 用户组组名   #创建一个组名</span><br><span class="line"></span><br><span class="line">groupadd -g id 用户组组名 #创建一个指定id的组</span><br><span class="line">groupadd -g 100  user  #创建了一个id为100的user用户组</span><br><span class="line"></span><br><span class="line">cat /etc/group  # 可以查看到用户的所属组,</span><br><span class="line">    eg: wty:x:1000:</span><br><span class="line">        admin:x:1001:</span><br><span class="line">        userW:x:1002:</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupdel 用户组</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改-1"><a href="#修改-1" class="headerlink" title="修改"></a>修改</h3><blockquote>
+<p>groupmod -g 新id -n  新用户组  旧用户组</p>
+</blockquote>
+<ul>
+<li>-g   后面跟一个数字id,表示重命名id</li>
+<li>-n    后面跟一个新用户名称</li>
+</ul>
+<h3 id="切换用户组"><a href="#切换用户组" class="headerlink" title="切换用户组"></a>切换用户组</h3><p>普通用户切换用户组</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> newgrp root</span></span><br></pre></td></tr></table></figure>
+<h1 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h1><blockquote>
+<p>df：列出文件系统的整体磁盘使用量</p>
+<p>du：检查磁盘空间使用量</p>
+</blockquote>
+<h2 id="df"><a href="#df" class="headerlink" title="df"></a>df</h2><p>检查文件系统的磁盘空间占用情况。可以利用该命令来获取硬盘被占用了多少空间，目前还剩下多少空间等信息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df [-ahikHTm] [目录或文件名]</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/linux/linux-5.png"></p>
+<p>参数:  </p>
+<ul>
+<li>-a ：列出所有的文件系统，包括系统特有的 /proc 等文件系统；</li>
+<li>-k ：以 KBytes 的容量显示各文件系统；</li>
+<li>-m ：以 MBytes 的容量显示各文件系统；</li>
+<li>-h ：以人们较易阅读的 GBytes, MBytes, KBytes 等格式自行显示；</li>
+<li>-H ：以 M=1000K 取代 M=1024K 的进位方式；</li>
+<li>-T ：显示文件系统类型, 连同该 partition 的 filesystem 名称 (例如 ext3) 也列出；</li>
+<li>-i ：不用硬盘容量，而以 inode 的数量来显示</li>
+</ul>
+<h2 id="du"><a href="#du" class="headerlink" title="du"></a>du</h2><p> du命令也是查看使用空间的，但是与df命令不同的是Linux du命令是对文件和目录磁盘使用的空间的查看，还是和df命令有一些区别的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du [-ahskm] 文件或目录名称</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-a ：列出所有的文件与目录容量，因为默认仅统计目录底下的文件量而已。</li>
+<li>-h ：以人们较易读的容量格式 (G/M) 显示；</li>
+<li>-s ：列出总量而已，而不列出每个各别的目录占用容量；</li>
+<li>-S ：不包括子目录下的总计，与 -s 有点差别。</li>
+<li>-k ：以 KBytes 列出容量显示；</li>
+<li>-m ：以 MBytes 列出容量显示；</li>
+</ul>
+<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><blockquote>
+<p>当前用户</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps [-aux]| grep mysql </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-a : 显示当前终端运行的进程信息</li>
+<li>-u: 以用户的信息显示进程</li>
+<li>-x:显示后台运行进程的参数</li>
+<li>|:管道符,A|B表示,把A命令查询出的结果输出去操作B命令</li>
+<li>grep:过滤,查找符合条件的字符</li>
+</ul>
+<blockquote>
+<p>查看父进程</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep  mysql</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">通过进程树的形式查看</span></span><br><span class="line">pstree</span><br><span class="line">	-p 显示父ID</span><br><span class="line">	-u 显示当前用户组</span><br></pre></td></tr></table></figure>
+
+<h2 id="结束进程"><a href="#结束进程" class="headerlink" title="结束进程"></a>结束进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 进程ID         # kill -9 是固定写法</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/linux/linux-6.png"></p>
+<h1 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h1><h2 id="rpm安装jdk"><a href="#rpm安装jdk" class="headerlink" title="rpm安装jdk"></a>rpm安装jdk</h2><ol start="0">
+<li><p>下载linux下rpm类型的jdk,地址是<a target="_blank" rel="noopener" href="https://www.oracle.com/cn/java/technologies/javase/javase-jdk8-downloads.html">oracle中国</a></p>
+</li>
+<li><p>检测java环境是否安装  <code>java -version </code></p>
+</li>
+<li><p>如果有,需要卸载</p>
+<ul>
+<li><code> rpm -qa | grep  jdk</code>  过滤jdk版本</li>
+<li><code>rpm -e --nodeps jdk版本号</code>  根据版本号卸载jdk</li>
+</ul>
+</li>
+<li><p>安装jdk  <code>rpm -ivh 安装包名字</code></p>
+</li>
+<li><p>配置环境变量,路径是<code>/etc</code>下面的<code>profile</code>文件</p>
+<ul>
+<li>默认安装路径在<code>/usr/java</code>下面</li>
+<li>在profile文件最后添加</li>
+</ul>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/java/jdk1.<span class="number">8</span>.<span class="number">0</span>_231-amd64</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre  </span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib  </span><br><span class="line">export  <span class="built_in">PATH</span>=$&#123;JAVA_HOME&#125;/bin:$<span class="built_in">PATH</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行profile文件 <code>source /etc/profile</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="解压缩tomcat"><a href="#解压缩tomcat" class="headerlink" title="解压缩tomcat"></a>解压缩tomcat</h2><ol>
+<li>下载tomcat <a target="_blank" rel="noopener" href="https://tomcat.apache.org/">地址</a></li>
+<li>解压 <code>tar -axvf   apache-tomcat-8.5.56.tar.gz</code></li>
+<li>在bin目录下,启动tomcat:<code>./startup.sh</code>,关闭:<code>./shutdown.sh</code></li>
+<li>启动的时候,确保防火墙的8080端口是开着的</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看firewall服务状态</span></span><br><span class="line">systemctl status firewalld</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 开启、重启、关闭、firewalld.service服务</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 开启</span></span><br><span class="line">service firewalld start</span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启</span></span><br><span class="line">service firewalld restart</span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭</span></span><br><span class="line">service firewalld stop</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看防火墙规则</span></span><br><span class="line">firewall-cmd --list-all    # 查看全部信息</span><br><span class="line">firewall-cmd --list-ports  # 只看端口信息</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 开启端口</span></span><br><span class="line">开端口命令：firewall-cmd --zone=public --add-port=8080/tcp --permanent</span><br><span class="line">重启防火墙：systemctl restart firewalld.service</span><br><span class="line"></span><br><span class="line">命令含义：</span><br><span class="line">--zone #作用域</span><br><span class="line">--add-port=80/tcp  #添加端口，格式为：端口/通讯协议</span><br><span class="line">--permanent   #永久生效，没有此参数重启后失效</span><br></pre></td></tr></table></figure>
+
+<h2 id="yum安装docker"><a href="#yum安装docker" class="headerlink" title="yum安装docker"></a>yum安装docker</h2><p>详细见博客docker文章</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>团子
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2020/06/13/linux/linux/" title="linux入门">http://example.com/2020/06/13/linux/linux/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/09/framework/springboot/" rel="prev" title="springboot">
+      <i class="fa fa-chevron-left"></i> springboot
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/16/framework/vue/" rel="next" title="vue">
+      vue <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E7%9B%AE%E5%BD%95%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">处理目录的常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ls-%E5%88%97%E5%87%BA%E7%9B%AE%E5%BD%95"><span class="nav-text">ls: 列出目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cd%EF%BC%9A%E5%88%87%E6%8D%A2%E7%9B%AE%E5%BD%95"><span class="nav-text">cd：切换目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%9B%AE%E5%89%8D%E7%9A%84%E7%9B%AE%E5%BD%95"><span class="nav-text">pwd：显示目前的目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir%EF%BC%9A%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E7%9B%AE%E5%BD%95"><span class="nav-text">mkdir：创建一个新的目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rmdir%EF%BC%9A%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%A9%BA%E7%9A%84%E7%9B%AE%E5%BD%95"><span class="nav-text">rmdir：删除一个空的目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cp-%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95"><span class="nav-text">cp: 复制文件或目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rm-%E7%A7%BB%E9%99%A4%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95"><span class="nav-text">rm: 移除文件或目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mv-%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%EF%BC%8C%E6%88%96%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%9A%84%E5%90%8D%E7%A7%B0"><span class="nav-text">mv: 移动文件与目录，或修改文件与目录的名称</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7"><span class="nav-text">文件属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7"><span class="nav-text">修改文件属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#chgrp%EF%BC%9A%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%B1%9E%E7%BB%84"><span class="nav-text">chgrp：更改文件属组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chown%EF%BC%9A%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%B1%9E%E4%B8%BB%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%90%8C%E6%97%B6%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%B1%9E%E7%BB%84"><span class="nav-text">chown：更改文件属主，也可以同时更改文件属组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chmod%EF%BC%9A%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B69%E4%B8%AA%E5%B1%9E%E6%80%A7"><span class="nav-text">chmod：更改文件9个属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%9F%A5%E7%9C%8B"><span class="nav-text">文件内容查看</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-text">命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cat-%E7%94%B1%E7%AC%AC%E4%B8%80%E8%A1%8C%E5%BC%80%E5%A7%8B%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="nav-text">cat 由第一行开始显示文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tac-%E4%BB%8E%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%BC%80%E5%A7%8B%E6%98%BE%E7%A4%BA"><span class="nav-text">tac 从最后一行开始显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nl-%E6%98%BE%E7%A4%BA%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E9%A1%BA%E9%81%93%E8%BE%93%E5%87%BA%E8%A1%8C%E5%8F%B7"><span class="nav-text">nl  显示的时候，顺道输出行号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#more-%E4%B8%80%E9%A1%B5%E4%B8%80%E9%A1%B5%E7%9A%84%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="nav-text">more 一页一页的显示文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-%E4%B8%8E-more-%E7%B1%BB%E4%BC%BC%EF%BC%8C%E4%BD%86%E6%98%AF%E5%8F%AF%E4%BB%A5%E5%BE%80%E5%89%8D%E7%BF%BB%E9%A1%B5"><span class="nav-text">less 与 more 类似，但是可以往前翻页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head-%E5%8F%AA%E7%9C%8B%E5%A4%B4%E5%87%A0%E8%A1%8C"><span class="nav-text">head 只看头几行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tail-%E5%8F%AA%E7%9C%8B%E5%B0%BE%E5%B7%B4%E5%87%A0%E8%A1%8C"><span class="nav-text">tail 只看尾巴几行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E9%93%BE%E6%8E%A5%E5%92%8C%E7%A1%AC%E9%93%BE%E6%8E%A5"><span class="nav-text">软链接和硬链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E8%BF%9E%E6%8E%A5-%E6%8E%A8%E8%8D%90"><span class="nav-text">硬连接(推荐)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E8%BF%9E%E6%8E%A5"><span class="nav-text">软连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vim"><span class="nav-text">Vim</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-3"><span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F%EF%BC%88Command-mode%EF%BC%89"><span class="nav-text">命令模式（Command mode）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A8%A1%E5%BC%8F%EF%BC%88Insert-mode%EF%BC%89"><span class="nav-text">输入模式（Insert mode）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%95%E7%BA%BF%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F%EF%BC%88Last-line-mode%EF%BC%89"><span class="nav-text">底线命令模式（Last line mode）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-1"><span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim%E6%8C%89%E9%94%AE"><span class="nav-text">vim按键</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%EF%BC%9A%E4%B8%80%E8%88%AC%E6%A8%A1%E5%BC%8F%E5%8F%AF%E7%94%A8%E7%9A%84%E5%85%89%E6%A0%87%E7%A7%BB%E5%8A%A8%E3%80%81%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E3%80%81%E6%90%9C%E7%B4%A2%E6%9B%BF%E6%8D%A2%E7%AD%89"><span class="nav-text">一：一般模式可用的光标移动、复制粘贴、搜索替换等**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%EF%BC%9A%E4%B8%80%E8%88%AC%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2%E5%88%B0%E7%BC%96%E8%BE%91%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8F%AF%E7%94%A8%E7%9A%84%E6%8C%89%E9%92%AE%E8%AF%B4%E6%98%8E"><span class="nav-text">二：一般模式切换到编辑模式的可用的按钮说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86%EF%BC%9A%E4%B8%80%E8%88%AC%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2%E5%88%B0%E6%8C%87%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8F%AF%E7%94%A8%E7%9A%84%E6%8C%89%E9%92%AE%E8%AF%B4%E6%98%8E"><span class="nav-text">第三部分：一般模式切换到指令行模式的可用的按钮说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86"><span class="nav-text">账号管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-4"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%93%8D%E4%BD%9C"><span class="nav-text">用户操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0"><span class="nav-text">添加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4"><span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9"><span class="nav-text">修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7"><span class="nav-text">切换用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E8%AE%BE%E7%BD%AE"><span class="nav-text">用户密码设置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%BB%84"><span class="nav-text">用户组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA"><span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4-1"><span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-1"><span class="nav-text">修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7%E7%BB%84"><span class="nav-text">切换用户组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="nav-text">磁盘管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#df"><span class="nav-text">df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#du"><span class="nav-text">du</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-text">进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B"><span class="nav-text">查看进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E8%BF%9B%E7%A8%8B"><span class="nav-text">结束进程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="nav-text">软件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#rpm%E5%AE%89%E8%A3%85jdk"><span class="nav-text">rpm安装jdk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B%E7%BC%A9tomcat"><span class="nav-text">解压缩tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yum%E5%AE%89%E8%A3%85docker"><span class="nav-text">yum安装docker</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="团子"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">团子</p>
+  <div class="site-description" itemprop="description"><script type="text/javascript" src="https://api.qinor.cn/soup/index.php?encode=js"> </script> <script> qinor() </script></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/JavaWty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;JavaWty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">团子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<span id="busuanzi_container_site_uv">
+  本站访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+</span>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
