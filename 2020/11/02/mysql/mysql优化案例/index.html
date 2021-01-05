@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="概述尚硅谷MySQL数据库高级，mysql优化，数据库优化 文档参考">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mySql优化案例">
+<meta property="og:url" content="http://example.com/2020/11/02/mysql/mysql%E4%BC%98%E5%8C%96%E6%A1%88%E4%BE%8B/index.html">
+<meta property="og:site_name" content="哈,我是弟弟啊の博客">
+<meta property="og:description" content="概述尚硅谷MySQL数据库高级，mysql优化，数据库优化 文档参考">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-02T05:41:30.000Z">
+<meta property="article:modified_time" content="2020-11-03T05:41:41.487Z">
+<meta property="article:author" content="团子">
+<meta property="article:tag" content="sql">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2020/11/02/mysql/mysql%E4%BC%98%E5%8C%96%E6%A1%88%E4%BE%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>mySql优化案例 | 哈,我是弟弟啊の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">哈,我是弟弟啊の博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/02/mysql/mysql%E4%BC%98%E5%8C%96%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="团子">
+      <meta itemprop="description" content="<script type="text/javascript" src="https://api.qinor.cn/soup/index.php?encode=js"> </script> <script> qinor() </script>">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="哈,我是弟弟啊の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          mySql优化案例
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-02 13:41:30" itemprop="dateCreated datePublished" datetime="2020-11-02T13:41:30+08:00">2020-11-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-03 13:41:41" itemprop="dateModified" datetime="2020-11-03T13:41:41+08:00">2020-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KW411u7vy?p=31">尚硅谷MySQL数据库高级，mysql优化，数据库优化</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/RingoTangs/LearningNote/blob/master/MySQL/MySQL.md">文档参考</a></p>
+<a id="more"></a>
+
+<h1 id="单表"><a href="#单表" class="headerlink" title="单表"></a>单表</h1><h2 id="sql"><a href="#sql" class="headerlink" title="sql"></a>sql</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KW411u7vy?p=31">尚硅谷视频</a></p>
+<p>数据库是mysql5.5</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`article`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="string">`article`</span>(</span><br><span class="line"><span class="string">`id`</span> <span class="built_in">INT</span>(<span class="number">10</span>) <span class="keyword">UNSIGNED</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">&#x27;主键&#x27;</span>,</span><br><span class="line"><span class="string">`author_id`</span> <span class="built_in">INT</span>(<span class="number">10</span>) <span class="keyword">UNSIGNED</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;作者id&#x27;</span>,</span><br><span class="line"><span class="string">`category_id`</span> <span class="built_in">INT</span>(<span class="number">10</span>) <span class="keyword">UNSIGNED</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;分类id&#x27;</span>,</span><br><span class="line"><span class="string">`views`</span> <span class="built_in">INT</span>(<span class="number">10</span>) <span class="keyword">UNSIGNED</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;被查看的次数&#x27;</span>,</span><br><span class="line"><span class="string">`comments`</span> <span class="built_in">INT</span>(<span class="number">10</span>) <span class="keyword">UNSIGNED</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;回帖的备注&#x27;</span>,</span><br><span class="line"><span class="string">`title`</span> <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;标题&#x27;</span>,</span><br><span class="line"><span class="string">`content`</span> <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;正文内容&#x27;</span></span><br><span class="line">) <span class="keyword">COMMENT</span> <span class="string">&#x27;文章&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`article`</span>(<span class="string">`author_id`</span>, <span class="string">`category_id`</span>, <span class="string">`views`</span>, <span class="string">`comments`</span>, <span class="string">`title`</span>, <span class="string">`content`</span>) <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;1&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`article`</span>(<span class="string">`author_id`</span>, <span class="string">`category_id`</span>, <span class="string">`views`</span>, <span class="string">`comments`</span>, <span class="string">`title`</span>, <span class="string">`content`</span>) <span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;2&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`article`</span>(<span class="string">`author_id`</span>, <span class="string">`category_id`</span>, <span class="string">`views`</span>, <span class="string">`comments`</span>, <span class="string">`title`</span>, <span class="string">`content`</span>) <span class="keyword">VALUES</span>(<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;3&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`article`</span>(<span class="string">`author_id`</span>, <span class="string">`category_id`</span>, <span class="string">`views`</span>, <span class="string">`comments`</span>, <span class="string">`title`</span>, <span class="string">`content`</span>) <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;3&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`article`</span>(<span class="string">`author_id`</span>, <span class="string">`category_id`</span>, <span class="string">`views`</span>, <span class="string">`comments`</span>, <span class="string">`title`</span>, <span class="string">`content`</span>) <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;4&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><blockquote>
+<p>查询<code>category_id</code>为1且<code>comments</code>大于1的情况下，<code>views</code>最多的<code>article_id</code></p>
+</blockquote>
+<ol>
+<li><p>sql语句:  <code>explain select id,author_id from article where category_id=1 and comments &gt;1 order by views desc limit 1;</code></p>
+</li>
+<li><p>出现了<code>type=all</code>的全表扫描和<code>Extra: Using where; Using filesort</code>,产生了文件内排序,需要优化</p>
+</li>
+<li><p>显示表中的索引:<code>show index article</code>,结果只有一个索引,为<code>PRIMARY</code>,名称为<code>id</code></p>
+</li>
+<li><p>建立三个索引: <code>create index ind_ccv on article (category_id,comments,views);</code></p>
+</li>
+<li><p>查看索引:<code>show index from article;</code>;</p>
+</li>
+<li><p>执行explain后发现,type值更新为了<code>rang</code>,而<code>Extra: Using where; Using filesort</code>没变</p>
+</li>
+<li><p>把sql语句更改为<code>explain select id,author_id from article where category_id=1 and comments =1 order by views desc limit 1;</code>发现<code>Using filesort</code>消失</p>
+</li>
+<li><p>推断出:当<code>comments &gt; 1</code>的时候<code>order by</code>排序<code>views</code>字段索引就用不上，但是当<code>comments = 1</code>的时候<code>order by</code>排序<code>views</code>字段索引就可以用上！！！<strong>所以，范围之后的索引会失效。</strong></p>
+</li>
+<li><p>删除原来的索引: <code>drop index ind_ccv on article;</code> 创建新的索引<code>create index idx_cv on article (category_id,views);</code></p>
+</li>
+<li><p>再次查看时,发现<code>type=rang</code>,<code>Extra: Using where;</code></p>
+</li>
+</ol>
+<h1 id="两张表"><a href="#两张表" class="headerlink" title="两张表"></a>两张表</h1><h2 id="sql-1"><a href="#sql-1" class="headerlink" title="sql"></a>sql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS &#96;class&#96;;</span><br><span class="line">DROP TABLE IF EXISTS &#96;book&#96;;</span><br><span class="line"></span><br><span class="line">CREATE TABLE IF NOT EXISTS &#96;class&#96;(</span><br><span class="line">&#96;id&#96; INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT &#39;主键&#39;,</span><br><span class="line">&#96;card&#96; INT(10) UNSIGNED NOT NULL COMMENT &#39;分类&#39; </span><br><span class="line">) COMMENT &#39;商品类别&#39;;</span><br><span class="line"></span><br><span class="line">CREATE TABLE IF NOT EXISTS &#96;book&#96;(</span><br><span class="line">&#96;bookid&#96; INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT &#39;主键&#39;,</span><br><span class="line">&#96;card&#96; INT(10) UNSIGNED NOT NULL COMMENT &#39;分类&#39;</span><br><span class="line">) COMMENT &#39;书籍&#39;;</span><br><span class="line"></span><br><span class="line">insert into class (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line">insert into class (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line">insert into class (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line">insert into class (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line">insert into class (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line"></span><br><span class="line">insert into book (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line">insert into book (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line">insert into book (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line">insert into book (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line">insert into book (card) values (FLOOR(1+(RAND()*20)));</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询-1"><a href="#查询-1" class="headerlink" title="查询"></a>查询</h2><p>左连接</p>
+<ol>
+<li>使用<code>explain select * from class left join book on class.card =book.card;</code>查询,<code>type=all</code>,默认是全表扫描</li>
+<li>尝试在book上添加索引 <code> alter table book add index ind_bk_card (card);</code></li>
+<li>使用explain分析后,<code>book</code>表<code>type=ref</code></li>
+</ol>
+<p><strong>总结:左连接将索引创建在右表上更合适，右连接将索引创建在左表上更合适。</strong></p>
+<h1 id="三张表"><a href="#三张表" class="headerlink" title="三张表"></a>三张表</h1><h2 id="sql-2"><a href="#sql-2" class="headerlink" title="sql"></a>sql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS &#96;phone&#96;;</span><br><span class="line"></span><br><span class="line">CREATE TABLE IF NOT EXISTS &#96;phone&#96;(</span><br><span class="line">&#96;phone_id&#96; INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT &#39;主键&#39;,</span><br><span class="line">&#96;card&#96; INT(10) UNSIGNED NOT NULL COMMENT &#39;分类&#39; </span><br><span class="line">) COMMENT &#39;手机&#39;;</span><br><span class="line"></span><br><span class="line">insert into phone (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line">insert into phone (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line">insert into phone (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line">insert into phone (card) values (FLOOR(1+(RAND()*20)));</span><br><span class="line">insert into phone (card) values (FLOOR(1+(RAND()*20)));</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询-2"><a href="#查询-2" class="headerlink" title="查询"></a>查询</h2><ol>
+<li>使用<code>explain select * from class left join book on class.card =book.card left join phone on book.card =phone.card;</code>分析结果为<code>type=all</code></li>
+<li>由两张表结论得知,左连接需要在右表上添加索引,在book上添加索引<code>B</code>,在phone上添加索引<code>P</code></li>
+<li>分析后,book和phone表的<code>type=ref</code>;</li>
+</ol>
+<p>结论:</p>
+<ul>
+<li>尽可能减少<code>JOIN</code>语句中的<code>NestedLoop</code>（嵌套循环）的总次数：<strong>永远都是小的结果集驱动大的结果集</strong>。</li>
+<li>优先优化<code>NestedLoop</code>的内层循环。</li>
+<li>保证<code>JOIN</code>语句中被驱动表上<code>JOIN</code>条件字段已经被索引。</li>
+<li>当无法保证被驱动表的<code>JOIN</code>条件字段被索引且内存资源充足的前提下，不要太吝惜<code>Join Buffer</code> 的设置</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>团子
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2020/11/02/mysql/mysql%E4%BC%98%E5%8C%96%E6%A1%88%E4%BE%8B/" title="mySql优化案例">http://example.com/2020/11/02/mysql/mysql优化案例/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/sql/" rel="tag"><i class="fa fa-tag"></i> sql</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/23/mysql/sql%E4%BC%98%E5%8C%96/" rel="prev" title="sql优化">
+      <i class="fa fa-chevron-left"></i> sql优化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/12/mybatis/%E9%80%9A%E7%94%A8Mapper/" rel="next" title="通用Mapper">
+      通用Mapper <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E8%A1%A8"><span class="nav-text">单表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sql"><span class="nav-text">sql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2"><span class="nav-text">查询</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%A4%E5%BC%A0%E8%A1%A8"><span class="nav-text">两张表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sql-1"><span class="nav-text">sql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2-1"><span class="nav-text">查询</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E5%BC%A0%E8%A1%A8"><span class="nav-text">三张表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sql-2"><span class="nav-text">sql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2-2"><span class="nav-text">查询</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="团子"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">团子</p>
+  <div class="site-description" itemprop="description"><script type="text/javascript" src="https://api.qinor.cn/soup/index.php?encode=js"> </script> <script> qinor() </script></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/JavaWty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;JavaWty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">团子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<span id="busuanzi_container_site_uv">
+  本站访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+</span>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

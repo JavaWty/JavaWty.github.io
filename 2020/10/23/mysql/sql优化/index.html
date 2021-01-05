@@ -22,19 +22,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="存储引擎参考笔记 概述尚硅谷 12345--查看所有的数据库引擎show engines;-- 查看默认的数据库引擎show variables like &amp;#x27;%storage_engine%&amp;#x27;;">
+  <meta name="description" content="存储引擎参考笔记 使用navcat批量插入数据  打开数据库–函数–创建函数 插入以下代码  12345678910-- 定义一个变量declare i int;-- 初始值set i&#x3D;0;-- 循环的次数while i&lt;10 do-- insert语句insert into t2  values (RAND());set i&#x3D;i+1;end while;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sql优化">
 <meta property="og:url" content="http://example.com/2020/10/23/mysql/sql%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="哈,我是弟弟啊の博客">
-<meta property="og:description" content="存储引擎参考笔记 概述尚硅谷 12345--查看所有的数据库引擎show engines;-- 查看默认的数据库引擎show variables like &amp;#x27;%storage_engine%&amp;#x27;;">
+<meta property="og:description" content="存储引擎参考笔记 使用navcat批量插入数据  打开数据库–函数–创建函数 插入以下代码  12345678910-- 定义一个变量declare i int;-- 初始值set i&#x3D;0;-- 循环的次数while i&lt;10 do-- insert语句insert into t2  values (RAND());set i&#x3D;i+1;end while;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/mysql/join.jfif">
 <meta property="og:image" content="http://example.com/images/mysql/BTree.png">
 <meta property="og:image" content="http://example.com/images/mysql/B+tree.png">
 <meta property="og:image" content="http://example.com/images/mysql/explain.jpg">
 <meta property="article:published_time" content="2020-10-23T05:56:07.000Z">
-<meta property="article:modified_time" content="2020-10-25T09:26:22.176Z">
+<meta property="article:modified_time" content="2020-11-24T05:43:43.966Z">
 <meta property="article:author" content="团子">
 <meta property="article:tag" content="sql">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-25 17:26:22" itemprop="dateModified" datetime="2020-10-25T17:26:22+08:00">2020-10-25</time>
+                <time title="修改时间：2020-11-24 13:43:43" itemprop="dateModified" datetime="2020-11-24T13:43:43+08:00">2020-11-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -259,10 +259,17 @@
 
       
         <h1 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h1><p><a target="_blank" rel="noopener" href="https://github.com/RingoTangs/LearningNote/blob/master/MySQL/MySQL.md">参考笔记</a></p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KW411u7vy?p=9">尚硅谷</a></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--查看所有的数据库引擎</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">engines</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看默认的数据库引擎</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">&#x27;%storage_engine%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>使用navcat批量插入数据</p>
+<ol>
+<li>打开数据库–函数–创建函数</li>
+<li>插入以下代码</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 定义一个变量</span></span><br><span class="line"><span class="keyword">declare</span> i <span class="built_in">int</span>;</span><br><span class="line"><span class="comment">-- 初始值</span></span><br><span class="line"><span class="keyword">set</span> i=<span class="number">0</span>;</span><br><span class="line"><span class="comment">-- 循环的次数</span></span><br><span class="line">while i&lt;10 do</span><br><span class="line"><span class="comment">-- insert语句</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t2  <span class="keyword">values</span> (<span class="keyword">RAND</span>());</span><br><span class="line"><span class="keyword">set</span> i=i+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">while</span>;</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
+
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KW411u7vy?p=9">尚硅谷</a></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--查看所有的数据库引擎</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">engines</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看默认的数据库引擎</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">&#x27;%storage_engine%&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <h2 id="两种存储引擎的对比"><a href="#两种存储引擎的对比" class="headerlink" title="两种存储引擎的对比"></a>两种存储引擎的对比</h2><table>
 <thead>
@@ -346,38 +353,17 @@
 <li>实际上索引也是一张表，该表保存了主键与索引字段，并指向实体表的记录，所以索引列也是要占用空间的。</li>
 </ul>
 <h2 id="索引的创建时机"><a href="#索引的创建时机" class="headerlink" title="索引的创建时机"></a>索引的创建时机</h2><h3 id="适合创建索引的情况"><a href="#适合创建索引的情况" class="headerlink" title="适合创建索引的情况"></a>适合创建索引的情况</h3><p> 主键自动建立唯一索引；<br> 频繁作为查询条件的字段应该创建索引<br> 查询中与其它表关联的字段，外键关系建立索引<br> 单键/组合索引的选择问题， 组合索引性价比更高<br> 查询中排序的字段，排序字段若通过索引去访问将大大提高排序速度<br> 查询中统计或者分组字段</p>
-<h3 id="不适合创建索引的情况"><a href="#不适合创建索引的情况" class="headerlink" title="不适合创建索引的情况"></a>不适合创建索引的情况</h3><p> 表记录太少<br> 经常增删改的表或者字段</p>
-<p> Where 条件里用不到的字段不创建索引<br> 过滤性不好的不适合建索引</p>
+<h3 id="不适合创建索引的情况"><a href="#不适合创建索引的情况" class="headerlink" title="不适合创建索引的情况"></a>不适合创建索引的情况</h3><p> 表记录太少<br> 经常增删改的表或者字段<br> Where 条件里用不到的字段不创建索引<br> 过滤性不好的不适合建索引</p>
 <h2 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h2><h3 id="单值索引"><a href="#单值索引" class="headerlink" title="单值索引"></a>单值索引</h3><p>即一个索引只包含单个列，一个表可以有多个单列索引</p>
 <h3 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h3><p>索引列的值必须唯一，但是允许空值。</p>
 <h3 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h3><p> 设定为主键后数据库会自动建立索引，innodb为聚簇索引</p>
 <h3 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h3><p>一个索引包含多个字段。</p>
-<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ccstu/p/12191058.html">博客园笔记参考</a></p>
-<p>尚硅谷视频笔记:</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>命令</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>创建</td>
-<td>CREATE [UNIQUE ] INDEX [indexName] ON table_name(column))</td>
-</tr>
-<tr>
-<td>删除</td>
-<td>DROP INDEX [indexName] ON mytable;</td>
-</tr>
-<tr>
-<td>查看</td>
-<td>SHOW INDEX FROM table_name\G</td>
-</tr>
-<tr>
-<td>使 用 Alter命令</td>
-<td>ALTER TABLE tbl_name ADD PRIMARY KEY (column_list) : 该语句添加一个主键，这意味着索引值必须是唯一的，且不能为 NULL。<br/>ALTER TABLE tbl_name ADD PRIMARY KEY (column_list)<br/>ALTER TABLE tbl_name ADD INDEX index_name (column_list): 添加普通索引，索引值可出现多次。<br/>ALTER TABLE tbl_name ADD FULLTEXT index_name (column_list):该语句指定了索引为 FULLTEXT ，用于全文索引。</td>
-</tr>
-</tbody></table>
+<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><p><a target="_blank" rel="noopener" href="https://github.com/RingoTangs/LearningNote/blob/master/MySQL/MySQL.md">github 笔记分享</a></p>
+<p><strong>建议：一张表建的索引最好不要超过5个！</strong></p>
+<p>使用<code>ALTER</code>来创建索引</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* 1、该语句添加一个主键，这意味着索引值必须是唯一的，并且不能为NULL *&#x2F;</span><br><span class="line">ALTER TABLE tabName ADD PRIMARY KEY(column_list);</span><br><span class="line"></span><br><span class="line">&#x2F;* 2、该语句创建索引的键值必须是唯一的(除了NULL之外，NULL可能会出现多次) *&#x2F;</span><br><span class="line">ALTER TABLE tabName ADD UNIQUE indexName(column_list);</span><br><span class="line"></span><br><span class="line">&#x2F;* 3、该语句创建普通索引，索引值可以出现多次 *&#x2F;</span><br><span class="line">ALTER TABLE tabName ADD INDEX indexName(column_list);</span><br><span class="line"></span><br><span class="line">&#x2F;* 4、该语句指定了索引为FULLTEXT，用于全文检索 *&#x2F;</span><br><span class="line">ALTER TABLE tabName ADD FULLTEXT indexName(column_list);</span><br></pre></td></tr></table></figure>
+</blockquote>
 <h2 id="索引结构"><a href="#索引结构" class="headerlink" title="索引结构"></a>索引结构</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><p>索引结构分为<code>BTree</code>索引、 <code>Hash</code>索引、 <code>Full-text</code>全文索引、<code>R-Tree</code>索引。</p>
 <p>目前学习阶段，重点在<code>BTree</code>索引</p>
 <h3 id="BTree索引"><a href="#BTree索引" class="headerlink" title="BTree索引"></a>BTree索引</h3><p>BTree索引图示:</p>
@@ -401,14 +387,15 @@
 <li><code>id</code>不同，如果是子查询，id的序号会递增，<strong>id值越大优先级越高，越先被执行。</strong></li>
 <li><code>id</code>相同不同，同时存在。<strong>永远是id大的优先级最高，id相等的时候顺序执行。</strong></li>
 </ul>
-<p>id 如果相同，可以认为是一组，从上往下顺序执行；在所有组中，id 值越大，优先级越高，越先执行衍生 = DERIVED关注点：id 号每个号码，表示一趟独立的查询。一个 sql 的查询趟数越少越好。</p>
+<p>id 如果相同，可以认为是一组，从上往下顺序执行；在所有组中，id 值越大，优先级越高，越先执行(DERIVED的翻译是衍生)</p>
+<p>关注点：id 号每个号码，表示一趟独立的查询。一个 sql 的查询趟数越少越好。</p>
 <blockquote>
 <p>select_type</p>
 </blockquote>
 <p><code>select_type</code>：数据查询的类型，主要是用于区别普通查询、联合查询、子查询等的复杂查询。</p>
 <ul>
 <li><code>SIMPLE</code>：简单的<code>SELECT</code>查询，查询中不包含子查询或者<code>UNION </code>。</li>
-<li><code>PRIMARY</code>：查询中如果包含任何复杂的子部分，最外层查询则被标记为<code>PRIMARY</code>。</li>
+<li><code>PRIMARY</code>：查询中如果包含任何复杂的子部分，最外层查询则被标记为<code>PRIMARY</code>,简单理解就是最后加载的表是<code>PRIMARY</code>。</li>
 <li><code>SUBQUERY</code>：在<code>SELECT</code>或者<code>WHERE</code>子句中包含了子查询。</li>
 <li><code>DERIVED</code>：在<code>FROM</code>子句中包含的子查询被标记为<code>DERIVED(衍生)</code>，MySQL会递归执行这些子查询，把结果放在临时表中。</li>
 <li><code>UNION</code>：如果第二个<code>SELECT</code>出现在<code>UNION</code>之后，则被标记为<code>UNION</code>；若<code>UNION</code>包含在<code>FROM</code>子句的子查询中，外层<code>SELECT</code>将被标记为<code>DERIVED</code>。</li>
@@ -452,44 +439,14 @@
 </blockquote>
 <p><code>Extra</code>：包含不适合在其他列中显示但十分重要的额外信息。</p>
 <ul>
-<li><code>Using filesort</code>：说明MySQL会对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。<strong>MySQL中无法利用索引完成的排序操作成为”文件内排序”。</strong></li>
+<li><code>Using filesort</code>：说明MySQL会对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。<strong>MySQL中无法利用索引完成的排序操作称为”文件内排序”。</strong></li>
 <li><code>Using temporary</code>：使用了临时表保存中间结果，MySQL在対查询结果排序时使用了临时表。常见于排序<code>order by</code>和分组查询<code>group by</code>。<strong>临时表対系统性能损耗很大。</strong></li>
 <li><code>Using index</code>：表示相应的<code>SELECT</code>操作中使用了覆盖索引，避免访问了表的数据行，效率不错！如果同时出现<code>Using where</code>，表示索引被用来执行索引键值的查找；如果没有同时出现<code>Using where</code>，表明索引用来读取数据而非执行查找动作。</li>
 <li><code>Using where</code>：表明使用了<code>WHERE</code>过滤。</li>
 <li><code>Using join buffer</code>：使用了连接缓存。</li>
-<li><code>impossible where</code>：<code>WHERE</code>子句的值总是false，不能用来获取任何元组。</li>
+<li><code>impossible where</code>：<code>WHERE</code>子句的值总是false，不能用来获取任何元组。eg: <code>select * from tea where name = &#39;张三&#39; and name =&#39;李四&#39;;</code></li>
 </ul>
-<h1 id="索引分析"><a href="#索引分析" class="headerlink" title="索引分析"></a>索引分析</h1><h2 id="单表"><a href="#单表" class="headerlink" title="单表"></a>单表</h2><h3 id="sql"><a href="#sql" class="headerlink" title="sql"></a>sql</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KW411u7vy?p=31">尚硅谷视频</a></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`article`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="string">`article`</span>(</span><br><span class="line"><span class="string">`id`</span> <span class="built_in">INT</span>(<span class="number">10</span>) <span class="keyword">UNSIGNED</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">&#x27;主键&#x27;</span>,</span><br><span class="line"><span class="string">`author_id`</span> <span class="built_in">INT</span>(<span class="number">10</span>) <span class="keyword">UNSIGNED</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;作者id&#x27;</span>,</span><br><span class="line"><span class="string">`category_id`</span> <span class="built_in">INT</span>(<span class="number">10</span>) <span class="keyword">UNSIGNED</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;分类id&#x27;</span>,</span><br><span class="line"><span class="string">`views`</span> <span class="built_in">INT</span>(<span class="number">10</span>) <span class="keyword">UNSIGNED</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;被查看的次数&#x27;</span>,</span><br><span class="line"><span class="string">`comments`</span> <span class="built_in">INT</span>(<span class="number">10</span>) <span class="keyword">UNSIGNED</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;回帖的备注&#x27;</span>,</span><br><span class="line"><span class="string">`title`</span> <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;标题&#x27;</span>,</span><br><span class="line"><span class="string">`content`</span> <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;正文内容&#x27;</span></span><br><span class="line">) <span class="keyword">COMMENT</span> <span class="string">&#x27;文章&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`article`</span>(<span class="string">`author_id`</span>, <span class="string">`category_id`</span>, <span class="string">`views`</span>, <span class="string">`comments`</span>, <span class="string">`title`</span>, <span class="string">`content`</span>) <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;1&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`article`</span>(<span class="string">`author_id`</span>, <span class="string">`category_id`</span>, <span class="string">`views`</span>, <span class="string">`comments`</span>, <span class="string">`title`</span>, <span class="string">`content`</span>) <span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;2&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`article`</span>(<span class="string">`author_id`</span>, <span class="string">`category_id`</span>, <span class="string">`views`</span>, <span class="string">`comments`</span>, <span class="string">`title`</span>, <span class="string">`content`</span>) <span class="keyword">VALUES</span>(<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;3&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`article`</span>(<span class="string">`author_id`</span>, <span class="string">`category_id`</span>, <span class="string">`views`</span>, <span class="string">`comments`</span>, <span class="string">`title`</span>, <span class="string">`content`</span>) <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;3&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`article`</span>(<span class="string">`author_id`</span>, <span class="string">`category_id`</span>, <span class="string">`views`</span>, <span class="string">`comments`</span>, <span class="string">`title`</span>, <span class="string">`content`</span>) <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;4&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
-<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><blockquote>
-<p>查询<code>category_id</code>为1且<code>comments</code>大于1的情况下，<code>views</code>最多的<code>article_id</code></p>
-</blockquote>
-<ol>
-<li><p>sql语句:  <code>explain select id,author_id from article where category_id=1 and comments &gt;1 order by views desc limit 1;</code></p>
-</li>
-<li><p>出现了<code>type=all</code>的全表扫描和<code>Extra: Using where; Using filesort</code>,产生了文件内排序,需要优化</p>
-</li>
-<li><p>显示表中的索引:<code>show index article</code>,结果只有一个索引,为<code>PRIMARY</code>,名称为<code>id</code></p>
-</li>
-<li><p>建立索引: <code>create index ind_ccv on article (category_id,comments,views);</code></p>
-</li>
-<li><p>查看索引: 一共四个索引,一个为primary,name为id,其余三个为ind_ccv,name为category_id,comments,views</p>
-</li>
-<li><p>执行explain后发现,type值更新为了<code>rang</code>,而<code>Extra: Using where; Using filesort</code>没变,依然存在<code>Using filesort</code></p>
-</li>
-<li><p>把sql语句更改为<code>explain select id,author_id from article where category_id=1 and comments =1 order by views desc limit 1;</code></p>
-<p>发现<code>Using filesort</code>消失</p>
-</li>
-<li><p>推断出:当<code>comments &gt; 1</code>的时候<code>order by</code>排序<code>views</code>字段索引就用不上，但是当<code>comments = 1</code>的时候<code>order by</code>排序<code>views</code>字段索引就可以用上！！！<strong>所以，范围之后的索引会失效。</strong></p>
-</li>
-<li><p>删除原来的索引: <code>drop index ind_ccv on article;</code> 创建新的索引<code>create index ind_cc on article (category_id,comments);</code></p>
-</li>
-<li><p>再次查看时,发现<code>type=rang</code>,<code>Extra</code>中失去<code>Using filesort</code>值</p>
-</li>
-</ol>
-<p>以上数据库数据使用mysql5.5做的理论论证,使用mysql5.7时,跟理论不一致</p>
-<h2 id="两张表"><a href="#两张表" class="headerlink" title="两张表"></a>两张表</h2><h3 id="sql-1"><a href="#sql-1" class="headerlink" title="sql"></a>sql</h3><h3 id="查询-1"><a href="#查询-1" class="headerlink" title="查询"></a>查询</h3><h2 id="三张表"><a href="#三张表" class="headerlink" title="三张表"></a>三张表</h2><h3 id="sql-2"><a href="#sql-2" class="headerlink" title="sql"></a>sql</h3><h3 id="查询-2"><a href="#查询-2" class="headerlink" title="查询"></a>查询</h3>
     </div>
 
     
@@ -525,10 +482,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/10/13/framework/mybatisplus%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2%E4%BE%8B%E5%AD%90/" rel="prev" title="MyBatisPlus条件查询例子">
+    <a href="/2020/10/13/mybatis/mybatisplus%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2%E4%BE%8B%E5%AD%90/" rel="prev" title="MyBatisPlus条件查询例子">
       <i class="fa fa-chevron-left"></i> MyBatisPlus条件查询例子
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/02/mysql/mysql%E4%BC%98%E5%8C%96%E6%A1%88%E4%BE%8B/" rel="next" title="mySql优化案例">
+      mySql优化案例 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -587,7 +547,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-text">存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-text">两种存储引擎的对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql%E6%89%A7%E8%A1%8C%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F"><span class="nav-text">sql执行加载顺序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#join%E8%AE%B2%E8%A7%A3"><span class="nav-text">join讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#join%E5%9B%BE%E7%A4%BA"><span class="nav-text">join图示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E8%A1%A8%E8%AF%AD%E5%8F%A5"><span class="nav-text">建表语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#join%E8%AF%AD%E5%8F%A5"><span class="nav-text">join语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E5%88%9B%E5%BB%BA%E6%97%B6%E6%9C%BA"><span class="nav-text">索引的创建时机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E5%90%88%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-text">适合创建索引的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E9%80%82%E5%90%88%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-text">不适合创建索引的情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E7%B1%BB"><span class="nav-text">索引分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%80%BC%E7%B4%A2%E5%BC%95"><span class="nav-text">单值索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95"><span class="nav-text">唯一索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E9%94%AE%E7%B4%A2%E5%BC%95"><span class="nav-text">主键索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E7%B4%A2%E5%BC%95"><span class="nav-text">复合索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84"><span class="nav-text">索引结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BTree%E7%B4%A2%E5%BC%95"><span class="nav-text">BTree索引</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Explain-%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="nav-text">Explain 性能分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-3"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="nav-text">名词解释</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E6%9E%90"><span class="nav-text">索引分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E8%A1%A8"><span class="nav-text">单表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sql"><span class="nav-text">sql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2"><span class="nav-text">查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E5%BC%A0%E8%A1%A8"><span class="nav-text">两张表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sql-1"><span class="nav-text">sql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2-1"><span class="nav-text">查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%BC%A0%E8%A1%A8"><span class="nav-text">三张表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sql-2"><span class="nav-text">sql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2-2"><span class="nav-text">查询</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-text">存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-text">两种存储引擎的对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql%E6%89%A7%E8%A1%8C%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F"><span class="nav-text">sql执行加载顺序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#join%E8%AE%B2%E8%A7%A3"><span class="nav-text">join讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#join%E5%9B%BE%E7%A4%BA"><span class="nav-text">join图示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E8%A1%A8%E8%AF%AD%E5%8F%A5"><span class="nav-text">建表语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#join%E8%AF%AD%E5%8F%A5"><span class="nav-text">join语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E5%88%9B%E5%BB%BA%E6%97%B6%E6%9C%BA"><span class="nav-text">索引的创建时机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E5%90%88%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-text">适合创建索引的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E9%80%82%E5%90%88%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-text">不适合创建索引的情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E7%B1%BB"><span class="nav-text">索引分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%80%BC%E7%B4%A2%E5%BC%95"><span class="nav-text">单值索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95"><span class="nav-text">唯一索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E9%94%AE%E7%B4%A2%E5%BC%95"><span class="nav-text">主键索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E7%B4%A2%E5%BC%95"><span class="nav-text">复合索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84"><span class="nav-text">索引结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BTree%E7%B4%A2%E5%BC%95"><span class="nav-text">BTree索引</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Explain-%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="nav-text">Explain 性能分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-3"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="nav-text">名词解释</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -603,20 +563,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -648,7 +608,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="user"></i>
   </span>
