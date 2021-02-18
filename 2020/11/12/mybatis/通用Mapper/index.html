@@ -30,7 +30,7 @@
 <meta property="og:description" content="概述文档通用Mapper官网 尚硅谷">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-12T13:05:10.000Z">
-<meta property="article:modified_time" content="2020-11-27T02:32:58.170Z">
+<meta property="article:modified_time" content="2021-01-27T04:42:52.686Z">
 <meta property="article:author" content="团子">
 <meta property="article:tag" content="mybatis">
 <meta name="twitter:card" content="summary">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-27 10:32:58" itemprop="dateModified" datetime="2020-11-27T10:32:58+08:00">2020-11-27</time>
+                <time title="修改时间：2021-01-27 12:42:52" itemprop="dateModified" datetime="2021-01-27T12:42:52+08:00">2021-01-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,8 +266,9 @@
 <h2 id="通用Mapper"><a href="#通用Mapper" class="headerlink" title="通用Mapper"></a>通用Mapper</h2><p>mapper类继承<code>Mapper&lt;T&gt;</code>类即可,例如下面的接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EmployeeMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">Employee</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="启动类注解"><a href="#启动类注解" class="headerlink" title="启动类注解"></a>启动类注解</h2><p>在启动类上添加mapper的包扫描,需要添加的是<code>tk.mybatis.spring.annotation.MapperScan</code>,而不是<code>org.mybatis.spring.annotation.MapperScan;</code>,</p>
-<p>不然报错:<code>tk.mybatis.mapper.MapperException: 无法获取实体类com.wty.tk_mapper.bean.Employee对应的表名!</code></p>
+<h2 id="启动类注解"><a href="#启动类注解" class="headerlink" title="启动类注解"></a>启动类注解</h2><p>在启动类上添加mapper的包扫描,需要添加的是<code>tk.mybatis.spring.annotation.MapperScan</code>,</p>
+<p>而不是<code>org.mybatis.spring.annotation.MapperScan</code>,</p>
+<p>不然报错<code>tk.mybatis.mapper.MapperException:无法获取实体类com.wty.tk_mapper.bean.Employee对应的表名!</code></p>
 <h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><h2 id="XXXXPrimaryKey"><a href="#XXXXPrimaryKey" class="headerlink" title="XXXXPrimaryKey"></a>XXXXPrimaryKey</h2><p>此方法传入一个id时,查询的结果为<code>NULL</code>,</p>
 <p>sql语句是<code>SELECT emp_id,emp_name,emp_salary,emp_age FROM tabple_emp WHERE emp_id = ? AND emp_name = ? AND emp_salary = ? AND emp_age = ?</code></p>
 <p>原因分两种情况 </p>
@@ -519,20 +520,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
