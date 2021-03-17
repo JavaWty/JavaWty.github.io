@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://example.com/images/framework/springboot-1.png">
 <meta property="og:image" content="http://example.com/images/framework/springboot-2.png">
 <meta property="article:published_time" content="2020-06-09T04:23:28.000Z">
-<meta property="article:modified_time" content="2021-01-17T06:28:56.648Z">
+<meta property="article:modified_time" content="2021-03-08T14:30:33.184Z">
 <meta property="article:author" content="团子">
 <meta property="article:tag" content="spring">
 <meta name="twitter:card" content="summary">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-17 14:28:56" itemprop="dateModified" datetime="2021-01-17T14:28:56+08:00">2021-01-17</time>
+                <time title="修改时间：2021-03-08 22:30:33" itemprop="dateModified" datetime="2021-03-08T22:30:33+08:00">2021-03-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -369,7 +369,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration(proxyBeanMethods = false)</span></span><br><span class="line"><span class="meta">@ConditionalOnWebApplication(type = Type.SERVLET)</span></span><br><span class="line"><span class="meta">@ConditionalOnClass(&#123; Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class &#125;)</span></span><br><span class="line"><span class="meta">@ConditionalOnMissingBean(WebMvcConfigurationSupport.class)</span></span><br><span class="line"><span class="meta">@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE + 10)</span></span><br><span class="line"><span class="meta">@AutoConfigureAfter(&#123; DispatcherServletAutoConfiguration.class, TaskExecutionAutoConfiguration.class,</span></span><br><span class="line"><span class="meta">		ValidationAutoConfiguration.class &#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebMvcAutoConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 省略</span></span><br><span class="line">    <span class="meta">@Configuration(proxyBeanMethods = false)</span></span><br><span class="line">	<span class="meta">@Import(EnableWebMvcConfiguration.class)</span></span><br><span class="line">    <span class="comment">//可以在WebMvcProperties.class中找到可以配置的东西</span></span><br><span class="line">	<span class="meta">@EnableConfigurationProperties(&#123; WebMvcProperties.class, ResourceProperties.class &#125;)</span></span><br><span class="line">	<span class="meta">@Order(0)</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">WebMvcAutoConfigurationAdapter</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line">        <span class="comment">//省略</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ol start="7">
-<li><code>WebMvcProperties.class</code>源码如下,可以看出springmvc可以配置哪些属性</li>
+<li>　　●注入了什么：就是注入某个对象所需要的外部资源（包括对象、资源、常量数据）。</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;spring.mvc&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebMvcProperties</span> </span>&#123;</span><br><span class="line"><span class="comment">//省略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -534,14 +534,14 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[ $&#123;&#125; ]]  </span><br></pre></td></tr></table></figure>
 
 <h1 id="springmvc配置"><a href="#springmvc配置" class="headerlink" title="springmvc配置"></a>springmvc配置</h1><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>关于<code>WebMvcConfigurer</code>接口的方法<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangpower1993/article/details/89016503">说明</a></p>
-<p>[2.1 addInterceptors：拦截器](<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangpower1993/article/details/89016503#2.1">https://blog.csdn.net/zhangpower1993/article/details/89016503#2.1</a> addInterceptors：拦截器)</p>
-<p>[2.2 addViewControllers：页面跳转](<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangpower1993/article/details/89016503#2.2">https://blog.csdn.net/zhangpower1993/article/details/89016503#2.2</a> addViewControllers：页面跳转)</p>
-<p>[2.3 addResourceHandlers：静态资源](<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangpower1993/article/details/89016503#2.3">https://blog.csdn.net/zhangpower1993/article/details/89016503#2.3</a> addResourceHandlers：静态资源)</p>
-<p>[2.4 configureDefaultServletHandling：默认静态资源处理器](<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangpower1993/article/details/89016503#2.4">https://blog.csdn.net/zhangpower1993/article/details/89016503#2.4</a> configureDefaultServletHandling：默认静态资源处理器)</p>
-<p>[2.5 configureViewResolvers：视图解析器](<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangpower1993/article/details/89016503#2.5">https://blog.csdn.net/zhangpower1993/article/details/89016503#2.5</a> configureViewResolvers：视图解析器)</p>
-<p>[2.6 configureContentNegotiation：配置内容裁决的一些参数](<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangpower1993/article/details/89016503#2.6">https://blog.csdn.net/zhangpower1993/article/details/89016503#2.6</a> configureContentNegotiation：配置内容裁决的一些参数)</p>
-<p>[2.7 addCorsMappings：跨域](<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangpower1993/article/details/89016503#2.7">https://blog.csdn.net/zhangpower1993/article/details/89016503#2.7</a> addCorsMappings：跨域)</p>
-<p>[2.8 configureMessageConverters：信息转换器](<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangpower1993/article/details/89016503#2.8">https://blog.csdn.net/zhangpower1993/article/details/89016503#2.8</a> configureMessageConverters：信息转换器)</p>
+<p>2.1 addInterceptors：拦截器</p>
+<p>2.2 addViewControllers：页面跳转</p>
+<p>2.3 addResourceHandlers：静态资源</p>
+<p>2.4 configureDefaultServletHandling：默认静态资源处理器</p>
+<p>2.5 configureViewResolvers：视图解析器</p>
+<p>2.6 configureContentNegotiation：配置内容裁决的一些参数</p>
+<p>2.7 addCorsMappings：跨域</p>
+<p>2.8 configureMessageConverters：信息转换器</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//切记,不能添加@EnableWebMvc,加了以后表示全面接管springmvc</span><br><span class="line">@Configuration</span><br><span class="line">public class WebmvcConfig implements WebMvcConfigurer &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="示例-页面跳转"><a href="#示例-页面跳转" class="headerlink" title="示例:页面跳转"></a>示例:页面跳转</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebmvcConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addViewControllers</span><span class="params">(ViewControllerRegistry registry)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//lohost:8080/lo</span></span><br><span class="line">        registry.addViewController(<span class="string">&quot;/lo&quot;</span>).setViewName(<span class="string">&quot;success&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -738,7 +738,6 @@
 <li>测试复杂版的邮件,附件,图片,html页面等</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendSimpleMailFile</span><span class="params">()</span><span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">//利用JavaMailSender创建复杂邮件</span></span><br><span class="line">    MimeMessage mimeMessage = mailSender.createMimeMessage();</span><br><span class="line">    <span class="comment">//利用MimeMessageHelper进行文件的传输,true表示开启文件传输</span></span><br><span class="line">    MimeMessageHelper mimeMessageHelper = <span class="keyword">new</span> MimeMessageHelper(mimeMessage,<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">    mimeMessageHelper.setFrom(<span class="string">&quot;发送方&quot;</span>);</span><br><span class="line">    mimeMessageHelper.setTo(<span class="string">&quot;接收方&quot;</span>);</span><br><span class="line">    mimeMessageHelper.setSubject(<span class="string">&quot;主题：springboot测试邮件&quot;</span>);</span><br><span class="line">    <span class="comment">//html内容,true表示开启html渲染</span></span><br><span class="line">    mimeMessageHelper.setText(<span class="string">&quot;&lt;b style=&#x27;color:red&#x27;&gt;测试邮件的内容&lt;/b&gt;&quot;</span>,<span class="keyword">true</span>);</span><br><span class="line">    <span class="comment">//文件</span></span><br><span class="line">    mimeMessageHelper.addAttachment(<span class="string">&quot;1.jpg&quot;</span>,<span class="keyword">new</span> File(<span class="string">&quot;D:\\computer\\user\\图片\\phone\\11.jpg&quot;</span>));</span><br><span class="line">    mimeMessageHelper.addAttachment(<span class="string">&quot;2.jpg&quot;</span>,<span class="keyword">new</span> File(<span class="string">&quot;D:\\computer\\user\\图片\\phone\\12.jpg&quot;</span>));</span><br><span class="line">    mailSender.send(mimeMessage);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
     </div>
 
     
@@ -855,20 +854,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
