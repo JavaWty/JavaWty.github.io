@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg">
@@ -29,13 +29,15 @@
 <meta property="og:site_name" content="哈,我是弟弟啊の博客">
 <meta property="og:description" content="JUC简介JUC就是java.util .concurrent工具包的简称。这是一个处理线程的工具包，JDK 1.5开始出现的。 在jdk文档中,原文是这样的    java.util.concurrent 在并发编程中常用的实用类。    java.util.concurrent.atomic 一个支持单变量无锁线程安全编程的类的小工具包。   java.util.concurrent.lock">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/java/juc/Collection.svg">
 <meta property="article:published_time" content="2021-03-03T03:35:06.000Z">
-<meta property="article:modified_time" content="2021-03-07T06:46:17.299Z">
+<meta property="article:modified_time" content="2021-03-25T13:45:40.549Z">
 <meta property="article:author" content="团子">
 <meta property="article:tag" content="java基础">
-<meta property="article:tag" content="并发">
 <meta property="article:tag" content="线程">
+<meta property="article:tag" content="并发">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/java/juc/Collection.svg">
 
 <link rel="canonical" href="http://example.com/2021/03/03/java/juc/">
 
@@ -225,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-07 14:46:17" itemprop="dateModified" datetime="2021-03-07T14:46:17+08:00">2021-03-07</time>
+                <time title="修改时间：2021-03-25 21:45:40" itemprop="dateModified" datetime="2021-03-25T21:45:40+08:00">2021-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,7 +275,7 @@
 <td>接口和类提供了一个锁定和等待条件的框架，这种情况与内置的同步和监视器不同。</td>
 </tr>
 </tbody></table>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1B7411L7tE?p=2&spm_id_from=pageDriver">狂神说</a></p>
 <blockquote>
@@ -573,7 +575,83 @@
 <li><code>ReadWriteLock</code>允许多个线程在没有写入时同时读取；</li>
 <li><code>ReadWriteLock</code>适合读多写少的场景。</li>
 </ul>
-<h1 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h1>
+<h1 id="阻塞队列-BlockingQueue"><a href="#阻塞队列-BlockingQueue" class="headerlink" title="阻塞队列 BlockingQueue"></a>阻塞队列 BlockingQueue</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1B7411L7tE?p=19&spm_id_from=pageDriver">狂神说</a></p>
+<h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>双端队列,</p>
+<blockquote>
+<p>参数类型<br>E -元素举行此集合中的类型<br>All Superinterfaces:<br>    Collection ， Iterable ， Queue<br>All Known Subinterfaces:<br>    BlockingDeque ， TransferQueue<br>所有已知实现类：<br>ArrayBlockingQueue， DelayQueue， LinkedBlockingDeque， LinkedBlockingQueue， LinkedTransferQueue， PriorityBlockingQueue， SynchronousQueue </p>
+</blockquote>
+<h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img data-src="/images/java/juc/Collection.svg"></p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><blockquote>
+<p>四组API</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>抛出异常</th>
+<th>有返回值</th>
+<th>阻塞 等待</th>
+<th>超时等待</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>添加</td>
+<td><strong>add</strong> (IllegalStateException: Queue full)</td>
+<td><strong>offer</strong>(false)</td>
+<td><strong>put</strong></td>
+<td>offer(“b”, 3, TimeUnit.SECONDS)</td>
+</tr>
+<tr>
+<td>移除</td>
+<td><strong>remove</strong>(java.util.NoSuchElementException)</td>
+<td><strong>poll</strong>(null)</td>
+<td><strong>take</strong></td>
+<td>poll(2, TimeUnit.SECONDS)</td>
+</tr>
+<tr>
+<td>获取队首元素</td>
+<td><strong>element</strong></td>
+<td><strong>peek</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>部分代码演示</p>
+</blockquote>
+<p>阻塞等待的添加 put</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">b</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    <span class="comment">//队列的大小为1</span></span><br><span class="line">    ArrayBlockingQueue queue = <span class="keyword">new</span> ArrayBlockingQueue&lt;&gt;(<span class="number">1</span>);</span><br><span class="line">    queue.put(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">    <span class="comment">//队列没有空余的存储位置,此代码一直等待插入,程序一直运行,不会停止</span></span><br><span class="line">    queue.put(<span class="string">&quot;b&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>阻塞等待的移除 take</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">b</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    <span class="comment">//队列的大小为1</span></span><br><span class="line">    ArrayBlockingQueue queue = <span class="keyword">new</span> ArrayBlockingQueue&lt;&gt;(<span class="number">1</span>);</span><br><span class="line">    queue.put(<span class="string">&quot;a&quot;</span>);</span><br><span class="line"></span><br><span class="line">    System.out.println(queue.take());</span><br><span class="line">    <span class="comment">//第二个值不存在,会一直不停地获取</span></span><br><span class="line">    System.out.println(queue.take());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>超时等待 添加</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">b</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    <span class="comment">//队列的大小为1</span></span><br><span class="line">    ArrayBlockingQueue queue = <span class="keyword">new</span> ArrayBlockingQueue&lt;&gt;(<span class="number">1</span>);</span><br><span class="line">    System.out.println(queue.offer(<span class="string">&quot;a&quot;</span>));</span><br><span class="line">    <span class="comment">//不确定是否可以插入值时,设置一个超时时间,时间到了之后,会返回boolean类型</span></span><br><span class="line">    System.out.println(queue.offer(<span class="string">&quot;b&quot;</span>, <span class="number">3</span>, TimeUnit.SECONDS));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>超时等待 获取</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">b</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    <span class="comment">//队列的大小为1</span></span><br><span class="line">    ArrayBlockingQueue queue = <span class="keyword">new</span> ArrayBlockingQueue&lt;&gt;(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//存入</span></span><br><span class="line">    queue.offer(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">    <span class="comment">//获取</span></span><br><span class="line">    System.out.println(queue.poll());</span><br><span class="line">    <span class="comment">//两秒过后还是获取不到值,就放弃,并返回null</span></span><br><span class="line">    System.out.println(queue.poll(<span class="number">2</span>, TimeUnit.SECONDS));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="同步队列-SynchronousQueue"><a href="#同步队列-SynchronousQueue" class="headerlink" title="同步队列  SynchronousQueue"></a>同步队列  SynchronousQueue</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1B7411L7tE?p=21&spm_id_from=pageDriver">狂神说</a></p>
+<p>没有容量,存入一个值,必须取出一个值,才可以继续存值</p>
+<p>代码演示</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SynchronousQueue&lt;String&gt; queue = <span class="keyword">new</span> SynchronousQueue();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot;===&gt;&quot;</span> + <span class="string">&quot;put1&quot;</span>);</span><br><span class="line">                queue.put(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot;===&gt;&quot;</span> + <span class="string">&quot;put2&quot;</span>);</span><br><span class="line">                queue.put(<span class="string">&quot;2&quot;</span>);</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot;===&gt;&quot;</span> + <span class="string">&quot;put3&quot;</span>);</span><br><span class="line">                queue.put(<span class="string">&quot;3&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">&quot;T1&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot;==&gt;取出&quot;</span> + queue.take());</span><br><span class="line">                TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot;==&gt;取出&quot;</span> + queue.take());</span><br><span class="line">                TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot;==&gt;取出&quot;</span> + queue.take());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">&quot;T2&quot;</span>).start();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下,说明确实是存一个取一个,发生了同步</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">T1===&gt;put1</span><br><span class="line">T2==&gt;取出1</span><br><span class="line">T1===&gt;put2</span><br><span class="line">T2==&gt;取出2</span><br><span class="line">T1===&gt;put3</span><br><span class="line">T2==&gt;取出3</span><br></pre></td></tr></table></figure>
+
+<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1B7411L7tE?p=22&spm_id_from=pageDriver">狂神说</a></p>
+<p>阿里巴巴开发手册中关于线程池的规范</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">8. 【强制】线程池不允许使用 Executors 去创建，而是通过 ThreadPoolExecutor 的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。</span><br><span class="line">说明：Executors 各个方法的弊端：</span><br><span class="line">1）newFixedThreadPool 和 newSingleThreadExecutor:</span><br><span class="line">主要问题是堆积的请求处理队列可能会耗费非常大的内存，甚至 OOM。</span><br><span class="line">2）newCachedThreadPool 和 newScheduledThreadPool:</span><br><span class="line">主要问题是线程数最大数是 Integer.MAX_VALUE，可能会创建数量非常多的线程，甚至 OOM。</span><br><span class="line"></span><br><span class="line">9. 【强制】创建线程或线程池时请指定有意义的线程名称，方便出错时回溯。</span><br><span class="line">正例：</span><br><span class="line">public class TimerTaskThread extends Thread &#123;</span><br><span class="line">	public TimerTaskThread()&#123;</span><br><span class="line">	super.setName(&quot;TimerTaskThread&quot;); …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>线程主要是有 <strong>三大方法</strong>,<strong>七大参数</strong>,<strong>四种拒绝策略</strong></p>
+<h2 id="三大方法"><a href="#三大方法" class="headerlink" title="三大方法"></a><strong>三大方法</strong></h2><p>三大方法指的是创建线程池时对池子的默认大小做出了不同的限定</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">//只有一个线程在执行</span></span><br><span class="line">    ExecutorService service = Executors.newSingleThreadExecutor();</span><br><span class="line">    <span class="comment">//固定大小的五个线程池</span></span><br><span class="line">    ExecutorService service = Executors.newFixedThreadPool(<span class="number">5</span>);</span><br><span class="line">    <span class="comment">//动态的线程池大小,遇强则强,最多有30个线程池</span></span><br><span class="line">    ExecutorService service = Executors.newCachedThreadPool();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">                service.execute(() -&gt; &#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">&quot;___OK&quot;</span>);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;, <span class="string">&quot;T1&quot;</span>).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">//关闭线程池</span></span><br><span class="line">        service.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="七大参数"><a href="#七大参数" class="headerlink" title="七大参数"></a><strong>七大参数</strong></h2><h2 id="四种拒绝策略"><a href="#四种拒绝策略" class="headerlink" title="四种拒绝策略"></a><strong>四种拒绝策略</strong></h2>
     </div>
 
     
@@ -601,8 +679,8 @@
           
           <div class="post-tags">
               <a href="/tags/java%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> java基础</a>
-              <a href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag"><i class="fa fa-tag"></i> 并发</a>
               <a href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> 线程</a>
+              <a href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag"><i class="fa fa-tag"></i> 并发</a>
           </div>
 
         
@@ -611,8 +689,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/02/15/other/computer/" rel="prev" title="计算机">
-      <i class="fa fa-chevron-left"></i> 计算机
+    <a href="/2021/02/15/other/computer/" rel="prev" title="计算机一级">
+      <i class="fa fa-chevron-left"></i> 计算机一级
     </a></div>
       <div class="post-nav-item">
     <a href="/2021/03/03/java/lamda/" rel="next" title="Lamda的简化流程">
@@ -676,7 +754,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JUC"><span class="nav-text">JUC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-text">概念</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lock%E9%94%81"><span class="nav-text">lock锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A7%E7%89%88%E7%9A%84%E5%8D%96%E7%A5%A8%E9%97%AE%E9%A2%98"><span class="nav-text">旧版的卖票问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%81%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">锁的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%92%8Csynchronized%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">和synchronized的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85"><span class="nav-text">生产者消费者</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9F%E7%89%88"><span class="nav-text">传统版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Juc%E7%89%88"><span class="nav-text">Juc版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E5%94%A4%E9%86%92%E7%BA%BF%E7%A8%8B"><span class="nav-text">指定唤醒线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AB%E9%94%81%E7%8E%B0%E8%B1%A1"><span class="nav-text">八锁现象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E7%B1%BB%E4%B8%8D%E5%AE%89%E5%85%A8"><span class="nav-text">集合类不安全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-text">List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set"><span class="nav-text">Set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map"><span class="nav-text">Map</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Callable"><span class="nav-text">Callable</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E8%BE%85%E5%8A%A9%E7%B1%BB"><span class="nav-text">三大辅助类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CountDownLatch-%E5%8A%A0%E6%B3%95"><span class="nav-text">CountDownLatch 加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CyclicBarrier-%E5%87%8F%E6%B3%95"><span class="nav-text">CyclicBarrier 减法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Semaphore-%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="nav-text">Semaphore 信号量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E9%94%81"><span class="nav-text">读写锁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97"><span class="nav-text">阻塞队列</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JUC"><span class="nav-text">JUC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-text">概念</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lock%E9%94%81"><span class="nav-text">lock锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A7%E7%89%88%E7%9A%84%E5%8D%96%E7%A5%A8%E9%97%AE%E9%A2%98"><span class="nav-text">旧版的卖票问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%81%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">锁的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%92%8Csynchronized%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">和synchronized的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85"><span class="nav-text">生产者消费者</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9F%E7%89%88"><span class="nav-text">传统版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Juc%E7%89%88"><span class="nav-text">Juc版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E5%94%A4%E9%86%92%E7%BA%BF%E7%A8%8B"><span class="nav-text">指定唤醒线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AB%E9%94%81%E7%8E%B0%E8%B1%A1"><span class="nav-text">八锁现象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E7%B1%BB%E4%B8%8D%E5%AE%89%E5%85%A8"><span class="nav-text">集合类不安全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-text">List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set"><span class="nav-text">Set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map"><span class="nav-text">Map</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Callable"><span class="nav-text">Callable</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E8%BE%85%E5%8A%A9%E7%B1%BB"><span class="nav-text">三大辅助类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CountDownLatch-%E5%8A%A0%E6%B3%95"><span class="nav-text">CountDownLatch 加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CyclicBarrier-%E5%87%8F%E6%B3%95"><span class="nav-text">CyclicBarrier 减法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Semaphore-%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="nav-text">Semaphore 信号量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E9%94%81"><span class="nav-text">读写锁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97-BlockingQueue"><span class="nav-text">阻塞队列 BlockingQueue</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%A4%BA"><span class="nav-text">图示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-text">API</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E9%98%9F%E5%88%97-SynchronousQueue"><span class="nav-text">同步队列  SynchronousQueue</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-text">线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0"><span class="nav-text">简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E6%96%B9%E6%B3%95"><span class="nav-text">三大方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E5%A4%A7%E5%8F%82%E6%95%B0"><span class="nav-text">七大参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E7%A7%8D%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5"><span class="nav-text">四种拒绝策略</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg">
@@ -265,7 +265,7 @@
 <p>负载均衡</p>
 <p>​    增加服务器的数量，然后将请求分发到各个服务器上，将原先请求集中到单个服务器上的情况改为将请求分发到多个服务器上，将负载分发到不同的服务器，也就是我们所说的负载均衡</p>
 </blockquote>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="Linux安装"><a href="#Linux安装" class="headerlink" title="Linux安装"></a>Linux安装</h1><p><a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">nginx安装网址</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">下载完成nginx-1.18.0.tar.gz以后上传到linux的/opt下面</span></span><br><span class="line"><span class="meta">#</span><span class="bash">解压  tar -zxvf nginx-1.18.0.tar.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash">进入目录  <span class="built_in">cd</span> nginx-1.18.0/</span></span><br><span class="line"><span class="meta">#</span><span class="bash">安装 </span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 安装环境 yum -y install pcre-devel openssl openssl-devel</span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 运行自动配置 ./configure</span></span><br><span class="line">	make &amp;&amp; make install</span><br><span class="line"><span class="meta">#</span><span class="bash">查看nginx安装路径  whereis nginx	</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 默认安装在了 /usr/<span class="built_in">local</span>/nginx</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动nginx  </span></span><br><span class="line">       cd sbin  </span><br><span class="line">       ./nginx</span><br><span class="line"><span class="meta">#</span><span class="bash">默认端口是80 可以在/usr/<span class="built_in">local</span>/nginx/conf/nginx.conf 中看到</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动后访问linux的服务器地址 看到Welcome to nginx!就成功了				</span></span><br></pre></td></tr></table></figure>
