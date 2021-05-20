@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Servlet简介 客户端  —&gt;  服务器     请求    HttpServletRequest   客户端  —&gt;  客户端     响应    HttpServletResponse  生命周期访问Servlet方法的时候  创建一个Servlet实例对象 调用nit方法 初始化 调用service方法 处理请求 以后的请求,只调用service方法,getServletCo">
+  <meta name="description" content="Servlet简介 客户端  —&gt;  服务器     请求    HttpServletRequest   服务端  —&gt;  客户端     响应    HttpServletResponse  生命周期访问Servlet方法的时候  创建一个Servlet实例对象 调用nit方法 初始化 调用service方法 处理请求 以后的请求,只调用service方法,getServletCo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Servlet">
 <meta property="og:url" content="http://example.com/2020/03/24/javaweb/servlet/index.html">
 <meta property="og:site_name" content="哈,我是弟弟啊の博客">
-<meta property="og:description" content="Servlet简介 客户端  —&gt;  服务器     请求    HttpServletRequest   客户端  —&gt;  客户端     响应    HttpServletResponse  生命周期访问Servlet方法的时候  创建一个Servlet实例对象 调用nit方法 初始化 调用service方法 处理请求 以后的请求,只调用service方法,getServletCo">
+<meta property="og:description" content="Servlet简介 客户端  —&gt;  服务器     请求    HttpServletRequest   服务端  —&gt;  客户端     响应    HttpServletResponse  生命周期访问Servlet方法的时候  创建一个Servlet实例对象 调用nit方法 初始化 调用service方法 处理请求 以后的请求,只调用service方法,getServletCo">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/servlet/servlet-1.png">
 <meta property="og:image" content="http://example.com/images%5Cservlet%5Cservlet-2.png">
@@ -35,10 +35,9 @@
 <meta property="og:image" content="http://example.com/images%5Cservlet%5Cservlet-4.png">
 <meta property="og:image" content="http://example.com/images%5Cservlet%5Cservlet-5.png">
 <meta property="og:image" content="http://example.com/images/servlet/servlet-6.png">
-<meta property="og:image" content="http://example.com/images/servlet/servlet-7.png">
 <meta property="og:image" content="http://example.com/images/servlet/filter-1.png">
 <meta property="article:published_time" content="2020-03-24T06:33:53.000Z">
-<meta property="article:modified_time" content="2020-05-31T02:38:23.637Z">
+<meta property="article:modified_time" content="2021-05-11T15:22:22.602Z">
 <meta property="article:author" content="团子">
 <meta property="article:tag" content="javaWeb">
 <meta name="twitter:card" content="summary">
@@ -232,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-31 10:38:23" itemprop="dateModified" datetime="2020-05-31T10:38:23+08:00">2020-05-31</time>
+                <time title="修改时间：2021-05-11 23:22:22" itemprop="dateModified" datetime="2021-05-11T23:22:22+08:00">2021-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,7 +265,7 @@
 <p>客户端  —&gt;  服务器     请求    HttpServletRequest</p>
 </blockquote>
 <blockquote>
-<p>客户端  —&gt;  客户端     响应    HttpServletResponse</p>
+<p>服务端  —&gt;  客户端     响应    HttpServletResponse</p>
 </blockquote>
 <h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><strong>访问Servlet方法的时候</strong></p>
 <ol>
@@ -295,8 +294,7 @@
 <h2 id="web-xml"><a href="#web-xml" class="headerlink" title="web.xml"></a>web.xml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;ServletDemo&lt;&#x2F;servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;com.wty.servlet.servlet.ServletDemo&lt;&#x2F;servlet-class&gt;</span><br><span class="line">    &#x2F;&#x2F;初始化参数</span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;username&lt;&#x2F;param-name&gt;</span><br><span class="line">        &lt;param-value&gt;xiaoaaa&lt;&#x2F;param-value&gt;</span><br><span class="line">    &lt;&#x2F;init-param&gt;</span><br><span class="line">&lt;&#x2F;servlet&gt;</span><br></pre></td></tr></table></figure>
 
 <h1 id="HttpServlet"><a href="#HttpServlet" class="headerlink" title="HttpServlet"></a>HttpServlet</h1><h2 id="实现原理图示"><a href="#实现原理图示" class="headerlink" title="实现原理图示"></a>实现原理图示</h2><p><img data-src="/images/servlet/servlet-1.png"></p>
-<h2 id="原理说明"><a href="#原理说明" class="headerlink" title="原理说明"></a>原理说明</h2><blockquote>
-<ol>
+<h2 id="原理说明"><a href="#原理说明" class="headerlink" title="原理说明"></a>原理说明</h2><ol>
 <li><p>发送 <a target="_blank" rel="noopener" href="http://localhost:8080/XXX%E8%AF%B7%E6%B1%82">http://localhost:8080/XXX请求</a></p>
 </li>
 <li><p>Servlet是父接口,优先实现,调用<code>service  (ServletRequest req, ServletResponse res)</code> 实现,但是Servlet是接口,没有实现方法,被GenericServlet类实现</p>
@@ -306,17 +304,15 @@
 <li><p>HttpServlet实现抽象类GenericServlet,并实现GenericServlet的service抽象方法,写出了具体方法<code>service(ServletRequest req, ServletResponse res)</code></p>
 </li>
 </ol>
-</blockquote>
 <p><img data-src="/images%5Cservlet%5Cservlet-2.png" alt="图片servlet-2.png"></p>
 <p>service方法,强转ServletRequest 为  <code>HttpServletRequest</code> ,强转ServletResponse 为  <code>HttpServletResponse,</code></p>
 <p>最后调用了自身的  <code>service(HttpServletRequest req, HttpServletResponse resp)</code></p>
 <ol start="5">
-<li><p>HttpServlet中的service(HttpServletRequest req, HttpServletResponse resp)方法首先获取请求方式,判断是那种请求,就会调用哪种方法,例如:是Get请求,就返回doGet(HttpServletRequest req, HttpServletResponse resp).</p>
+<li>HttpServlet中的service(HttpServletRequest req, HttpServletResponse resp)方法首先获取请求方式,判断是那种请求,就会调用哪种方法,例如:是Get请求,就返回doGet(HttpServletRequest req, HttpServletResponse resp).</li>
+</ol>
 <blockquote>
 <p>HttpServlet中的service(HttpServletRequest req, HttpServletResponse resp)方法</p>
 </blockquote>
-</li>
-</ol>
 <p><img data-src="/images%5Cservlet%5Cservlet-3.png" alt="图片servlet-3.png"></p>
 <ol start="6">
 <li>HttpServlet中的 <code>doGet</code>方法有自己的实现方式,我们编写的Servlet<code>继承HttpServlet</code>,对<code>doGet方法进行重写</code></li>
@@ -329,76 +325,120 @@
 <p><img data-src="/images%5Cservlet%5Cservlet-5.png"></p>
 </li>
 </ol>
-<h1 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h1><h2 id="1-说明"><a href="#1-说明" class="headerlink" title="1.说明"></a><strong>1.说明</strong></h2><p><strong>HttpServletRequest</strong>                      封装了浏览器客户端请求服务器的信息</p>
-<h2 id="2-乱码"><a href="#2-乱码" class="headerlink" title="2.乱码"></a><strong>2.乱码</strong></h2><p>request.setCharacterEncoding(“utf-8”);</p>
-<h2 id="3-获取表单数据"><a href="#3-获取表单数据" class="headerlink" title="3.获取表单数据"></a><strong>3.获取表单数据</strong></h2><p>name指的是 form表单中的name属性</p>
-<p>request.getParameter(name)</p>
-<h2 id="4-获取表单中的多个数据"><a href="#4-获取表单中的多个数据" class="headerlink" title="4.获取表单中的多个数据"></a><strong>4.获取表单中的多个数据</strong></h2><p>返回String数组</p>
-<p>String[] parameterValues = request.getParameterValues(name);</p>
-<h2 id="5-获取请求头信息"><a href="#5-获取请求头信息" class="headerlink" title="5.获取请求头信息"></a><strong>5.获取请求头信息</strong></h2><p>request.getHeader(“ “)</p>
-<h2 id="6-请求转发"><a href="#6-请求转发" class="headerlink" title="6.请求转发"></a><strong>6.请求转发</strong></h2><p>request.getRequestDispatcher(“/ServletDemo2”).forward(request, response);</p>
-<h2 id="7-域对象"><a href="#7-域对象" class="headerlink" title="7.域对象"></a><strong>7.域对象</strong></h2><p>//共享域对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">request.setAttribute(&quot;msg&quot;, &quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">request.getAttribute(&quot;msg&quot;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="8-请求转发和重定向的区别"><a href="#8-请求转发和重定向的区别" class="headerlink" title="8.请求转发和重定向的区别"></a>8.请求转发和重定向的区别</h2><p><img data-src="/images/servlet/servlet-6.png" alt="/images/servlet/servlet-6.png"></p>
-<h2 id="9-获得客户机【浏览器】信息"><a href="#9-获得客户机【浏览器】信息" class="headerlink" title="9.获得客户机【浏览器】信息"></a><strong>9.获得客户机【浏览器】信息</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">getRequestURL方法——返回客户端发出请求时的完整URL。 eg: http:&#x2F;&#x2F;192.168.0.111:8080&#x2F;ss2</span><br><span class="line"></span><br><span class="line">getRequestURI方法——返回请求行中的资源名部分。 eg:  &#x2F;ss2</span><br><span class="line"></span><br><span class="line">getQueryString 方法——返回请求行中的参数部分。</span><br><span class="line"></span><br><span class="line">getPathInfo方法——返回请求URL中的额外路径信息。额外路径信息是请求URL中的位于 Servlet的路径之后和查询参数之前的内容，它以“&#x2F;”开头。</span><br><span class="line"></span><br><span class="line">getRemoteAddr方法——返回发出请求的客户机的IP地址</span><br><span class="line"></span><br><span class="line">getRemoteHost方法——返回发出请求的客户机的完整主机名</span><br><span class="line"></span><br><span class="line">getRemotePort方法——返回客户机所使用的网络端口号</span><br><span class="line"></span><br><span class="line">getLocalAddr方法——返回WEB服务器的IP地址。</span><br><span class="line"></span><br><span class="line">getLocalName方法——返回WEB服务器的主机名</span><br></pre></td></tr></table></figure>
-
-<h2 id="10-获得客户机请求头"><a href="#10-获得客户机请求头" class="headerlink" title="10.获得客户机请求头"></a><strong>10.获得客户机请求头</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getHeader方法</span><br><span class="line"></span><br><span class="line">getHeaders方法</span><br><span class="line"></span><br><span class="line">getHeaderNames方法</span><br></pre></td></tr></table></figure>
-
-<h2 id="11-获得客户机请求参数-客户端提交的数据"><a href="#11-获得客户机请求参数-客户端提交的数据" class="headerlink" title="11.获得客户机请求参数(客户端提交的数据)"></a><strong>11.获得客户机请求参数(客户端提交的数据)</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">getParameter</span><br><span class="line"></span><br><span class="line">getParameterValues（String name）</span><br><span class="line"></span><br><span class="line">getParameterNames</span><br><span class="line"></span><br><span class="line">getParameterMap</span><br></pre></td></tr></table></figure>
-
-<h1 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h1><h2 id="1-说明-1"><a href="#1-说明-1" class="headerlink" title="1.说明"></a><strong>1.说明</strong></h2><blockquote>
-<p>HttpServletResponse            封装了服务器响应给浏览器的响应信息</p>
+<h1 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h1><p>HttpServletRequest     封装了浏览器客户端请求服务器的信息</p>
+<blockquote>
+<p>乱码</p>
 </blockquote>
-<h2 id="2-乱码-1"><a href="#2-乱码-1" class="headerlink" title="2.乱码**"></a>2.乱码**</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>request.setCharacterEncoding(“utf-8”);</p>
+<blockquote>
+<p>获取表单数据</p>
+</blockquote>
+<p>name指的是 form表单中的name属性</p>
+<p>request.getParameter(name)</p>
+<blockquote>
+<p>获取表单中的多个数据</p>
+</blockquote>
+<p>返回String数组</p>
+<p>String[] parameterValues = request.getParameterValues(name);</p>
+<blockquote>
+<p>获取请求头信息</p>
+</blockquote>
+<p>request.getHeader(“ “)</p>
+<blockquote>
+<p>请求转发</p>
+</blockquote>
+<p>request.getRequestDispatcher(“/ServletDemo2”).forward(request, response);</p>
+<blockquote>
+<p>域对象</p>
+</blockquote>
+<p>共享域对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">request.setAttribute(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">request.getAttribute(<span class="string">&quot;msg&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-给浏览器发送字符串"><a href="#3-给浏览器发送字符串" class="headerlink" title="3.给浏览器发送字符串"></a><strong>3.给浏览器发送字符串</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.getWriter().write(<span class="string">&quot;hello A&quot;</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>请求转发和重定向的区别</p>
+</blockquote>
+<p><img data-src="/images/servlet/servlet-6.png" alt="/images/servlet/servlet-6.png"></p>
+<blockquote>
+<p>获得客户机【浏览器】信息</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">getRequestURL方法——返回客户端发出请求时的完整URL。 eg: http:&#x2F;&#x2F;192.168.0.111:8080&#x2F;ss2</span><br><span class="line"></span><br><span class="line">getRequestURI方法——返回请求行中的资源名部分。 eg:  &#x2F;ss2</span><br><span class="line"></span><br><span class="line">getQueryString 方法——返回请求行中的参数部分。</span><br><span class="line"></span><br><span class="line">getPathInfo方法——返回请求URL中的额外路径信息。额外路径信息是请求URL中的位于 Servlet的路径之后和查询参数之前的内容，它以“&#x2F;”开头。</span><br><span class="line"></span><br><span class="line">getRemoteAddr方法——返回发出请求的客户机的IP地址</span><br><span class="line"></span><br><span class="line">getRemoteHost方法——返回发出请求的客户机的完整主机名</span><br><span class="line"></span><br><span class="line">getRemotePort方法——返回客户机所使用的网络端口号</span><br><span class="line"></span><br><span class="line">getLocalAddr方法——返回WEB服务器的IP地址。</span><br><span class="line"></span><br><span class="line">getLocalName方法——返回WEB服务器的主机名</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-Response重定向"><a href="#4-Response重定向" class="headerlink" title="4.Response重定向"></a><strong>4.Response重定向</strong></h2><p>重定向会发送两次请求</p>
+<blockquote>
+<p>获得客户机请求头</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getHeader方法</span><br><span class="line"></span><br><span class="line">getHeaders方法</span><br><span class="line"></span><br><span class="line">getHeaderNames方法</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>获得客户机请求参数(客户端提交的数据)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">getParameter</span><br><span class="line"></span><br><span class="line">getParameterValues（String name）</span><br><span class="line"></span><br><span class="line">getParameterNames</span><br><span class="line"></span><br><span class="line">getParameterMap</span><br></pre></td></tr></table></figure>
+
+<h1 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h1><p>HttpServletResponse    封装了服务器响应给浏览器的响应信息</p>
+<blockquote>
+<p>乱码</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>给浏览器发送字符串</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.getWriter().write(<span class="string">&quot;hello A&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Response重定向</p>
+</blockquote>
+<p>重定向会发送两次请求</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">&quot;&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<h2 id="5-设置不使用缓存"><a href="#5-设置不使用缓存" class="headerlink" title="5.设置不使用缓存"></a><strong>5.设置不使用缓存</strong></h2><p>使用缓存可以加快页面的加载，降低服务端的负担。但是也可能看到过时的信息，可以通过如下手段通知浏览器不要使用缓存</p>
+<blockquote>
+<p>设置不使用缓存</p>
+</blockquote>
+<p>使用缓存可以加快页面的加载，降低服务端的负担。但是也可能看到过时的信息，可以通过如下手段通知浏览器不要使用缓存</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">response.setDateHeader(<span class="string">&quot;Expires&quot;</span>,<span class="number">0</span> ); </span><br><span class="line">response.setHeader(<span class="string">&quot;Cache-Control&quot;</span>,<span class="string">&quot;no-cache&quot;</span>);</span><br><span class="line">response.setHeader(<span class="string">&quot;pragma&quot;</span>,<span class="string">&quot;no-cache&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<h1 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h1><h2 id="1-说明-2"><a href="#1-说明-2" class="headerlink" title="1.说明"></a>1.说明</h2><p>session是浏览器开关一次的会话机制,开启浏览器的访问jsp页面的时候,session就创建了,</p>
-<p>服务器会为每次会话(浏览器开关闭,切换浏览器)生成一个新的session,以后每次使用的都是旧的session</p>
-<p>观看地址:<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av63564073?p=174">https://www.bilibili.com/video/av63564073?p=174</a></p>
-<h2 id="2-创建-获取"><a href="#2-创建-获取" class="headerlink" title="2.创建 获取"></a><strong>2.创建 获取</strong></h2><p><img data-src="/images/servlet/servlet-7.png" alt="img"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HttpSession session = request.getSession();</span><br></pre></td></tr></table></figure>
+<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12J411M7Sj?p=16&spm_id_from=pageDriver">狂神说</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av63564073?p=169">尚硅谷</a></p>
+<p>http是无状态的协议,无法识别每个用户的请求,在浏览器的开发者模式中,只能看到浏览器的相关信息,看不到用户相关信息</p>
+<ol>
+<li><p>cookie是服务器发送给客户端的,数据保存在客户端</p>
+</li>
+<li><p>服务端通过调用<code>resp.addCookie(cookie);</code>方法发送一个cookie,</p>
+<p>客户端通过调用<code>req.getCookies();</code>获取服务端发送的cookie</p>
+</li>
+<li><p>服务器第一次发送Cookie后,客户端会接收到Cookie,以后每次请求服务器,都会在<code>Request Header</code>中携带Cookie,</p>
+</li>
+<li><p>cookie的生命周期</p>
+<ul>
+<li>默认生命时间:浏览器不关闭,cookie一直存在</li>
+<li>正数:表示该Cookie将在经过许多秒后过期, 过期后,浏览器会自动删除cookie</li>
+<li>0: 删除cookie</li>
+<li>负数:cookie的默认值,表示未存储cookie</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解决中文乱码问题</span></span><br><span class="line">req.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">resp.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br><span class="line"><span class="comment">// 创建cookie</span></span><br><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;wty&quot;</span>);</span><br><span class="line"><span class="comment">// 设置Cookie的过期时间</span></span><br><span class="line">cookie.setMaxAge(<span class="number">60</span> * <span class="number">60</span>);</span><br><span class="line"><span class="comment">// 设置cookie的访问路径,只有通过访问该路径,才会有cookie,&quot;/&quot;表示的是服务器的根目录</span></span><br><span class="line">cookie.setPath(<span class="string">&quot;/hello&quot;</span>);</span><br><span class="line"><span class="comment">// 服务器发送cookie,在Response的请求头中那包含了创建信息:Set-Cookie: name=wty</span></span><br><span class="line">resp.addCookie(cookie);</span><br><span class="line"><span class="comment">// 客户端获取cookie</span></span><br><span class="line">Cookie[] cookies = req.getCookies();</span><br><span class="line"><span class="keyword">for</span> (Cookie c : cookies) &#123;</span><br><span class="line">	System.out.println(c.getName() + <span class="string">&quot;:&quot;</span> + c.getValue());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出到页面的信息</span></span><br><span class="line">resp.getWriter().write(<span class="string">&quot;cookie&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-赋值"><a href="#3-赋值" class="headerlink" title="3.赋值"></a><strong>3.赋值</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.setAttribute(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;wang&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-判断是否是新的session"><a href="#4-判断是否是新的session" class="headerlink" title="4.判断是否是新的session"></a><strong>4.判断是否是新的session</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.isNew();</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-生命周期"><a href="#5-生命周期" class="headerlink" title="5.生命周期"></a><strong>5.生命周期</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//默认30分钟消失</span></span><br><span class="line"><span class="comment">//负数表示永不过期,太占用资源 </span></span><br><span class="line"><span class="comment">//整数指的是在不使用session后的多少秒消失</span></span><br><span class="line">session.setMaxInactiveInterval();</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-强制删除-使之立即失效"><a href="#6-强制删除-使之立即失效" class="headerlink" title="6.强制删除,使之立即失效"></a><strong>6.强制删除,使之立即失效</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.invalidate();</span><br></pre></td></tr></table></figure>
-
-<h2 id="7-URL重写-适用于Cookie被禁用"><a href="#7-URL重写-适用于Cookie被禁用" class="headerlink" title="7.URL重写,适用于Cookie被禁用"></a><strong>7.URL重写,适用于Cookie被禁用</strong></h2><p>传值是页面或者servlet访问路径</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.encodeRedirectURL();</span><br></pre></td></tr></table></figure>
-
-<p>c标签在页面使用</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:url value=<span class="string">&quot;&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><h2 id="1-说明-3"><a href="#1-说明-3" class="headerlink" title="1.说明"></a>1.说明</h2><blockquote>
-<p>服务器发送给浏览器的数据,浏览器保存,就是Cookie,浏览器关闭,cookie消失</p>
-<p>在本项目中,不论服务器是否关闭,都可以获取持久化的cookie</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av63564073?p=169">观看地址 </a></p>
-</blockquote>
-<h2 id="2-创建"><a href="#2-创建" class="headerlink" title="2.创建"></a><strong>2.创建</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">&quot;username&quot;</span>,<span class="string">&quot;wty&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-发送"><a href="#3-发送" class="headerlink" title="3.发送"></a><strong>3.发送</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.addCookie(cookie);</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-获取"><a href="#4-获取" class="headerlink" title="4.获取"></a><strong>4.获取</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Cookie[] cookies = request.getCookies(); </span><br><span class="line"><span class="keyword">if</span> (cookies != <span class="keyword">null</span>) &#123;    </span><br><span class="line">    <span class="keyword">for</span> (Cookie cookie : cookies) &#123; </span><br><span class="line">        String name = cookie.getName();</span><br><span class="line">        String value = cookie.getValue();</span><br><span class="line">        System.out.println(name + <span class="string">&quot;--&quot;</span> + value); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-删除"><a href="#5-删除" class="headerlink" title="5.删除"></a><strong>5.删除</strong></h2><p><strong>删除就是设置setMaxAge(0);</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">response.setContentType(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line"><span class="comment">//获取所有cookie</span></span><br><span class="line">Cookie[] cookies = request.getCookies();</span><br><span class="line"><span class="comment">//遍历cookie</span></span><br><span class="line"><span class="keyword">for</span> (Cookie cookie : cookies) &#123;</span><br><span class="line">    <span class="comment">//判断获取的cooKie是否是要删除的</span></span><br><span class="line">    <span class="keyword">if</span> (cookie.getName().equals(<span class="string">&quot;username&quot;</span>)) &#123;</span><br><span class="line">        <span class="comment">//执行删除操作</span></span><br><span class="line">        cookie.setMaxAge(<span class="number">0</span>);</span><br><span class="line">        response.addCookie(cookie);</span><br><span class="line">        response.getWriter().write(<span class="string">&quot;cookie删除完毕&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-持久化"><a href="#6-持久化" class="headerlink" title="6.持久化"></a><strong>6.持久化</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cookie.setMaxAge(<span class="number">60</span>*<span class="number">60</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="7-生命周期"><a href="#7-生命周期" class="headerlink" title="7.生命周期"></a><strong>7.生命周期</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置cookie的存活时间,里面的参数是以秒为单位</span></span><br><span class="line">cookie.setMaxAge(<span class="number">60</span>*<span class="number">60</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果maxAge设置成-1代表是当前cookie的销毁时间是浏览器关闭，和默认是一样的</span></span><br><span class="line">cookie.setMaxAge(-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果maxAge设置成0代表删除已经存在的和当前同名的cookie</span></span><br><span class="line">cookie.setMaxAge(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="8-路径"><a href="#8-路径" class="headerlink" title="8.路径"></a>8.<strong>路径</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//是以服务器作为根路径的</span></span><br><span class="line">cookie1.setPath(<span class="string">&quot;/&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av63564073?p=174&spm_id_from=pageDriver">尚硅谷</a></p>
+<ol>
+<li><p>session是一种服务器端保存数据的技术,session就是当前会话的对象,可以共享当前会话的数据</p>
+</li>
+<li><p>服务器会为每个<strong>会话</strong>(服务器重新开启,浏览器切换都称为一次会话)创建独立的session,会有一个唯一id</p>
+</li>
+<li><p>服务器如何识别要使用哪一个session?</p>
+<p>在<code>Request Headers</code>中,会生成一个<code>Cookie</code>对象,它包含一个<code>JSESSIONID=B8C3056F273D9813D36D3C5491A3558B</code>,这个<code>JessionId</code>的值就是不同浏览器的每次新会话的session为一标识</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av63564073?p=175&spm_id_from=pageDriver">会话控制流程</a></p>
+<p>在用户1和用户2登录的时候，我们的服务器在他们登录成功后，在session中为他们每个用户分配了一个sessionid并且存下了一个对应的信息。当用户第二次访问该服务器的时候，会将sessionid在request请求中携带者发送过去。这时我们的服务器就可以根据sessionid确定用户存储的数据，然后进行使用。</p>
+</li>
+<li><p>生命周期,单位秒</p>
+<ul>
+<li>负数 :永不过期</li>
+<li>正数 :多少秒后过期</li>
+<li>强制失效:<code>session.invalidate();</code></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">       req.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">       resp.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br><span class="line">       <span class="comment">// 获取session</span></span><br><span class="line">       HttpSession session = req.getSession();</span><br><span class="line">       <span class="comment">// 判断session是否是新的,第一次获取是新的,以后每次获取都是旧的</span></span><br><span class="line">       <span class="keyword">boolean</span> isNew = session.isNew();</span><br><span class="line">       <span class="comment">// 给session域中存值,生成一个去掉-、全部大写的uuid</span></span><br><span class="line">       String s = UUID.randomUUID().toString().replaceAll(<span class="string">&quot;-&quot;</span>, <span class="string">&quot;&quot;</span>).toUpperCase(Locale.ROOT);</span><br><span class="line">       session.setAttribute(<span class="string">&quot;age&quot;</span>, s);</span><br><span class="line">       <span class="comment">// 获取session的内容</span></span><br><span class="line">       String age = (String) session.getAttribute(<span class="string">&quot;age&quot;</span>);</span><br><span class="line">       <span class="comment">// 设置session的存活时间,单位秒,默认1800秒,就是30分钟</span></span><br><span class="line">       session.setMaxInactiveInterval(<span class="number">10</span>);</span><br><span class="line">       <span class="comment">// session的唯一标识</span></span><br><span class="line">       String sessionId = session.getId();</span><br><span class="line">       <span class="comment">// 立即失效</span></span><br><span class="line">       session.invalidate();</span><br><span class="line">       <span class="comment">// 浏览器关闭后,使得session依然有效,可以创建一个同名的key,覆盖掉session</span></span><br><span class="line">       Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">&quot;JSESSIONID&quot;</span>, sessionId);</span><br><span class="line">       cookie.setMaxAge(<span class="number">60</span> * <span class="number">60</span>);</span><br><span class="line">       resp.addCookie(cookie);</span><br><span class="line">       <span class="comment">// 相应到页面</span></span><br><span class="line">       resp.getWriter().write(<span class="string">&quot;发送了一个session,值是:&quot;</span> + s);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Cb411i71i?from=search&seid=3965524059942509965">观看地址</a></p>
 <blockquote>
@@ -592,7 +632,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet"><span class="nav-text">Servlet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%AE%9E%E4%BE%8B"><span class="nav-text">方法实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web-xml"><span class="nav-text">web.xml</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HttpServlet"><span class="nav-text">HttpServlet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%9B%BE%E7%A4%BA"><span class="nav-text">实现原理图示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E8%AF%B4%E6%98%8E"><span class="nav-text">原理说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Servlet"><span class="nav-text">自定义Servlet</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Request"><span class="nav-text">Request</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%AF%B4%E6%98%8E"><span class="nav-text">1.说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%B9%B1%E7%A0%81"><span class="nav-text">2.乱码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%8E%B7%E5%8F%96%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE"><span class="nav-text">3.获取表单数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%8E%B7%E5%8F%96%E8%A1%A8%E5%8D%95%E4%B8%AD%E7%9A%84%E5%A4%9A%E4%B8%AA%E6%95%B0%E6%8D%AE"><span class="nav-text">4.获取表单中的多个数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%BF%A1%E6%81%AF"><span class="nav-text">5.获取请求头信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91"><span class="nav-text">6.请求转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%9F%9F%E5%AF%B9%E8%B1%A1"><span class="nav-text">7.域对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">8.请求转发和重定向的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E8%8E%B7%E5%BE%97%E5%AE%A2%E6%88%B7%E6%9C%BA%E3%80%90%E6%B5%8F%E8%A7%88%E5%99%A8%E3%80%91%E4%BF%A1%E6%81%AF"><span class="nav-text">9.获得客户机【浏览器】信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E8%8E%B7%E5%BE%97%E5%AE%A2%E6%88%B7%E6%9C%BA%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="nav-text">10.获得客户机请求头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E8%8E%B7%E5%BE%97%E5%AE%A2%E6%88%B7%E6%9C%BA%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8F%90%E4%BA%A4%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-text">11.获得客户机请求参数(客户端提交的数据)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Response"><span class="nav-text">Response</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%AF%B4%E6%98%8E-1"><span class="nav-text">1.说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%B9%B1%E7%A0%81-1"><span class="nav-text">2.乱码**</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%BB%99%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E9%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">3.给浏览器发送字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Response%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-text">4.Response重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%AE%BE%E7%BD%AE%E4%B8%8D%E4%BD%BF%E7%94%A8%E7%BC%93%E5%AD%98"><span class="nav-text">5.设置不使用缓存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Session"><span class="nav-text">Session</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%AF%B4%E6%98%8E-2"><span class="nav-text">1.说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%88%9B%E5%BB%BA-%E8%8E%B7%E5%8F%96"><span class="nav-text">2.创建 获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%B5%8B%E5%80%BC"><span class="nav-text">3.赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%98%AF%E6%96%B0%E7%9A%84session"><span class="nav-text">4.判断是否是新的session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text">5.生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%BC%BA%E5%88%B6%E5%88%A0%E9%99%A4-%E4%BD%BF%E4%B9%8B%E7%AB%8B%E5%8D%B3%E5%A4%B1%E6%95%88"><span class="nav-text">6.强制删除,使之立即失效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-URL%E9%87%8D%E5%86%99-%E9%80%82%E7%94%A8%E4%BA%8ECookie%E8%A2%AB%E7%A6%81%E7%94%A8"><span class="nav-text">7.URL重写,适用于Cookie被禁用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cookie"><span class="nav-text">Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%AF%B4%E6%98%8E-3"><span class="nav-text">1.说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%88%9B%E5%BB%BA"><span class="nav-text">2.创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8F%91%E9%80%81"><span class="nav-text">3.发送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%8E%B7%E5%8F%96"><span class="nav-text">4.获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%88%A0%E9%99%A4"><span class="nav-text">5.删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-text">6.持久化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text">7.生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E8%B7%AF%E5%BE%84"><span class="nav-text">8.路径</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Filter"><span class="nav-text">Filter</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89Filter"><span class="nav-text">实现自定义Filter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xml%E9%85%8D%E7%BD%AE"><span class="nav-text">xml配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3"><span class="nav-text">注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-1"><span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-text">执行流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E6%8B%A6%E6%88%AA%E9%85%8D%E7%BD%AE"><span class="nav-text">过滤器拦截配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E8%B7%AF%E5%BE%84"><span class="nav-text">拦截路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E6%96%B9%E5%BC%8F"><span class="nav-text">拦截方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E9%93%BE"><span class="nav-text">过滤器链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3-1"><span class="nav-text">注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web-xml-1"><span class="nav-text">web.xml</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Listener"><span class="nav-text">Listener</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E-1"><span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="nav-text">自定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web-xml-2"><span class="nav-text">web.xml</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet"><span class="nav-text">Servlet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%AE%9E%E4%BE%8B"><span class="nav-text">方法实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web-xml"><span class="nav-text">web.xml</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HttpServlet"><span class="nav-text">HttpServlet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%9B%BE%E7%A4%BA"><span class="nav-text">实现原理图示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E8%AF%B4%E6%98%8E"><span class="nav-text">原理说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Servlet"><span class="nav-text">自定义Servlet</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Request"><span class="nav-text">Request</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Response"><span class="nav-text">Response</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cookie"><span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Session"><span class="nav-text">Session</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Filter"><span class="nav-text">Filter</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89Filter"><span class="nav-text">实现自定义Filter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xml%E9%85%8D%E7%BD%AE"><span class="nav-text">xml配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3"><span class="nav-text">注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-1"><span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-text">执行流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E6%8B%A6%E6%88%AA%E9%85%8D%E7%BD%AE"><span class="nav-text">过滤器拦截配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E8%B7%AF%E5%BE%84"><span class="nav-text">拦截路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E6%96%B9%E5%BC%8F"><span class="nav-text">拦截方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E9%93%BE"><span class="nav-text">过滤器链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3-1"><span class="nav-text">注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web-xml-1"><span class="nav-text">web.xml</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Listener"><span class="nav-text">Listener</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E-1"><span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="nav-text">自定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web-xml-2"><span class="nav-text">web.xml</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -608,20 +648,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
